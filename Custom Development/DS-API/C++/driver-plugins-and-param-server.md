@@ -80,31 +80,37 @@ DS 3.x can ingest real-time external scalar telemetry from any language or embed
 
 Upon accepting a TCP connection from DS, the server sends **one header** followed by **continuous fixed-size data frames**:
 
-#### Step 1: Stream Header (sent once per TCP connection)
+```mermaid
+flowchart LR
+    subgraph Header["1. Stream Header (Sent Once on Connect)"]
+        direction LR
+        M["MAGIC (int32)<br/>0x15260826 (NOTIME)<br/>or 0x18480315 (TIME)"] --> N["npars (int32)<br/>Scalar count per frame"] --> P["Parameter Names x npars<br/>len (int32) + char name[len]"]
+    end
 
-```text
-+----------------------+----------------------+---------------------------------------+
-| MAGIC (int32)        | npars (int32)        | Parameter Names x npars               |
-| 0x15260826 (NOTIME)  | Number of scalar     | Each entry:                           |
-| or                   | parameters per frame |   [len (int32)] [char name[len]]      |
-| 0x18480315 (TIME)    |                      |                                       |
-+----------------------+----------------------+---------------------------------------+
+    subgraph Frames["2. Continuous Data Frames (Repeated)"]
+        direction TB
+        F1["NOTIME Frame:<br/>float32 data[npars]"]
+        F2["TIME Frame:<br/>int32 sec + int32 usec + float32 data[npars]"]
+    end
+
+    Header --> Frames
 ```
 
-- `MAGIC_NOTIME` = `0x15260826`: Data frames omit timestamps; DS assigns arrival time.
-- `MAGIC_TIME` = `0x18480315`: Every data frame begins with a `(sec, usec)` timestamp pair.
+#### Step 1: Stream Header (sent once per TCP connection)
+
+- `MAGIC` (`int32`): Protocol magic identifier:
+  - `MAGIC_NOTIME` = `0x15260826`: Data frames omit timestamps; DS assigns arrival time.
+  - `MAGIC_TIME` = `0x18480315`: Every data frame begins with a `(sec, usec)` timestamp pair.
+- `npars` (`int32`): Number of scalar parameters transmitted per frame.
+- `Parameter Names` (`× npars`): Each entry encodes `[len (int32)][char name[len]]`.
 - **Byte Order**: DS automatically detects host vs. network endianness from the 32-bit `MAGIC` header!
 
 #### Step 2: Data Frames (repeated at your telemetry update rate)
 
-- If `MAGIC_NOTIME` (`0x15260826`):
-  ```text
-  [ float32 data[npars] ]
-  ```
-- If `MAGIC_TIME` (`0x18480315`):
-  ```text
-  [ int32 sec ][ int32 usec ][ float32 data[npars] ]
-  ```
+| Magic Mode | Binary Frame Layout |
+| :--- | :--- |
+| **`MAGIC_NOTIME` (`0x15260826`)** | `float32 data[npars]` |
+| **`MAGIC_TIME` (`0x18480315`)** | `int32 sec`, `int32 usec`, `float32 data[npars]` |
 
 ### Minimal C Frame Emission Sketch (`examples/paramserver.c`)
 

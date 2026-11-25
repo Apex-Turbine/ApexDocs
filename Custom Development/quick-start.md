@@ -8,7 +8,7 @@ This guide helps developers choose between **DS-API** and **Phoenix API**, verif
 
 | Need | Recommended SDK | Developer License Features |
 | :--- | :--- | :--- |
-| Read/write `.rwx` / `.pkx` / `.datx` files or control **APEX DS (DS 3.x)** servers & `N:M` clusters | **[DS-API](DS-API/README.md)** | Offline file reading requires **no network license**; live streaming/control checks out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` under app `DSAPI` (`DS_APPID_DSAPI`). |
+| Read/write `.rwx` / `.pkx` / `.datx` files or control **APEX DS (DS 3.x)** servers & `N:M` clusters | **[DS-API](DS-API/README.md)** | Offline file reading requires **no network license**; live streaming/control checks out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` under app `DSAPI`. |
 | Build **C++20** or **Python (`phoenixpy`)** streaming DAG pipelines, database readers/writers, or custom DX+ components/devices | **[Phoenix API](Phoenix%20API/README.md)** | Enforced via `PhoenixLic` / `ApexLmClient` against **APEX License Manager (`ApexLM`)** on port `27884` (`http://127.0.0.1:27887/`). |
 
 See the complete comparison in [Custom Development Overview](README.md).
@@ -41,7 +41,6 @@ Link against `dsapi` and include `dsapi.h` ([DS-API C++ Guide](DS-API/C++/README
 #include <stdio.h>
 
 int main(void) {
-    DSAPI_net_set_appid("f552ae4b-465e-48f4-8cf9-c3c42b6f6007"); /* DS_APPID_DSAPI */
     DSAPI_session net = DSAPI_net_startup(16, 16);
     if (!net) return 1;
 

@@ -42,4 +42,4 @@ To discover DS 3.x servers, stream live packets, or automate monitoring/recordin
 4. **Remote Manager Control**: Claim manager rights to push setups built/modified with `dsapi_setup_*`, run calibration, start/stop monitoring, check recording status/space, and start/stop/annotate recordings.
 5. **Teardown**: Release manager lock and shut down the network session cleanly when exiting.
 
-For multi-chassis synchronized clusters (`DSAPI_net_cluster`), DS GUI workspace switching (`DSAPI_net_gui_view*`), or custom App ID overrides (`DSAPI_net_set_appid`), use the [C/C++ System Manager & Clusters API](../C++/system-manager-and-clusters.md).
+For multi-chassis synchronized clusters (`DSAPI_net_cluster`) or DS GUI workspace switching (`DSAPI_net_gui_view*`), use the [C/C++ System Manager & Clusters API](../C++/system-manager-and-clusters.md).

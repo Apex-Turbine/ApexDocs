@@ -47,12 +47,12 @@ python3 your_script.py
 | **Offline File Writing** | **No** | `DSAPI_file_create_*` / `DSAPI_file_write` are C/C++-only (`dsapi.h`) |
 | **Live Streaming & Packets** | Yes | Extract `raw16i`, `raw32i`, `raw32f`, `fft`, `mag`, `env`, `time`, `stat`, `peak`, `param`, `trigger`, `timecode`, `timezone` |
 | **Single-Host Manager Control** | Yes | Remote configure, calibrate, monitor/record start & stop via `dsapi.py` / `get_network_session()` |
-| **Multi-Chassis Clusters / GUI Views / Custom App ID** | **No** | `DSAPI_net_cluster`, `DSAPI_net_gui_view*`, and `DSAPI_net_set_appid` are C/C++-only (`dsapi.h`, not wrapped in `dsapiscript.h`) |
+| **Multi-Chassis Clusters / GUI Views** | **No** | `DSAPI_net_cluster` and `DSAPI_net_gui_view*` are C/C++-only (`dsapi.h`, not wrapped in `dsapiscript.h`) |
 
 ## Licensing Behavior
 
 - **Offline File Reading & Setup Inspection**: Calling `dsapi_file_*` or local `dsapi_setup_*` does **not** check out network license features.
-- **Network Streaming & Control**: Obtaining a session via `get_network_session()` initializes `DSAPI_session_handle` using default App ID `DS_APPID_DSAPI` (`f552ae4b-465e-48f4-8cf9-c3c42b6f6007`) under app `DSAPI` (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG`). See [Developer Licensing Guide](../README.md#developer-licensing-guide).
+- **Network Streaming & Control**: Obtaining a session via `get_network_session()` initializes `DSAPI_session_handle` under app `DSAPI` (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG`). See [Developer Licensing Guide](../README.md#developer-licensing-guide).
 
 ## Guides
 

@@ -1,6 +1,6 @@
-# Master Table of Contents (`ApexDocs`)
+# Index
 
-Complete navigation tree for all **APEX** user documentation, Quick Start guides, developer API SDKs, and deployment operations.
+Complete navigation index for all **APEX** user documentation, Quick Start guides, and developer API SDKs.
 
 ---
 
@@ -108,19 +108,3 @@ Developer-facing API references, data models, network protocols, plugin SDKs, an
   - [C++20 SDK](Custom%20Development/Phoenix%20API/C++/README.md): [Licensing (`PhoenixLic` / `ApexLmClient`)](Custom%20Development/Phoenix%20API/C++/licensing.md) · [Pipelines & Components](Custom%20Development/Phoenix%20API/C++/pipeline-and-components.md) · [Devices, Streams & I/O](Custom%20Development/Phoenix%20API/C++/devices-streams-and-io.md) · [Data Types & Utilities](Custom%20Development/Phoenix%20API/C++/data-types-and-utilities.md) · [Custom Plugins](Custom%20Development/Phoenix%20API/C++/custom-plugins.md)
   - [Python (`phoenixpy`)](Custom%20Development/Phoenix%20API/Python/README.md): [Licensing](Custom%20Development/Phoenix%20API/Python/licensing.md) · [Pipelines & Graphs](Custom%20Development/Phoenix%20API/Python/pipelines-and-graphs.md) · [Data I/O & Databases](Custom%20Development/Phoenix%20API/Python/data-io-and-databases.md) · [Module Reference](Custom%20Development/Phoenix%20API/Python/module-reference.md)
   - [PhoenixCore](Custom%20Development/Phoenix%20API/PhoenixCore/PhoenixCore.md) · [Component Catalog](Custom%20Development/Phoenix%20API/Components/Inputs/README.md) · [Phoenix Apps](Custom%20Development/Phoenix%20API/Apps/README.md)
-
----
-
-## 6. Deployment, Compilation & Domain Redirects
-
-Operational guides for compiling offline HTML and PDF manuals with `build_docs.py`, maintaining GitHub submodules, configuring Azure Pipelines CI/CD to Azure Static Web Apps, and redirecting legacy product documentation subdomains to `apexdocs.apexturbine.com`.
-
-- **Primary Links**: **[Compiling HTML & PDF Guide](deployment/building-and-compiling.md)** · **[Deployment Master Documentation](deployment/README.md)**
-
-### Guides
-
-- [Deployment & Architecture Overview](deployment/README.md)
-- [Compiling HTML & PDF Documentation Locally](deployment/building-and-compiling.md)
-- [GitHub Repository & Submodule Workflow](deployment/submodules-and-github.md)
-- [Azure Pipelines & Azure Static Web Apps Setup](deployment/azure-pipelines-and-swa.md)
-- [Legacy Domain Redirect Guide (`ds-doc.apexturbine.com` -> `apexdocs.apexturbine.com`)](deployment/url-redirects-guide.md)

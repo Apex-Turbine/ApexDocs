@@ -46,16 +46,15 @@ build_docs.py [--target TARGET] [--format {html,pdf,both}] [--output DIR] [--str
 
 | `--target` Value | Source Folder | Standalone HTML Output | PDF Manual Output |
 | :--- | :--- | :--- | :--- |
-| `site` | Entire repository (excl. CI/temp artifacts) | `dist/site/` | *N/A* (use `all` for PDFs) |
-| `all` | All 6 main documentation folders | `dist/html/*/` | `dist/pdf/*.pdf` |
+| `site` | Entire user-facing repository (excl. `deployment/`, CI/temp artifacts) | `dist/site/` | *N/A* (use `all` for PDFs) |
+| `all` | All 5 product & API documentation folders | `dist/html/*/` | `dist/pdf/*.pdf` |
 | `DS` | `DS/` | `dist/html/DS/` | `dist/pdf/DS.pdf` |
 | `DX` | `DX/` | `dist/html/DX/` | `dist/pdf/DX.pdf` |
 | `GageMap` | `GageMap/` | `dist/html/GageMap/` | `dist/pdf/GageMap.pdf` |
 | `DX+` | `DX+/` | `dist/html/DX-Plus/` | `dist/pdf/DX-Plus.pdf` |
 | `Custom Development` | `Custom Development/` | `dist/html/Custom-Development/` | `dist/pdf/Custom-Development.pdf` |
-| `deployment` | `deployment/` | `dist/html/Deployment/` | `dist/pdf/Deployment.pdf` |
 
-Multiple `--target` flags or comma-separated values may be supplied in one command (for example `--target DS,DX`).
+The maintainer-only `deployment/` folder is intentionally excluded from `site` and `all` user-facing builds. Multiple `--target` flags or comma-separated values may be supplied in one command (for example `--target DS,DX`).
 
 ## Common Commands
 
@@ -90,6 +89,6 @@ py -3.13 build_docs.py --target "Custom Development" --format html
 
 ## How HTML & PDF Outputs Differ
 
-- **Unified Site (`dist/site/`)**: Built with `use_directory_urls: true` for clean URLs on Azure Static Web Apps (for example `/DS/DS/setup/channels/`), full cross-product client-side search index, and sticky navigation tabs.
+- **Unified Site (`dist/site/`)**: Built with `use_directory_urls: false` and the MkDocs Material `offline` plugin so both Azure Static Web Apps (`index.html` opening directly to **Overview**, `DOC_INDEX.html` opening to **Index**) and local `file://` disk browsing work identically without directory listings, featuring full cross-product client-side search and sticky navigation tabs (`deployment/` excluded).
 - **Standalone Folder HTML (`dist/html/<product>/`)**: Built with `use_directory_urls: false` and an automatic root `index.html` -> `README.html` redirect so engineers can archive, distribute, or open offline HTML bundles directly from disk (`file://`) without a local HTTP server.
 - **Standalone PDF Manuals (`dist/pdf/<product>.pdf`)**: Assembles ordered chapters (starting with `README.md`, following manual hierarchy links, then remaining pages) into a styled print document with a cover page, interactive Table of Contents, page headers/footers, page numbers, local image embedding, and callout boxes.

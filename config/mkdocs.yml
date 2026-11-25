@@ -93,15 +93,15 @@ exclude_docs: |
   build/
   dist/
   site/
-  deployment/legacy-redirect-swa/
+  deployment/
   **/CMakeLists.txt
   **/*.dpd
   **/*.xlsx
   **/*.i
 
 nav:
-  - Home: README.md
-  - Master TOC: TOC.md
+  - Overview: README.md
+  - Index: DOC_INDEX.md
   - DS:
       - Quick Start: DS/quick-start.md
       - DS Suite Overview: DS/README.md
@@ -148,9 +148,3 @@ nav:
       - Phoenix API Overview: Custom Development/Phoenix API/README.md
       - Phoenix API C++: Custom Development/Phoenix API/C++/README.md
       - Phoenix API Python: Custom Development/Phoenix API/Python/README.md
-  - Deployment:
-      - Deployment Overview: deployment/README.md
-      - Compiling HTML & PDF: deployment/building-and-compiling.md
-      - GitHub & Submodules: deployment/submodules-and-github.md
-      - Azure Pipelines & SWA: deployment/azure-pipelines-and-swa.md
-      - Legacy Domain Redirects: deployment/url-redirects-guide.md

@@ -1,10 +1,10 @@
-# APEX Documentation (`ApexDocs`)
+# Overview
 
 ![APEX](assets/images/apex-logo-dark.svg)
 
 Welcome to the unified user and developer documentation portal for **APEX** (`APEX Testing Technologies`) acquisition systems, dynamic signal analysis suites, finite-element sensor optimization tools, and software developer kits.
 
-Browse the full section index in the **[Master Table of Contents](TOC.md)**, or jump directly to any product Quick Start Guide and Master Documentation below.
+Browse the full documentation tree in the **[Index](DOC_INDEX.md)**, or jump directly to any product Quick Start Guide and Master Documentation below.
 
 ---
 
@@ -92,12 +92,3 @@ Build custom file converters, live acquisition clients, automated test-stand con
 
 - **[Custom Development Quick Start Guide](Custom%20Development/quick-start.md)** · **[Custom Development Master Documentation](Custom%20Development/README.md)**
 - **SDKs**: [DS-API (`C++`, `MATLAB`, `Python`)](Custom%20Development/DS-API/README.md) · [Phoenix API (`C++`, `Python`)](Custom%20Development/Phoenix%20API/README.md)
-
----
-
-## Deployment, Compilation & Domain Redirects
-
-Documentation operations, local HTML and PDF compilation scripts (`build_docs.py`), GitHub repository & submodule maintenance, Azure Pipelines CI/CD deployment to Azure Static Web Apps (`apexdocs.apexturbine.com`), and legacy domain redirect guidance (`ds-doc.apexturbine.com` / `dsdoc.apexturbine.com`).
-
-- **[Compiling HTML & PDF Guide](deployment/building-and-compiling.md)** · **[Deployment Master Documentation](deployment/README.md)**
-- **Operations**: [Submodules & GitHub](deployment/submodules-and-github.md) · [Azure Pipelines & SWA](deployment/azure-pipelines-and-swa.md) · [Legacy Domain Redirects](deployment/url-redirects-guide.md)

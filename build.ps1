@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("all", "site", "DS", "DX", "GageMap", "DX+", "Custom Development", "deployment")]
+    [ValidateSet("all", "site", "DS", "DX", "GageMap", "DX+", "Custom Development")]
     [string]$Target = "all",
     [ValidateSet("html", "pdf", "both")]
     [string]$Format = "both",

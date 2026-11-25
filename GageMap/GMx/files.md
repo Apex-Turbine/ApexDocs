@@ -18,11 +18,11 @@ GageMap 2019 introduced a new system for sorting and saving GageMap sessions usi
 
 GMP files are the main GageMap Project file. All GageMap files are written as "Key, Value" in JSON format. Custom files may be written in Notepad or another text editor and saved as a GageMap format. Format as follows:
 
-```json::
+```json
 {
 "GMProject": {
         "name": "Tutorial_7_Test.gmp",
-        "id": "0258a426-fb19-4980-a525-21b3ca343800",
+        "id": "<project-id>",
         "sdr": "Tutorial_7.sdr", "sensors": [
         "Tutorial_7_Test_sensors.gms"
         ],
@@ -62,13 +62,13 @@ GMP Files must contain the following:
 
 GMS files are GageMap Sensor files and contain information and locations of sensors in JSON format. Custom files may be written in Notepad or another text editor and saved as a GageMap format. Format as follows:
 
-```json::
+```json
 {
         "SensorLib": {
                 "name": "Tutorial_72.gms",
-                "id": "71392a29-f819-0d47-8aaa-a6167029cff0",
+                "id": "<sensor-library-id>",
                 "numsensors": 1,
-                "sdr": "C:/Users/johon/Desktop/GmScriptQA/ModelFiles/TrainingModel.sdr",
+                "sdr": "ModelFiles/TrainingModel.sdr",
                 "sensors": [
                         {
                                 "name": "SGageA",

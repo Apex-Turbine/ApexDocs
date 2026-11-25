@@ -54,7 +54,6 @@ DM and `DSAPI` automation workflows involve licenses on both the controlled **DS
     - `APEXAPI_NET_STREAM` — network data streaming subscriptions
     - `APEXAPI_NET_RECORD` — remote `DP` recording control
     - `APEXAPI_NET_CONFIG` — remote configuration read/write and calibration control
-  - **Integrated Passthrough (`DS` / `DX+`):** Processes initialized directly under `DS` or `DXPLUS` application identities operate in passthrough mode without checking out separate standalone `DSAPI` seats.
 - **DX Integration:** Running Data Manager orchestration workflows from **APEX DX** requires **`DXDM-INTEGRATION`** (`5` tokens from the `ANALYSIS` pool).
 
 ### Legacy FlexNet Licensing (`27000@host`)

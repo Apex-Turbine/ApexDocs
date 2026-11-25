@@ -1,5 +1,8 @@
 # ApexDocs Deployment, Compilation, and Pipelines
 
+> [!NOTE]
+> **Maintainer-Only Documentation**: This `deployment/` folder documents repository build scripts, submodule workflows, and CI/CD infrastructure for `ApexDocs` maintainers. It is intentionally excluded from the user-facing documentation portal (`dist/site/`) and compiled product deliverables (`dist/html/`, `dist/pdf/`).
+
 This section documents how the unified **APEX Documentation** (`ApexDocs`) repository is structured, compiled locally to standalone HTML and PDF deliverables, built and deployed automatically via **Azure Pipelines** to **Azure Static Web Apps**, maintained across **GitHub submodules**, and migrated from legacy product documentation subdomains (`ds-doc.apexturbine.com`, `dsdoc.apexturbine.com`, and companion single-product subdomains) to **`apexdocs.apexturbine.com`**.
 
 ## Contents

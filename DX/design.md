@@ -982,17 +982,17 @@ Once noise has been [manually drawn onto a Campbell plot in the viewer.](view.md
 
 Plugins must be located in the following directories in order to process:
 
-> - - **in the same directory as the application**: - for example --- /home/apexuser/DX/bin
-> - - **in a subdirectory named "plugins" in the same directory as the application**: - for example --- /home/apexuser/DX/bin/plugins
-> - - **in a subdirectory named "plugins" in the parent of directory which contains the application**: - for example --- /home/apexuser/DX/plugins
+> - - **in the same directory as the application**: - for example --- `/home/user/DX/bin`
+> - - **in a subdirectory named "plugins" in the same directory as the application**: - for example --- `/home/user/DX/bin/plugins`
+> - - **in a subdirectory named "plugins" in the parent of directory which contains the application**: - for example --- `/home/user/DX/plugins`
 
 By default, plugins are located in the plugins folder in the DX bin directory. If this folder is changed, the changes must be reflected in the plugins section of DX preferences (located in the file menu.
 
 In addition to plugins some filters (FIR and IIR) require additional files which contain the settings. These files must be located in a directory named "filters" in one of the following directories:
 
-> - - **application directory**: - for example --- /home/apexuser/DX/bin/filters
-> - - **the parent directory of the application directory**: - for example --- /home/apexuser/DX/filters
-> - - **the parent directory of the parent directory of the application directory**: - for example --- /home/apexuser/filters
+> - - **application directory**: - for example --- `/home/user/DX/bin/filters`
+> - - **the parent directory of the application directory**: - for example --- `/home/user/DX/filters`
+> - - **the parent directory of the parent directory of the application directory**: - for example --- `/home/user/filters`
 
 By default, filters are located in the filters folder in the DX bin directory.
 

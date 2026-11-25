@@ -4,7 +4,7 @@ APEX Documentation Builder (build_docs.py)
 
 Compiles the unified Azure Static Web App documentation portal (`dist/site`)
 and individual main-folder deliverables (`DS`, `DX`, `GageMap`, `DX+`,
-`Custom Development`, `deployment`) into standalone HTML bundles (`dist/html/`)
+`Custom Development`) into standalone HTML bundles (`dist/html/`)
 and formatted PDF manuals (`dist/pdf/`).
 
 Examples:
@@ -81,13 +81,6 @@ TARGETS: Dict[str, TargetSpec] = {
         slug="Custom-Development",
         title="APEX Custom Development & API Documentation",
         subtitle="DS-API (C++, MATLAB, Python) & Phoenix API (C++, Python) Developer Guide",
-    ),
-    "deployment": TargetSpec(
-        key="deployment",
-        folder="deployment",
-        slug="Deployment",
-        title="ApexDocs Deployment & Operations Guide",
-        subtitle="Compiling, GitHub Submodules, Azure Pipelines, Azure SWA & Domain Redirects",
     ),
 }
 
@@ -225,6 +218,7 @@ SKIP_COPY_DIRS = {
     "__pycache__",
     "legacy-redirect-swa",
     "config",
+    "deployment",
 }
 
 SKIP_EXTS = {".dpd", ".xlsx", ".rst", ".dox", ".odt"}
@@ -263,7 +257,7 @@ def stage_tree(src_dirs: Sequence[Path], dst_docs_dir: Path, strip_prefix: Optio
                 fp = root_p / fn
                 if fp.suffix.lower() in SKIP_EXTS:
                     continue
-                if root_p == ROOT_DIR and fn not in {"README.md", "TOC.md"}:
+                if root_p == ROOT_DIR and fn not in {"README.md", "DOC_INDEX.md"}:
                     continue
                 rel = fp.relative_to(strip_prefix or ROOT_DIR)
                 copy_item(fp, rel)
@@ -325,13 +319,12 @@ def build_unified_site(output_dir: Path, strict: bool) -> Path:
 
     top_sources = [
         ROOT_DIR / "README.md",
-        ROOT_DIR / "TOC.md",
+        ROOT_DIR / "DOC_INDEX.md",
         ROOT_DIR / "DS",
         ROOT_DIR / "DX",
         ROOT_DIR / "GageMap",
         ROOT_DIR / "DX+",
         ROOT_DIR / "Custom Development",
-        ROOT_DIR / "deployment",
     ]
     stage_tree(top_sources, docs_dir, strip_prefix=ROOT_DIR)
 
@@ -915,7 +908,7 @@ def main() -> int:
         "--target",
         action="append",
         default=[],
-        help="Target to build: site, all, DS, DX, GageMap, DX+, Custom Development, deployment (repeatable or comma-separated).",
+        help="Target to build: site, all, DS, DX, GageMap, DX+, Custom Development (repeatable or comma-separated).",
     )
     parser.add_argument(
         "--format",

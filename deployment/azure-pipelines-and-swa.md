@@ -27,7 +27,7 @@
    `python build_docs.py --target all --format both --output "$(Build.SourcesDirectory)/dist"`
 6. Copies [`staticwebapp.config.json`](https://github.com/Apex-Turbine/ApexDocs/blob/main/staticwebapp.config.json) into `dist/site/`.
 7. Publishes three downloadable pipeline artifacts:
-   - `ApexDocs-PDFs` (`DS.pdf`, `DX.pdf`, `GageMap.pdf`, `DX-Plus.pdf`, `Custom-Development.pdf`, `Deployment.pdf`)
+   - `ApexDocs-PDFs` (`DS.pdf`, `DX.pdf`, `GageMap.pdf`, `DX-Plus.pdf`, `Custom-Development.pdf`)
    - `ApexDocs-Standalone-HTML` (self-contained HTML folders per product)
    - `ApexDocs-StaticSite` (production web root)
 

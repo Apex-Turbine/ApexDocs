@@ -36,7 +36,7 @@
       "statusCode": 301
     },
     {
-      "route": "/deployment/legacy-redirect-swa/*",
+      "route": "/deployment/*",
       "statusCode": 404
     }
   ],

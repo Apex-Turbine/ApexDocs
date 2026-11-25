@@ -43,7 +43,7 @@ On Linux, replace `'mxapi.dll'` with `'libmxapi.so'` (or the exact `.so` filenam
 ## Developer Licensing Rules
 
 - **Offline File Reading (`mxapi_file_*`)**: Does **not** initialize a network session and does **not** check out floating network licenses.
-- **Network Streaming & Remote Control (`mxapi_net_startup`)**: Initializes `DSAPI_session_handle` using default App ID `DS_APPID_DSAPI` (`f552ae4b-465e-48f4-8cf9-c3c42b6f6007`) under application `DSAPI`, checking out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, and `APEXAPI_NET_CONFIG`. (`mxapi.h` does not expose `DSAPI_net_set_appid`.) See [Developer Licensing Guide](../README.md#developer-licensing-guide).
+- **Network Streaming & Remote Control (`mxapi_net_startup`)**: Initializes `DSAPI_session_handle` under application `DSAPI`, checking out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, and `APEXAPI_NET_CONFIG`. See [Developer Licensing Guide](../README.md#developer-licensing-guide).
 
 ## Guides
 

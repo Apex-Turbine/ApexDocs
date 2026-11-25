@@ -58,25 +58,7 @@ DS-API separates offline file processing from licensed network acquisition opera
 
 When the session shuts down, the static `Licenser` instance is released (`license(0)`).
 
-### 2. Application GUID Registration (`DSAPI_net_set_appid`)
-Call `DSAPI_net_set_appid(const char *app_id)` **before** `DSAPI_net_startup` to override the default application identity (`dsapinet.cxx`):
-
-| Constant (`dsapinet.cxx`) | GUID | Behavior |
-| --- | --- | --- |
-| `DS_APPID_DSAPI` (default) | `f552ae4b-465e-48f4-8cf9-c3c42b6f6007` | Standard developer license checkout (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` under app `DSAPI`) |
-| `DS_APPID_DXPLUS` | `982d121f-ecbb-483f-9eb1-a82c17c51226` | **Internal APEX DX+ passthrough**: marks all three network features licensed without consuming floating `DSAPI` seats |
-| `DS_APPID_APEXDS` | `537ec7f6-049b-4fd6-a3e0-afea8393c57e` | **Internal APEX DS passthrough**: marks all three network features licensed without consuming floating `DSAPI` seats |
-
-```c
-/* Default DS-API developer application checkout */
-DSAPI_net_set_appid("f552ae4b-465e-48f4-8cf9-c3c42b6f6007");
-DSAPI_session net = DSAPI_net_startup(16, 16);
-```
-
-> [!NOTE]
-> `DSAPI_net_set_appid` is exposed in the C/C++ header (`dsapi.h`); `dsapiscript.h` / `dsapi.py` and `mxapi.h` use the default `DS_APPID_DSAPI` identity.
-
-### 3. License Lookup Order: FlexNet vs ApexLM
+### 2. License Lookup Order: FlexNet vs ApexLM
 Depending on how the native libraries were built (`-DAPEX_USE_LEGACY_LICENSING` vs `-DAPEX_ALM_LICENSING`):
 
 - **FlexNet Publisher (legacy `ApexLicenser`, default in `DS/API/dsapinet.cxx`)**:

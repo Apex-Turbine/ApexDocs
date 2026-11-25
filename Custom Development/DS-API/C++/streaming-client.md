@@ -3,13 +3,12 @@
 Connect to live **APEX DS (DS 3.x)** servers to discover hosts on the subnet, inspect active setups, subscribe to real-time packet streams, and integrate with DS GUI views.
 
 > [!NOTE]
-> Calling `DSAPI_net_startup` initializes the licensed network session under app `DSAPI` (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG`). See [Developer Licensing Guide](../README.md#developer-licensing-guide) if you use custom license paths or internal `DSAPI_net_set_appid` passthrough IDs.
+> Calling `DSAPI_net_startup` initializes the licensed network session under app `DSAPI` (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG`). See [Developer Licensing Guide](../README.md#developer-licensing-guide) for FlexNet and ApexLM license configuration details.
 
 ## Session Startup, Discovery, and Shutdown
 
 | Function | Description |
 | --- | --- |
-| `DSAPI_net_set_appid(app_id)` | Optional call **before** startup (`DS_APPID_DSAPI`, or internal passthroughs `DS_APPID_DXPLUS` / `DS_APPID_APEXDS`) |
 | `DSAPI_net_startup(dfifo, efifo)` | Initialize network runtime & licensing; sets data FIFO and event FIFO depths (typical default: `16`, `16`) |
 | `DSAPI_net_discover(...)` | Broadcast UDP discovery for online DS 3.x hosts |
 | `DSAPI_net_discover_tout(..., toutms)` | UDP discovery with explicit timeout in milliseconds |
