@@ -1,4 +1,7 @@
-# DS-API MATLAB Interface (`mxapi`)
+# DS-API MATLAB Interface
+
+> [!IMPORTANT]
+> **End-User License Notice:** `DS-API` MATLAB libraries and APEX file/data formats are licensed strictly for internal end-user use and cannot be used for commercial means without formal written authorization from APEX ([Software License Agreement](../../../Release%20Policies/software-license-agreement.md)). Legacy FLEXlm (`lmgrd`) licensing ends in **October 2027**; see **[APEX License Manager](../../../License%20Manager/README.md)**. (`mxapi`)
 
 Access DS/EDAS recordings, stream live DS 3.x acquisition packets, and control DS servers directly from **64-bit MATLAB** using the `mxapi` C wrapper library (`mxapi.dll` on Windows, `libmxapi.so` / `mxapi.so` on Linux) and `mxapi.h`.
 

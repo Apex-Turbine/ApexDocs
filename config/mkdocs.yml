@@ -148,3 +148,20 @@ nav:
       - Phoenix API Overview: Custom Development/Phoenix API/README.md
       - Phoenix API C++: Custom Development/Phoenix API/C++/README.md
       - Phoenix API Python: Custom Development/Phoenix API/Python/README.md
+      - Phoenix Applications:
+          - Overview & Ports: Custom Development/Phoenix API/Apps/README.md
+          - PhoenixFoundry (DB Manager): Custom Development/Phoenix API/Apps/PhoenixFoundry.md
+          - PhoenixOPCUA (OPC UA Bridge): Custom Development/Phoenix API/Apps/PhoenixOPCUA.md
+          - PhoenixPLC (PLC Bridge): Custom Development/Phoenix API/Apps/PhoenixPLC.md
+          - PhoenixEngine (Pipeline Server): Custom Development/Phoenix API/Apps/PhoenixEngine.md
+  - License Manager:
+      - Quick Start: License Manager/quick-start.md
+      - Overview & Format v2: License Manager/README.md
+      - Workstation & Server Setup: License Manager/setup-and-server.md
+      - CLI Tools Reference: License Manager/cli-reference.md
+      - Web UI & Reservations: License Manager/web-ui-and-reservations.md
+  - Release Policies:
+      - Release & 18-Month Lifecycle: Release Policies/README.md
+      - System Requirements (AVX2 & OS): Release Policies/system-requirements.md
+      - Maintenance & Support Policy: Release Policies/maintenance-and-support.md
+      - Software License Agreement (SLA): Release Policies/software-license-agreement.md

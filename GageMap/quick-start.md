@@ -6,8 +6,11 @@ Follow this end-to-end workflow to verify GageMap licensing, convert a finite-el
 
 ## Step 1: Verify Licensing
 
-1. Verify your active license in **APEX License Manager (ApexLM)** at `http://127.0.0.1:27887/` (`GM`, `GMx`, `GMSCRIPT`, `SDRFM`, and converter entitlements), or confirm your FlexNet server (`27000@host`).
+1. Verify your active license in **[APEX License Manager (ApexLM)](../License%20Manager/README.md)** at `http://127.0.0.1:27887/` (`GM`, `GMx`, `GMSCRIPT`, `SDRFM`, and converter entitlements — see the [License Manager Quick Start](../License%20Manager/quick-start.md)), or confirm your legacy FlexNet server (`27000@host`).
 2. See [GM Licensing](GM/flex.md), [GMx Licensing](GMx/flex.md), and [GmScript Installation & Licensing](GmScript/install.md).
+
+> [!NOTE]
+> Legacy **FLEXlm / FlexNet (`lmgrd`)** licensing is being **discontinued as of October 2027**. All product versions going forward will exclusively use **APEX License Manager** (`ApexLM`). See [Software Release Policies](../Release%20Policies/README.md) for system requirements, the 18-month version support policy, and end-user licensing terms.
 
 ---
 

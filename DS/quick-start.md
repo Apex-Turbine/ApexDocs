@@ -10,11 +10,11 @@ This guide walks through verifying licensing, creating an acquisition setup, mon
 
 ## Step 1: Verify Licensing
 
-Current **APEX DS** releases use **APEX License Manager (ApexLM)** alongside optional legacy FlexNet (`27000@host`) deployments:
+Current and future **APEX DS** releases use **[APEX License Manager (`ApexLM`)](../License%20Manager/README.md)** (**APEX LM Daemon** & **APEX LM Server Daemon**; legacy FLEXlm / `lmgrd` licensing will be **discontinued as of October 2027**):
 
-1. Open the local ApexLM Web UI at `http://127.0.0.1:27887/` (or click **Configure** in the DS splash dialog) to confirm your mode (`LOCAL`, `PASSTHROUGH`, or `SERVER`) and active `DS` / `<VENDOR>_CHANNELS` / `ANY_CHANNELS` seats.
+1. Open the local ApexLM Web Admin UI at `http://127.0.0.1:27887/` (or click **Configure** in the DS splash dialog) to confirm your mode (`LOCAL` or `PASSTHROUGH`) and active `DS` / `<VENDOR>_CHANNELS` / `ANY_CHANNELS` seats.
 2. For client-server setups, verify TCP ports `27884`–`27886` are reachable.
-3. Detailed instructions: [APEX DS Installation Licensing](DS/installation/licensing.md) · [Licensing Dialog](DS/interface/licensing.md).
+3. Detailed instructions: [APEX License Manager Quick Start](../License%20Manager/quick-start.md) · [APEX DS Installation Licensing](DS/installation/licensing.md) · [Licensing Dialog](DS/interface/licensing.md).
 
 ---
 

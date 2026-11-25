@@ -1,19 +1,23 @@
 # Licensing: APEX License Manager (ApexLM) & Legacy FlexNet
 
-GageMap Next Gen (`GMx`) supports both the modern **APEX License Manager (ApexLM)** service and **Legacy FlexNet Publisher** license servers.
+> [!WARNING]
+> **Legacy FLEXlm / FlexNet Discontinuation — October 2027**
+> Legacy licensing powered by **FLEXlm / FlexNet** (`lmgrd`, `lmtools`, `lmutil`, `.lic` files, and `27000@host` servers) will be **discontinued as of October 2027**. All product versions going forward will exclusively use **[APEX License Manager](../../License%20Manager/README.md)** (`ApexLM`), the **APEX LM Daemon (`ApexLM_Service`)**, and the **APEX LM Server Daemon (`ApexLM_Server_Service`)**.
+
+GageMap Next Gen (`GMx`) supports both the modern **[APEX License Manager (ApexLM)](../../License%20Manager/README.md)** service and **Legacy FlexNet Publisher** license servers *(discontinued October 2027)*.
 
 ---
 
 ## APEX License Manager (ApexLM)
 
-`GMx` connects to the ApexLM service over encrypted ZeroMQ (`CurveZMQ` via `CoreApexLm` / `ApexLmLic`) and registers with application name `gmx`, version (`YYYY.MM`), and license category `ANALYSIS`.
+`GMx` connects to the ApexLM service over encrypted ZeroMQ (`CurveZMQ` via `CoreApexLm` / `ApexLmLic`) and registers with application name `gmx`, version (`YYYY.MM`), and license category `ANALYSIS`. See [Workstation & Server Setup](../../License%20Manager/setup-and-server.md) and the [CLI Reference](../../License%20Manager/cli-reference.md) for deployment steps.
 
 ### Operating Modes
 
 | Mode | Description |
 | --- | --- |
-| **LOCAL** | Connects exclusively to `127.0.0.1:27884` using a local Ed25519-signed JSON license bound to host MAC addresses. |
-| **PASSTHROUGH** | Connects locally on `127.0.0.1:27884` and proxies checkouts/checkins to a central `SERVER`. Supports **offline borrowing for up to 30 days** across restarts. |
+| **LOCAL** | Connects exclusively to `127.0.0.1:27884` using a local signed JSON license bound to host MAC addresses. |
+| **PASSTHROUGH** | Connects locally on `127.0.0.1:27884` and proxies checkouts/checkins to a central `SERVER`. Supports **offline reservations for up to 30 days** via the **Reserve** tab across restarts ([Web UI & Reservations](../../License%20Manager/web-ui-and-reservations.md)). |
 | **SERVER** | Hosts floating entitlements on `APEXLM_SERVER_LISTEN` (`27886`) for remote `PASSTHROUGH` workstations. Direct client application connections to `SERVER` are rejected. |
 
 ### Network Ports & Local Web Management Portal
@@ -22,13 +26,13 @@ Ports can be configured via environment variables or a local `.env` / `.env.apex
 
 | Port / URL | Environment Variable | Purpose |
 | --- | --- | --- |
-| `http://127.0.0.1:27887/` | `APEXLM_MANAGEMENT_PORT` / `APEXLM_ADMIN_PORT` | **Local Web Admin UI** (Overview, Usage, Clients, Borrow, Config, Records, Logs, Audit). |
-| `http://127.0.0.1:27888/` | `APEXLM_SERVER_MANAGEMENT_PORT` / `APEXLM_SERVER_ADMIN_PORT` | **Server Web Admin UI** for central license server administration. |
+| `http://127.0.0.1:27887/` | `APEXLM_MANAGEMENT_PORT` / `APEXLM_ADMIN_PORT` | **Local Web Admin UI** (Overview, Usage, Clients, Reserve, Configuration, Records, Log, Audit). |
+| `http://127.0.0.1:27888/` | `APEXLM_SERVER_MANAGEMENT_PORT` / `APEXLM_SERVER_ADMIN_PORT` | **Server Web Admin UI** for central license server administration (loopback on server host). |
 | `27884` | `APEXLM_PORT` | Local ApexLM ZeroMQ service port. |
 | `27885` | `APEXLM_SERVER_PORT` | Server service ZeroMQ port. |
 | `27886` | `APEXLM_SERVER_LISTEN` | Server external listen port for `PASSTHROUGH` services. |
 
-Configuration and audit records are persisted in SQLite (`C:\ProgramData\APEX\APEXLM\apexlm.db` on Windows; `/var/lib/apexlm/apexlm.db` on Linux).
+Configuration and audit records are persisted in SQLite (`C:\ProgramData\APEX\ApexLM\apexlm.db` on Windows; `/var/lib/apexlm/apexlm.db` on Linux).
 
 ### GMx Features, Optimizer & Custom Fatigue Licensing
 

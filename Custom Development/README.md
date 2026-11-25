@@ -1,5 +1,8 @@
 # Custom Development
 
+> [!IMPORTANT]
+> **Strict Non-Commercial End-User API & Format License:** All APEX APIs, SDKs, headers, client bindings (`DS-API`, `Phoenix API`), and APEX file, database, and streaming formats are provided strictly for **internal end-user use** by licensed customers with authorized APEX software. They **cannot be used for commercial means** (including commercial SaaS, resale, or third-party commercial adapters/translators) unless explicitly authorized by APEX through formal written agreement. See the complete **[Software License Agreement](../Release%20Policies/software-license-agreement.md)** and **[Software Release Policies](../Release%20Policies/README.md)**.
+
 Build custom acquisition, streaming, post-processing, and automation software on top of the **APEX DS** and **APEX Phoenix** platforms.
 
 > [!TIP]
@@ -40,14 +43,18 @@ Build custom acquisition, streaming, post-processing, and automation software on
 
 ## Developer Licensing Matrix
 
-Both APIs distinguish between **local/offline API calls** and **network/runtime features** enforced via **APEX License Manager (ApexLM)** or legacy **FlexNet Publisher (FNP)**:
+> [!WARNING]
+> **Legacy FLEXlm / FlexNet Discontinuation — October 2027**
+> Legacy **FLEXlm / FlexNet** (`lmgrd`, `lmtools`, `.lic` files, `27000@host`) licensing will be **discontinued as of October 2027**. All custom applications and product versions going forward exclusively use **[APEX License Manager](../License%20Manager/README.md)** (`ApexLM`), the **APEX LM Daemon (`ApexLM_Service`)**, and the **APEX LM Server Daemon (`ApexLM_Server_Service`)**.
+
+Both APIs distinguish between **local/offline API calls** and **network/runtime features** enforced via **[APEX License Manager (ApexLM)](../License%20Manager/README.md)** or legacy **FlexNet Publisher (FNP)** *(discontinued October 2027)*:
 
 | API | Application ID (`ApexApps`) | License Features Checked Out | Licensing Backend & Ports | Offline File I/O License Required? |
 | --- | --- | --- | --- | --- |
-| **DS-API (C/C++, MATLAB, Python)** | `DSAPI` | `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` (`COUNTED`) | FlexNet (`.lic` / `LM_LICENSE_FILE`) or ApexLM (`-DAPEX_ALM_LICENSING`, CurveZMQ `27884`, Web UI `27887`) | **No** (`DSAPI_file_*` does not check out network features) |
-| **Phoenix API (`PhoenixLic` / `ApexLmClient`)** | `PHOENIX`, `DXPLUS`, `DX+DAQ`, `DX+ONLINEANALYSIS`, `DX+OFFLINEANALYSIS`, `DX+REMOTEVIEWER`, `DX+DATAVIEWER`, `OPCUA`, `DBMANAGE` | Feature & channel/token checkouts + hardware serial verification per workflow/component | **ApexLM** (`27884` local client, `27885`/`27886` server, `http://127.0.0.1:27887/` local UI, `27888` server UI; Ed25519 JSON; `LOCAL`/`PASSTHROUGH`/`SERVER`; 30-day borrow) | Required when initializing licensed `PhoenixLic` components/pipelines |
+| **DS-API (C/C++, MATLAB, Python)** | `DSAPI` | `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` (`COUNTED`) | FlexNet *(legacy, ends Oct 2027)* or ApexLM (`-DAPEX_ALM_LICENSING`, CurveZMQ `27884`, loopback Web UI `27887`) | **No** (`DSAPI_file_*` does not check out network seats; still bound by [End-User SLA](../Release%20Policies/software-license-agreement.md)) |
+| **Phoenix API (`PhoenixLic` / `ApexLmClient`)** | `PHOENIX`, `DXPLUS`, `DX+DAQ`, `DX+ONLINEANALYSIS`, `DX+OFFLINEANALYSIS`, `DX+REMOTEVIEWER`, `DX+DATAVIEWER`, `OPCUA`, `DBMANAGE` | Feature & channel/token checkouts + hardware serial verification per workflow/component | **ApexLM** (`27884` local client, `27885`/`27886` server, `http://127.0.0.1:27887/` local UI, `http://127.0.0.1:27888/` server loopback UI; signed v2 JSON; `LOCAL`/`PASSTHROUGH`/`SERVER`; 30-day offline reservation via **Reserve** tab) | Required when initializing licensed `PhoenixLic` components/pipelines |
 
-See [DS-API Licensing](DS-API/README.md#developer-licensing-guide) and [Phoenix C++ Licensing](Phoenix%20API/C++/licensing.md) for exact initialization sequences and error handling.
+See [DS-API Licensing](DS-API/README.md#developer-licensing-guide), [Phoenix C++ Licensing](Phoenix%20API/C++/licensing.md), and the **[APEX License Manager Documentation](../License%20Manager/README.md)** for exact initialization sequences and error handling.
 
 ## Documentation Map
 
@@ -58,4 +65,4 @@ See [DS-API Licensing](DS-API/README.md#developer-licensing-guide) and [Phoenix 
 - **[Phoenix API Documentation](Phoenix%20API/README.md)**
   - [C++20 SDK](Phoenix%20API/C++/README.md): [Licensing](Phoenix%20API/C++/licensing.md) · [Pipelines & Components](Phoenix%20API/C++/pipeline-and-components.md) · [Devices, Streams & I/O](Phoenix%20API/C++/devices-streams-and-io.md) · [Data Types & Utilities](Phoenix%20API/C++/data-types-and-utilities.md) · [Custom Plugins](Phoenix%20API/C++/custom-plugins.md)
   - [Python (`phoenixpy`)](Phoenix%20API/Python/README.md): [Licensing](Phoenix%20API/Python/licensing.md) · [Pipelines & Graphs](Phoenix%20API/Python/pipelines-and-graphs.md) · [Data I/O & Databases](Phoenix%20API/Python/data-io-and-databases.md) · [Module Reference](Phoenix%20API/Python/module-reference.md)
-  - [PhoenixCore Modules](Phoenix%20API/PhoenixCore/PhoenixCore.md) · [Components Catalog](Phoenix%20API/Components/Inputs/README.md) · [Phoenix Applications](Phoenix%20API/Apps/README.md)
+  - [PhoenixCore Modules](Phoenix%20API/PhoenixCore/PhoenixCore.md) · [Ports & Endpoints](Phoenix%20API/PhoenixCore/ports.md) · [Components Catalog](Phoenix%20API/Components/Inputs/README.md) · [Phoenix Applications](Phoenix%20API/Apps/README.md) ([PhoenixFoundry](Phoenix%20API/Apps/PhoenixFoundry.md) · [PhoenixOPCUA](Phoenix%20API/Apps/PhoenixOPCUA.md) · [PhoenixPLC](Phoenix%20API/Apps/PhoenixPLC.md) · [PhoenixEngine](Phoenix%20API/Apps/PhoenixEngine.md))

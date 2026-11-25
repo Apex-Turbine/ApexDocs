@@ -1,5 +1,8 @@
 # SDR File Format, Batch Automation, and Utilities
 
+> [!IMPORTANT]
+> **End-User Format License Notice:** All APEX file formats and schemas (including `.sdr`) are provided strictly for internal end-user use with authorized APEX software and cannot be used for commercial means unless explicitly authorized by APEX through formal written agreement. See the **[Software License Agreement](../../Release%20Policies/software-license-agreement.md)**.
+
 This reference covers the binary `.sdr` schema, model validation and comparison rules, `GmScript` batch automation, companion export tools (`SDRDump` and `SdrToJson`), and troubleshooting tips.
 
 ## `.sdr` Binary Schema Overview

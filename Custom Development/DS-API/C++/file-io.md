@@ -1,5 +1,8 @@
 # DS-API C / C++ File I/O
 
+> [!IMPORTANT]
+> **End-User Format License Notice:** Reading or writing APEX data files (`.rwx`, `.pkx`, `.datx`, etc.) via `DSAPI_file_*` does not consume live network seats, but all APEX file formats, schemas, and `DS-API` libraries are licensed strictly for **internal end-user use** and cannot be used for commercial means unless explicitly authorized by APEX through formal written agreement ([Software License Agreement](../../../Release%20Policies/software-license-agreement.md)).
+
 Use the `DSAPI_file_*` functions to inspect, read, seek, create, and write DS/EDAS data recordings. Calling `DSAPI_file_*` operates strictly on local or network-mounted files and **does not require a DS-API network license**.
 
 ## Supported File Formats

@@ -40,6 +40,9 @@ flowchart LR
 
 ## Data File Formats
 
+> [!NOTE]
+> All **APEX** file formats (`.rwx`, `.rwz`, `.pkx`, `.datx`, `.dspro`/`.drpro`/`.srpro`) and network protocols are documented solely for internal end-user use and cannot be used for commercial means without an explicit formal agreement with **APEX**. See the [Software License Agreement](../Release%20Policies/software-license-agreement.md).
+
 | Format | Extension | Contents & Capabilities | Primary Writers / Readers |
 | :--- | :--- | :--- | :--- |
 | **APEX 3.0 Raw** | `.rwx` | 512-byte header, full DS setup/DP text, raw time-series packets (`0xbaf1`–`0xbaf3`), tachometer (`0xbaf6`), low-speed parameters (`0xbaf7`), optional seek index. | Written by `DS` / `SR`; read by `DO`, `DV`, `DX`, `DX+`, `DSAPI`, `datafile` |
@@ -52,16 +55,18 @@ flowchart LR
 
 ## Licensing Overview
 
-Current releases of the APEX suite support the modern **APEX License Manager (ApexLM)** alongside **Legacy FlexNet (`27000@host`)** for backward-compatible deployments:
+All current and future releases of the **APEX** suite use **[APEX License Manager (`ApexLM`)](../License%20Manager/README.md)** (**APEX LM Daemon** & **APEX LM Server Daemon**). Legacy **FLEXlm / FlexNet (`lmgrd`, `27000@host`)** licensing will be **discontinued as of October 2027**.
 
-- **APEX License Manager (ApexLM):**
-  - Runs as a local or floating ZeroMQ CurveZMQ service (`ApexLMService` / `apexlm.service`), exposing client registration on TCP port `27884` (`27885`/`27886` for floating servers) and a local Web Administration UI at **`http://127.0.0.1:27887/`**.
-  - Supports **Local** (node-locked Ed25519 JSON license), **Passthrough** (forwards to a central ApexLM Server with offline borrowing up to **30 days**), and **Server** (floating pool) modes.
+- **[APEX License Manager (`ApexLM`)](../License%20Manager/README.md):**
+  - Runs as a local or floating ZeroMQ CurveZMQ service (`ApexLMService` / `apexlm.service`), exposing client registration on TCP port `27884` (`27885`/`27886` for **APEX LM Server Daemon**) and a loopback Web Admin UI at **`http://127.0.0.1:27887/`**.
+  - Supports **`LOCAL`** (node-locked Ed25519 JSON license), **`PASSTHROUGH`** (forwards to a central `ApexLM` Server with offline reservations up to **30 days**), and **`SERVER`** (floating pool) modes.
   - Licenses cover applications (`DS`, `DR`, `DM`, `DSAPI`, `DV`, `DX`, `DX+`), per-vendor counted channel pools (`<VENDOR>_CHANNELS` with fallback to `ANY_CHANNELS`), shared `AEROPLOTS` display tokens, feature flags (`PARAMETER_SERVER`, `RWX_COMPRESSION`, `DS_MANAGER`), and `ANALYSIS` analysis tokens.
   - **Simulator Mode:** Running **APEX DS** in simulated input mode (`simul`) waives device channel and feature checkouts for evaluation and configuration testing.
-- **Legacy FlexNet:** Uses `lmgrd` / vendor daemon on port `27000@host`, node-locked `.lic` files, or APEX OpenCode trusted storage.
+- **Legacy FlexNet *(Discontinued October 2027)*:** Older builds use `lmgrd` / vendor daemon on port `27000@host`, node-locked `.lic` files, or APEX OpenCode trusted storage.
 
-For step-by-step installation and configuration details, see:
+For step-by-step installation, policy, and licensing details, see:
+- **[APEX License Manager Guide](../License%20Manager/README.md)** · **[Workstation & Server Setup](../License%20Manager/setup-and-server.md)** · **[CLI Reference](../License%20Manager/cli-reference.md)** · **[Web UI & Reservations](../License%20Manager/web-ui-and-reservations.md)**
+- **[Software Release Policies, 18-Month Lifecycle & SLA](../Release%20Policies/README.md)**
 - [APEX DS Installation Licensing](DS/installation/licensing.md) & [APEX DS Licensing Dialog](DS/interface/licensing.md)
 - [APEX DR Installation Licensing](DR/installation/licensing.md) & [APEX DR Licensing Dialog](DR/interface/licensing.md)
 - [APEX DM & DSAPI Licensing](DM/README.md#licensing)

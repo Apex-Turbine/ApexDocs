@@ -6,8 +6,8 @@ Read the [DX Overview](overview.md) for a brief explanation of the 2 workspace s
 
 Before launching **APEX DX**, confirm your installation ([Install APEX DX](install.md)) and active license ([Licensing](licensing.md)):
 
-- **APEX License Manager (ApexLM)**: Verify active `DX` / `ANALYSIS` tokens in the local Web Admin UI at `http://127.0.0.1:27887/`.
-- **Legacy FlexNet**: Ensure your `.lic` file or `27000@host` server path is configured ([FLEX Licensing](flex.md)).
+- **APEX License Manager (ApexLM)**: Verify active `DX` / `ANALYSIS` tokens in the local Web Admin UI at `http://127.0.0.1:27887/` — see the [APEX License Manager Quick Start](../License%20Manager/quick-start.md) and [APEX License Manager Documentation](../License%20Manager/README.md).
+- **Legacy FlexNet** *(Discontinued October 2027)*: Ensure your `.lic` file or `27000@host` server path is configured ([FLEX Licensing](flex.md)). Legacy FLEXlm / FlexNet (`lmgrd`) licensing is being discontinued as of **October 2027** in favor of **APEX License Manager** (`ApexLM`).
 
 ## First Steps - Designer
 

@@ -1,5 +1,8 @@
 # GageMap File Formats
 
+> [!IMPORTANT]
+> **End-User Format License Notice:** APEX GageMap file formats (`.gmp`, `.sdr`, `.gmo`, `.gml`, `.gmm`, and related schemas) are licensed strictly for internal end-user use and cannot be used for commercial means without explicit formal written authorization from APEX. See the **[Software License Agreement](../../Release%20Policies/software-license-agreement.md)**.
+
 GageMap 2019 introduced a new system for sorting and saving GageMap sessions using a number of file types based on GageMap's libraries. As the model, animator, sensors, groupings, fatigue analysis settings, etc. are edited, the settings within each library can be saved as differing file types. When "Save" is selected in GageMap, every library is saved using its respective file type, and a master "GMP" file is saved that contains concatenated file information for all libraries. Every GMP file will always contain 1 SDR file that is associated with the project and a list of all the other libraries. Below is a list of all GageMap file types and its associated library.
 
 | File Type | Library |

@@ -1,5 +1,10 @@
 # APEX Custom Development Quick Start Guide
 
+> [!IMPORTANT]
+> **Non-Commercial End-User API & Format License:** APEX SDKs, APIs, and data formats are licensed strictly for **internal end-user use** and cannot be used for commercial means without formal written authorization from APEX ([Software License Agreement](../Release%20Policies/software-license-agreement.md)).
+>
+> **Legacy FLEXlm / FlexNet Discontinuation (October 2027):** Legacy **FLEXlm / FlexNet (`lmgrd`)** licensing will be discontinued as of **October 2027**. Target **[APEX License Manager](../License%20Manager/README.md)** (`ApexLM`, **APEX LM Daemon**, and **APEX LM Server Daemon**) for all new development.
+
 This guide helps developers choose between **DS-API** and **Phoenix API**, verify developer licensing, and build their first working integration in **C++**, **Python**, or **MATLAB**.
 
 ---
@@ -8,8 +13,8 @@ This guide helps developers choose between **DS-API** and **Phoenix API**, verif
 
 | Need | Recommended SDK | Developer License Features |
 | :--- | :--- | :--- |
-| Read/write `.rwx` / `.pkx` / `.datx` files or control **APEX DS (DS 3.x)** servers & `N:M` clusters | **[DS-API](DS-API/README.md)** | Offline file reading requires **no network license**; live streaming/control checks out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` under app `DSAPI`. |
-| Build **C++20** or **Python (`phoenixpy`)** streaming DAG pipelines, database readers/writers, or custom DX+ components/devices | **[Phoenix API](Phoenix%20API/README.md)** | Enforced via `PhoenixLic` / `ApexLmClient` against **APEX License Manager (`ApexLM`)** on port `27884` (`http://127.0.0.1:27887/`). |
+| Read/write `.rwx` / `.pkx` / `.datx` files or control **APEX DS (DS 3.x)** servers & `N:M` clusters | **[DS-API](DS-API/README.md)** | Offline file reading requires **no network license** (still subject to the [End-User SLA](../Release%20Policies/software-license-agreement.md)); live streaming/control checks out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` under app `DSAPI`. |
+| Build **C++20** or **Python (`phoenixpy`)** streaming DAG pipelines, database readers/writers, or custom DX+ components/devices | **[Phoenix API](Phoenix%20API/README.md)** | Enforced via `PhoenixLic` / `ApexLmClient` against **[APEX License Manager (`ApexLM`)](../License%20Manager/README.md)** on port `27884` (`http://127.0.0.1:27887/`). |
 
 See the complete comparison in [Custom Development Overview](README.md).
 

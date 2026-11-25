@@ -107,4 +107,35 @@ Developer-facing API references, data models, network protocols, plugin SDKs, an
   - [Architecture & Developer Portal](Custom%20Development/Phoenix%20API/README.md)
   - [C++20 SDK](Custom%20Development/Phoenix%20API/C++/README.md): [Licensing (`PhoenixLic` / `ApexLmClient`)](Custom%20Development/Phoenix%20API/C++/licensing.md) · [Pipelines & Components](Custom%20Development/Phoenix%20API/C++/pipeline-and-components.md) · [Devices, Streams & I/O](Custom%20Development/Phoenix%20API/C++/devices-streams-and-io.md) · [Data Types & Utilities](Custom%20Development/Phoenix%20API/C++/data-types-and-utilities.md) · [Custom Plugins](Custom%20Development/Phoenix%20API/C++/custom-plugins.md)
   - [Python (`phoenixpy`)](Custom%20Development/Phoenix%20API/Python/README.md): [Licensing](Custom%20Development/Phoenix%20API/Python/licensing.md) · [Pipelines & Graphs](Custom%20Development/Phoenix%20API/Python/pipelines-and-graphs.md) · [Data I/O & Databases](Custom%20Development/Phoenix%20API/Python/data-io-and-databases.md) · [Module Reference](Custom%20Development/Phoenix%20API/Python/module-reference.md)
-  - [PhoenixCore](Custom%20Development/Phoenix%20API/PhoenixCore/PhoenixCore.md) · [Component Catalog](Custom%20Development/Phoenix%20API/Components/Inputs/README.md) · [Phoenix Apps](Custom%20Development/Phoenix%20API/Apps/README.md)
+  - [PhoenixCore](Custom%20Development/Phoenix%20API/PhoenixCore/PhoenixCore.md) · [Ports & Registry](Custom%20Development/Phoenix%20API/PhoenixCore/ports.md) · [Component Catalog](Custom%20Development/Phoenix%20API/Components/Inputs/README.md) · [Phoenix Apps](Custom%20Development/Phoenix%20API/Apps/README.md) ([PhoenixFoundry](Custom%20Development/Phoenix%20API/Apps/PhoenixFoundry.md) · [PhoenixOPCUA](Custom%20Development/Phoenix%20API/Apps/PhoenixOPCUA.md) · [PhoenixPLC](Custom%20Development/Phoenix%20API/Apps/PhoenixPLC.md) · [PhoenixEngine](Custom%20Development/Phoenix%20API/Apps/PhoenixEngine.md))
+
+---
+
+## 6. APEX License Manager (`ApexLM`)
+
+Unified Ed25519 + CurveZMQ licensing runtime (**APEX LM Daemon** & **APEX LM Server Daemon**), replacing legacy FLEXlm / `lmgrd` (which is **discontinued as of October 2027**).
+
+- **Primary Links**: **[License Manager Quick Start Guide](License%20Manager/quick-start.md)** · **[License Manager Master Documentation](License%20Manager/README.md)**
+
+### Guides
+
+- [Overview, Architecture, Ports & Format v2](License%20Manager/README.md)
+- [Quick Start Guide (`LOCAL` Workstation & `SERVER` + `PASSTHROUGH`)](License%20Manager/quick-start.md)
+- [Workstation Daemon & Floating License Server Setup](License%20Manager/setup-and-server.md)
+- [CLI Tools Reference (`ApexLM_CLI`, `ApexLM_Server_CLI`, Daemons & Tray)](License%20Manager/cli-reference.md)
+- [Web Admin UI, Configuration & 30-Day Offline Reservation System](License%20Manager/web-ui-and-reservations.md)
+
+---
+
+## 7. Software Release Policies, System Requirements & Legal (`SLA`)
+
+Official **APEX** software distribution rules, **18-month version maintenance lifecycle**, mandatory `AVX2` / RAM / OS requirements, Software Maintenance procedures, and the end-user / API / proprietary-format **Software License Agreement**.
+
+- **Primary Links**: **[Release Policies & 18-Month Lifecycle](Release%20Policies/README.md)** · **[Software License Agreement (`SLA`)](Release%20Policies/software-license-agreement.md)**
+
+### Policies & Legal
+
+- [Official Distribution & 18-Month Release Lifecycle Policy](Release%20Policies/README.md)
+- [System Requirements (`x86-64`, `AVX2`, RAM Sizing, Windows Primary & Linux Matrix)](Release%20Policies/system-requirements.md)
+- [Software Maintenance & Technical Support Policy](Release%20Policies/maintenance-and-support.md)
+- [Software License Agreement (`SLA`: Software, APIs & Proprietary Formats)](Release%20Policies/software-license-agreement.md)

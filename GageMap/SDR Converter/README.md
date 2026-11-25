@@ -58,6 +58,9 @@ Automated workflows can invoke the same converter libraries (`AnsysLib`, `Abaqus
 
 ## Licensing
 
+> [!WARNING]
+> Legacy **FLEXlm / FlexNet** (`lmgrd`, `27000@host`) licensing will be **discontinued as of October 2027**. All product versions going forward use **[APEX License Manager](../../License%20Manager/README.md)** (`ApexLM`).
+
 `SdrConverter` follows the GageMap dual-licensing architecture (`GM_FLEX_SERVER` for FlexNet, or **ApexLM** on `127.0.0.1:27884` with Web Admin UI at `http://127.0.0.1:27887/`):
 
 - **ApexLM & Converter Entitlements**: Deployed alongside `GM` / `GMx` / `GMSCRIPT` and solver converter entitlements (`ANSYS_CONVERTER`, `ABAQUS_CONVERTER`, `NASTRAN_CONVERTER`).

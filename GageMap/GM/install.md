@@ -1,5 +1,7 @@
 # Install APEX GageMap
 
+For supported platforms (`x86-64` with mandatory **AVX2** instruction set support, Windows 10/11 & Windows Server primary OS, Linux support, RAM tiers, and the **18-month version support policy**), see **[Software Release Policies](../../Release%20Policies/README.md)** and **[System Requirements](../../Release%20Policies/system-requirements.md)**. For licensing setup, see **[GM Licensing](flex.md)** and **[APEX License Manager](../../License%20Manager/README.md)**.
+
 ## Linux Installation
 
 Download the main GageMap (.tgz file).

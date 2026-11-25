@@ -10,19 +10,22 @@ The Splash Dialog displays a summary of the application's version, build, and cu
 
 ## Modern ApexLM Configuration (`http://127.0.0.1:27887/`)
 
-On builds using **APEX License Manager (ApexLM / ALM)**:
+On builds using **[APEX License Manager (`ApexLM`)](../../../License%20Manager/README.md)** (**APEX LM Daemon** & **APEX LM Server Daemon**):
 
-- Clicking **Configure** on the Splash/About dialog launches the **ApexLM Web Administration UI** at **`http://127.0.0.1:27887/`** in your system web browser (communicating with the local ALM client daemon on TCP port `27884`).
+- Clicking **Configure** on the Splash/About dialog (or choosing **Open Configuration** in **ApexLM Tray**) launches the **ApexLM Web Administration UI** at **`http://127.0.0.1:27887/`** in your system web browser (communicating with the local **APEX LM Daemon** on TCP port `27884`).
 - Within the Web UI you can:
-  - View **Overview** (host MAC Host ID, active operating mode `LOCAL` / `PASSTHROUGH` / `SERVER`, and installed entitlements).
-  - Install a new Format v2 JSON license file or inspect version ceilings, channel pools (`<VENDOR>_CHANNELS` / `ANY_CHANNELS`), `AEROPLOTS`, and boolean flags (`PARAMETER_SERVER`, `RWX_COMPRESSION`, `DS_MANAGER`).
-  - Monitor **Usage**, active **Clients** (heartbeats), **Records**, **Logs**, and **Audit** trails.
-  - Configure upstream floating server connection (`TCP 27885`/`27886`) under **Config** and request offline **Borrow** leases (up to **30 days**) under **Borrow**.
+  - View **Overview** (host MAC Host ID, download `license-request.json`, active operating mode `LOCAL` / `PASSTHROUGH`, and installed license details).
+  - Under **Configuration**, upload/install a Format v2 JSON license file or configure **`Passthrough`** forwarding to a central **APEX LM Server Daemon** (`TCP 27885`/`27886`).
+  - Inspect **Records** (version ceilings, channel pools `<VENDOR>_CHANNELS` / `ANY_CHANNELS`, `AEROPLOTS`, and boolean flags `PARAMETER_SERVER`, `RWX_COMPRESSION`, `DS_MANAGER`), live **Usage**, connected **Clients**, **Log**, and **Audit** trails.
+  - Request durable **Offline Reservations** (up to **30 days**) under the **Reserve** tab ([Web Admin UI & Reservations](../../../License%20Manager/web-ui-and-reservations.md)), or administer headlessly with **[`ApexLM_CLI`](../../../License%20Manager/cli-reference.md)**.
 - Running **APEX DS** in simulated input mode (`simul`) permits evaluation without checking out hardware channel or DS feature licenses.
 
 ---
 
-## Legacy FlexNet License Configuration Dialogs
+## Legacy FlexNet License Configuration Dialogs *(Discontinued October 2027)*
+
+> [!WARNING]
+> Legacy **FLEXlm / FlexNet (`lmgrd`, `27000@host`, `.lic` files, OpenCode Trusted Storage)** licensing will be **discontinued as of October 2027**. All future **APEX DS** releases use **[APEX License Manager (`ApexLM`)](../../../License%20Manager/README.md)**.
 
 In legacy FlexNet (`27000@host`) builds, clicking **Configure** opens the FlexNet License Configuration dialog shown below. This dialog configures the active licensing mode and mode-specific options.
 
@@ -91,7 +94,7 @@ The **Manage Trusted Storage** button switches to administrative Trusted Storage
 
 ## License Agreement
 
-The License Agreement dialog is displayed when a new software release is first run and can also be opened manually from the Splash Dialog window. Users must accept the agreement text to continue using **APEX DS**.
+The License Agreement dialog is displayed when a new software release is first run and can also be opened manually from the Splash Dialog window. Users must accept the agreement text to continue using **APEX DS**. See the full **[Software License Agreement & Release Policies](../../../Release%20Policies/software-license-agreement.md)**.
 
 ![Example License Agreement Dialog](../images/interface/images/licensing-8bde7052.png)
 

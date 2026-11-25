@@ -37,6 +37,9 @@ flowchart LR
 
 ## File Formats Summary
 
+> [!IMPORTANT]
+> **End-User Format License Notice:** All APEX GageMap file formats (`.sdr`, `.gmp`, `.gmo`, `.gml`, `.gmm`, and related schemas) are provided strictly for internal end-user use with licensed APEX software and cannot be used for commercial means without formal written authorization from APEX. See the **[Software License Agreement](../Release%20Policies/software-license-agreement.md)**.
+
 | Extension | Format Type | Role in GageMap Suite |
 | --- | --- | --- |
 | `.sdr` | Binary (Reduced FE Model) | Stores reduced FE mesh (nodes, elements, free surfaces), temperature-dependent isotropic/orthotropic materials, shell real constants, cyclic symmetry metadata, mode shapes, static load cases, and optionally embedded sensors. |
@@ -48,6 +51,10 @@ flowchart LR
 Additional modular project and utility formats used across `GM` and `GMx` include `.gms` (Sensors), `.gmg` (Groups), `.gma` (Animation), `.gmo` (Optimizer), `.gml` (Fatigue), `.gmm`/`.gmf` (Assignments/Preferences), `.grp` (Legacy Group definitions), and `.gbf` (User-defined shape ASCII import/export). See [GMx File Formats](GMx/files.md) and [GM Working With SDR Models](GM/usingSDR.md).
 
 ## Licensing Overview (ApexLM & Legacy FlexNet)
+
+> [!WARNING]
+> **Legacy FLEXlm / FlexNet Discontinuation — October 2027**
+> Legacy licensing using **FLEXlm / FlexNet** (`lmgrd`, `lmtools`, `.lic` files, `27000@host`) will be **discontinued as of October 2027**. All product versions going forward will exclusively use **[APEX License Manager](../License%20Manager/README.md)** (`ApexLM`), the **APEX LM Daemon**, and the **APEX LM Server Daemon**.
 
 APEX GageMap supports a dual-licensing architecture across modern **APEX License Manager (ApexLM)** and legacy **FlexNet Publisher** deployments:
 

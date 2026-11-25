@@ -51,7 +51,7 @@ flowchart LR
 
 ## Hardware Licensing & Serial Validation
 
-Individual `drv-*` shared libraries are not licensed standalone. Instead, licensing is enforced centrally by **APEX DS** (and optionally validated per hardware serial in **ApexLM**):
+Individual `drv-*` shared libraries are not licensed standalone. Instead, licensing is enforced centrally by **APEX DS** (and optionally validated per hardware serial in **[APEX License Manager (`ApexLM`)](../../License%20Manager/README.md)**; note legacy FLEXlm / `lmgrd` support will be **discontinued as of October 2027**):
 
 ### 1. Per-Vendor Channel Pools (`<VENDOR>_CHANNELS` -> `ANY_CHANNELS`)
 Every active plugin reports its vendor class via `PLUGINDEV_ATTRIB_DEVCLASS`. During acquisition startup on real hardware (`INPUT_ADCDEVICE`):

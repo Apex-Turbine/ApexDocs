@@ -4,7 +4,7 @@
 
 The listed requirements are for APEX DX.
 
-Supported 64 bit Windows versions: Windows 10
+Supported 64 bit Windows versions: Windows 10 (see [Software Release Policies — System Requirements](../Release%20Policies/system-requirements.md) for current 64-bit Windows 10/11, Windows Server, `AVX2`, RAM, and 18-month version support policies)
 
 ## Linux
 
@@ -37,9 +37,9 @@ DX releases are built on a centos7/redhat7 linux system and tested on more recen
 
 ## Hardware
 
-DX is supported on the Intel x86 architecture running either the Windows or Linux operating system. Only 64 bit versions are available. The minimum and recommended hardware requirements are listed below.
+DX is supported on 64-bit `x86-64` processors with mandatory **AVX2** instruction set support running either Windows (primary) or Linux. Only 64-bit versions are available; ARM and other architectures are not supported. For current baseline RAM recommendations, workstation CPU guidelines, and the **18-month version support policy**, see **[Software Release Policies — System Requirements](../Release%20Policies/system-requirements.md)**.
 
-> Minimum supported 64 bit hardware:
+> Legacy minimum baseline (older releases):
 >
 > - 64-bit dual core 2Ghz CPU.
 > - 2048MB memory.

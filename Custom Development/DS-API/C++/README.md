@@ -1,5 +1,8 @@
 # DS-API C / C++ SDK
 
+> [!IMPORTANT]
+> **End-User License Notice:** `DS-API` C/C++ libraries and APEX file/data formats are licensed strictly for internal end-user use and cannot be used for commercial means without formal written authorization from APEX ([Software License Agreement](../../../Release%20Policies/software-license-agreement.md)). Legacy FLEXlm (`lmgrd`) licensing is discontinued in **October 2027**; all product versions going forward use **[APEX License Manager](../../../License%20Manager/README.md)**.
+
 The **C / C++ SDK** is the most complete interface in DS-API, supporting offline file reading and creation (`.rwx`, `.pkx`, `.datx`, `.raw`, `.pks`, `.cats_index`), live DS 3.x network packet streaming, remote manager and synchronized `N:M` cluster automation, and custom C/C++ hardware driver and DSP statistics plugins.
 
 ## Headers and Shared Libraries

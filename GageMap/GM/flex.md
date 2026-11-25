@@ -1,22 +1,26 @@
 # Licensing: APEX License Manager (ApexLM) & Legacy FlexNet
 
+> [!WARNING]
+> **Legacy FLEXlm / FlexNet Discontinuation — October 2027**
+> Legacy licensing powered by **FLEXlm / FlexNet** (`lmgrd`, `lmtools`, `lmutil`, `.lic` files, and `27000@host` servers) will be **discontinued as of October 2027**. All product versions going forward will exclusively use **[APEX License Manager](../../License%20Manager/README.md)** (`ApexLM`), the **APEX LM Daemon (`ApexLM_Service`)**, and the **APEX LM Server Daemon (`ApexLM_Server_Service`)**.
+
 GageMap Classic (`GM`) supports two licensing backends configured at build/deployment time:
 
-1. **APEX License Manager (ApexLM)** — Modern ZeroMQ-based (`CurveZMQ`) licensing service with a loopback Web Admin UI (`http://127.0.0.1:27887/`) and CLI manager.
-2. **Legacy FlexNet Publisher** — Traditional FLEXnet (`libfnp64` / `lmgrd`) floating or node-locked licensing (`27000@host`).
+1. **[APEX License Manager (ApexLM)](../../License%20Manager/README.md)** — Modern ZeroMQ-based (`CurveZMQ`) licensing service with a loopback Web Admin UI (`http://127.0.0.1:27887/`) and CLI tools ([CLI Reference](../../License%20Manager/cli-reference.md)).
+2. **Legacy FlexNet Publisher** *(Discontinued October 2027)* — Traditional FLEXnet (`libfnp64` / `lmgrd`) floating or node-locked licensing (`27000@host`).
 
 ---
 
 ## APEX License Manager (ApexLM)
 
-Modern GageMap (`GM`) builds communicate with the local ApexLM service via encrypted ZeroMQ (`CoreApexLm` / `ApexLmLic`) and perform client registration using application identity (`gm` / `GM`), software version (`YYYY.MM`), host metadata, and license category (`ANALYSIS`).
+Modern GageMap (`GM`) builds communicate with the local ApexLM service via encrypted ZeroMQ (`CoreApexLm` / `ApexLmLic`) and perform client registration using application identity (`gm` / `GM`), software version (`YYYY.MM`), host metadata, and license category (`ANALYSIS`). For full setup and troubleshooting instructions, see [Workstation & Server Setup](../../License%20Manager/setup-and-server.md).
 
 ### Operating Modes
 
 | Mode | Description |
 | --- | --- |
 | **LOCAL** | Local service binds strictly to `127.0.0.1` (`27884`) and validates node-locked MAC-bound JSON licenses directly on the workstation. |
-| **PASSTHROUGH** | Local service listens on `127.0.0.1` (`27884`) and forwards feature checkouts/checkins to an upstream `SERVER` instance. Supports **offline feature borrowing for up to 30 days**. |
+| **PASSTHROUGH** | Local service listens on `127.0.0.1` (`27884`) and forwards feature checkouts/checkins to an upstream `SERVER` instance. Supports **offline reservations for up to 30 days** via the **Reserve** tab ([Web UI & Reservations](../../License%20Manager/web-ui-and-reservations.md)). |
 | **SERVER** | Central license server accepting incoming requests from remote `PASSTHROUGH` services on `APEXLM_SERVER_LISTEN` (`27886`). Direct client connections to `SERVER` are rejected; administration remains loopback-only (`127.0.0.1`). |
 
 ### Network Ports & Management Web UI
@@ -25,14 +29,14 @@ Ports can be customized via system environment variables or a local `.env` / `.e
 
 | Port / URL | Variable | Purpose |
 | --- | --- | --- |
-| `http://127.0.0.1:27887/` | `APEXLM_MANAGEMENT_PORT` / `APEXLM_ADMIN_PORT` | **Local Web Admin UI** & loopback HTTP management API (tabs: Overview, Usage, Clients, Borrow, Config, Records, Logs, Audit). |
+| `http://127.0.0.1:27887/` | `APEXLM_MANAGEMENT_PORT` / `APEXLM_ADMIN_PORT` | **Local Web Admin UI** & loopback HTTP management API (tabs: Overview, Usage, Clients, Reserve, Configuration, Records, Log, Audit). |
 | `http://127.0.0.1:27888/` | `APEXLM_SERVER_MANAGEMENT_PORT` / `APEXLM_SERVER_ADMIN_PORT` | **Server Web Admin UI** & loopback HTTP management API. |
 | `27884` | `APEXLM_PORT` | Local ApexLM ZeroMQ service port. |
 | `27885` | `APEXLM_SERVER_PORT` | Server service ZeroMQ port. |
 | `27886` | `APEXLM_SERVER_LISTEN` | Server external listen port for remote `PASSTHROUGH` services. |
 
 > [!NOTE]
-> The local Web UI binds to loopback (`127.0.0.1`) only and requires no separate login token when accessed locally on the host machine. Configuration, active checkouts, and audit logs are stored in SQLite (`C:\ProgramData\APEX\APEXLM\apexlm.db` on Windows or `/var/lib/apexlm/apexlm.db` on Linux).
+> The local Web UI binds to loopback (`127.0.0.1`) only and requires no separate login token when accessed locally on the host machine. Configuration, active checkouts, and audit logs are stored in SQLite (`C:\ProgramData\APEX\ApexLM\apexlm.db` on Windows or `/var/lib/apexlm/apexlm.db` on Linux).
 
 ### GageMap (`GM`) Apps & Features
 

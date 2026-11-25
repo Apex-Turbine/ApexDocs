@@ -21,24 +21,31 @@ The following application-specific rules apply across **APEX DS** and companion 
 
 ---
 
-## Modern Licensing: APEX License Manager (ApexLM / ALM)
+## Modern Licensing: APEX License Manager (`ApexLM` / `ALM`)
 
-Current APEX DS releases connect to **APEX License Manager (ApexLM)** rather than FlexNet by default.
+Current and future **APEX DS** releases connect to **[APEX License Manager (`ApexLM`)](../../../License%20Manager/README.md)** (**APEX LM Daemon** & **APEX LM Server Daemon**).
+
+> [!WARNING]
+> **Legacy FLEXlm / `lmgrd` Discontinuation Notice (October 2027)**
+>
+> The previous licensing method using **FLEXlm / FlexNet Publisher (`lmgrd` license server, `lmtools`, `lmutil`, `.lic` files, `27000@host`, and OpenCode Trusted Storage)** will be **discontinued as of October 2027**. All product versions going forward exclusively use **APEX License Manager (`ApexLM`)** (**APEX LM Daemon** & **APEX LM Server Daemon**).
 
 ### Architecture, Transport & Network Ports
 
 | Component | Default Endpoint / Env Var | Transport & Purpose |
 | :--- | :--- | :--- |
-| **Client Registration & Heartbeat** | `127.0.0.1:27884` (`APEXLM_HOST` / `APEXLM_PORT`) | Local ZeroMQ `REQ/REP` with CurveZMQ encryption (`5000 ms` `APEXLM_TIMEOUT`). DS monitors the connection every `1 s` and terminates if ALM becomes unreachable. |
-| **Central Floating Server** | `27885` (`APEXLM_SERVER_PORT`), optional `27886` (`APEXLM_SERVER_LISTEN`) | CurveZMQ floating license server listening for remote `PASSTHROUGH` client daemons (`server: true` in license required). |
-| **Local Web Administration UI** | **`http://127.0.0.1:27887/`** (`APEXLM_ADMIN_PORT`) | Browser console opened by **Configure** in DS/DR: install/inspect licenses, view active sessions & client heartbeats, edit config, and borrow licenses. |
-| **Server Web Administration UI** | `http://<server>:27888/` (`APEXLM_SERVER_ADMIN_PORT`) | Browser console on dedicated ApexLM Server hosts (`ApexLMServerService` / `apexlm-server.service`). |
+| **Client Registration & Heartbeat** | `127.0.0.1:27884` (`APEXLM_HOST` / `APEXLM_PORT`) | Local ZeroMQ `REQ/REP` with CurveZMQ encryption (`5000 ms` `APEXLM_TIMEOUT`). DS monitors the connection and requires an active local **APEX LM Daemon**. |
+| **Central Floating Server** | `27885` (`APEXLM_SERVER_PORT`), optional `27886` (`APEXLM_SERVER_LISTEN`) | CurveZMQ **APEX LM Server Daemon** listening for remote `PASSTHROUGH` client daemons (`"server": true` in license required). |
+| **Local Web Administration UI** | **`http://127.0.0.1:27887/`** (`APEXLM_MANAGEMENT_PORT`) | Loopback browser console opened by **Configure** in DS/DR or `ApexLM_Tray`: install/inspect licenses, view active sessions & usage, edit config, and **Reserve** offline seats. |
+| **Server Web Administration UI** | `http://127.0.0.1:27888/` (`APEXLM_SERVER_MANAGEMENT_PORT`) | Loopback browser console on dedicated **APEX LM Server Daemon** hosts (`ApexLMServerService` / `apexlm-server.service`). |
 
 ### Operating Modes
 
 1. **`LOCAL` Mode (Node-Locked):** Licenses are stored locally in an Ed25519-signed Format v2 JSON file installed into the ApexLM SQLite database (`C:\ProgramData\APEX\APEXLM\apexlm.db` on Windows, `/var/lib/apexlm/apexlm.db` on Linux) and bound to host MAC address(es) (`host` array, or `"*"` / `"demo"`).
-2. **`PASSTHROUGH` Mode (Floating Client & Borrowing):** The local `ApexLMService` / `apexlm.service` daemon on `127.0.0.1:27884` forwards requests securely to a central `SERVER` on TCP `27885`/`27886`. Users can borrow entitlements for offline use for up to **30 days** from the **Borrow** tab in **`http://127.0.0.1:27887/`**.
+2. **`PASSTHROUGH` Mode (Floating Client & Offline Reservations):** The local `ApexLMService` / `apexlm.service` daemon on `127.0.0.1:27884` forwards requests securely to a central `SERVER` on TCP `27885`/`27886`. Users can reserve entitlements for offline use for up to **30 days** from the **Reserve** tab in **`http://127.0.0.1:27887/`** ([Web UI & Reservations](../../../License%20Manager/web-ui-and-reservations.md)).
 3. **`SERVER` Mode (Floating License Server):** Runs `ApexLMServerService` (Windows) or `apexlm-server.service` (Linux) with a central database (`APEXLM_Server\apexlm_server.db` / `/var/lib/apexlm-server/apexlm_server.db`). DS/DR clients never connect directly to port `27885`; instead they connect to their local `PASSTHROUGH` daemon on `27884`.
+
+See also: **[Workstation & Server Setup](../../../License%20Manager/setup-and-server.md)** · **[CLI Tools Reference](../../../License%20Manager/cli-reference.md)** · **[Software License Agreement](../../../Release%20Policies/software-license-agreement.md)**
 
 ### Hardware Serial Binding & Version Ceilings
 
@@ -47,9 +54,9 @@ Current APEX DS releases connect to **APEX License Manager (ApexLM)** rather tha
 
 ---
 
-## Legacy FlexNet Licensing (`27000@host`)
+## Legacy FlexNet Licensing (`27000@host`) *(Discontinued October 2027)*
 
-Older APEX DS builds use Flexera Software's FlexNet (`lmgrd`) license manager (`http://www.flexerasoftware.com`).
+Legacy APEX DS builds only used Flexera Software's FlexNet (`lmgrd`) license manager, which is **discontinued as of October 2027**. Plan migration to **[APEX License Manager (`ApexLM`)](../../../License%20Manager/README.md)** before October 2027.
 
 ### Node Locked Licensing
 

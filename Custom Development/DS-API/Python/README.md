@@ -1,5 +1,10 @@
 # DS-API Python Bindings (`dsapi.py`)
 
+> [!IMPORTANT]
+> **End-User API & Format License Notice:** `DS-API` Python bindings and APEX file formats are licensed strictly for **internal end-user use** and cannot be used for commercial means without formal written authorization from APEX ([Software License Agreement](../../../Release%20Policies/software-license-agreement.md)).
+>
+> **Legacy FLEXlm / FlexNet Discontinuation (October 2027):** Legacy FLEXlm (`lmgrd`) licensing ends in **October 2027**. All product versions going forward use **[APEX License Manager](../../../License%20Manager/README.md)** (`ApexLM`).
+
 DS-API provides Python 3 bindings in **`dsapi.py`**, implemented using Python's built-in **`ctypes` (`ctypes.CDLL`)** FFI over the **`dsapiscript`** C wrapper library (`dsapiscript.dll` on Windows, `libdsapiscript.so` on Linux, declared in `dsapiscript.h`).
 
 > [!NOTE]
@@ -51,8 +56,8 @@ python3 your_script.py
 
 ## Licensing Behavior
 
-- **Offline File Reading & Setup Inspection**: Calling `dsapi_file_*` or local `dsapi_setup_*` does **not** check out network license features.
-- **Network Streaming & Control**: Obtaining a session via `get_network_session()` initializes `DSAPI_session_handle` under app `DSAPI` (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG`). See [Developer Licensing Guide](../README.md#developer-licensing-guide).
+- **Offline File Reading & Setup Inspection**: Calling `dsapi_file_*` or local `dsapi_setup_*` does **not** check out network license features (usage remains governed by the [Software License Agreement](../../../Release%20Policies/software-license-agreement.md)).
+- **Network Streaming & Control**: Obtaining a session via `get_network_session()` initializes `DSAPI_session_handle` under app `DSAPI` (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG`). See [Developer Licensing Guide](../README.md#developer-licensing-guide) and **[APEX License Manager](../../../License%20Manager/README.md)** (legacy FLEXlm / `lmgrd` is discontinued as of **October 2027**).
 
 ## Guides
 

@@ -91,4 +91,22 @@ The **APEX DS** family provides synchronized multi-chassis dynamic data acquisit
 Build custom file converters, live acquisition clients, automated test-stand controllers, composable streaming pipelines, database readers/writers, and C++ plugins using **DS-API** (C/C++, 64-bit MATLAB, Python) and **Phoenix API** (C++20, `phoenixpy` Python, maintained via the `phoenix-doc` Git submodule), including complete developer licensing details.
 
 - **[Custom Development Quick Start Guide](Custom%20Development/quick-start.md)** · **[Custom Development Master Documentation](Custom%20Development/README.md)**
-- **SDKs**: [DS-API (`C++`, `MATLAB`, `Python`)](Custom%20Development/DS-API/README.md) · [Phoenix API (`C++`, `Python`)](Custom%20Development/Phoenix%20API/README.md)
+- **SDKs**: [DS-API (`C++`, `MATLAB`, `Python`)](Custom%20Development/DS-API/README.md) · [Phoenix API (`C++`, `Python`)](Custom%20Development/Phoenix%20API/README.md) · [End-User API & Format SLA](Release%20Policies/software-license-agreement.md)
+
+---
+
+## APEX License Manager — Licensing, Floating Servers & Reservations
+
+**APEX License Manager (`ApexLM`)** replaces legacy FLEXlm (`lmgrd`, **discontinued as of October 2027**) across all **APEX** applications and SDKs. Deploy node-locked workstation daemons (`LOCAL`), central floating license servers (`SERVER` + `PASSTHROUGH`), loopback Web Admin UI dashboards (`27887` / `27888`), CLI automation (`ApexLM_CLI` / `ApexLM_Server_CLI`), and 30-day offline license reservations (`Reserve`).
+
+- **[License Manager Quick Start Guide](License%20Manager/quick-start.md)** · **[License Manager Master Documentation](License%20Manager/README.md)**
+- **Administration Guides**: [Workstation Daemon & Floating Server Setup](License%20Manager/setup-and-server.md) · [CLI Tools Reference](License%20Manager/cli-reference.md) · [Web Admin UI, Configuration & Reservations](License%20Manager/web-ui-and-reservations.md)
+
+---
+
+## Software Release Policies, System Requirements & Legal (`SLA`)
+
+Official **APEX** software distribution policy, **18-month version maintenance lifecycle** and update mandate, **64-bit `x86-64` / mandatory `AVX2`** hardware and RAM sizing guidelines, Windows primary OS & Linux support matrix, Software Maintenance & ticket/telephone support SLAs, and the exhaustive **Software License Agreement** governing end-user software, developer APIs, and APEX data formats.
+
+- **[Release Policies & 18-Month Lifecycle](Release%20Policies/README.md)** · **[Software License Agreement (`SLA`)](Release%20Policies/software-license-agreement.md)**
+- **Policies & Requirements**: [System Requirements (`AVX2`, RAM & OS)](Release%20Policies/system-requirements.md) · [Maintenance & Support Policy](Release%20Policies/maintenance-and-support.md)

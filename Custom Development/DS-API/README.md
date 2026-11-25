@@ -1,5 +1,8 @@
 # DS-API Developer Guide
 
+> [!IMPORTANT]
+> **Strict Non-Commercial End-User API & Format License:** `DS-API` SDK libraries, headers, bindings, and APEX file formats (`.rwx`, `.pkx`, `.datx`, etc.) are licensed strictly for **internal end-user use** and **cannot be used for commercial means** unless explicitly authorized by APEX through formal written agreement. See the full **[Software License Agreement](../../Release%20Policies/software-license-agreement.md)** and **[Software Release Policies](../../Release%20Policies/README.md)**.
+
 **DS-API** is the official C, C++, 64-bit MATLAB, and Python SDK for reading and writing **APEX DS (DS 3.x)** / EDAS data files, streaming live processed and raw acquisition packets over TCP/IP, automating single-host and synchronized `N:M` multi-chassis test stands, and extending DS with custom driver and DSP statistics plugins.
 
 ## Language & Capability Matrix
@@ -59,6 +62,10 @@ DS-API separates offline file processing from licensed network acquisition opera
 When the session shuts down, the static `Licenser` instance is released (`license(0)`).
 
 ### 2. License Lookup Order: FlexNet vs ApexLM
+
+> [!WARNING]
+> **Legacy FLEXlm / FlexNet Discontinuation — October 2027**
+> Legacy **FLEXlm / FlexNet** (`lmgrd`, `lmtools`, `.lic` files, `27000@host`, `libfnp64`/`libfnpts64`) licensing will be **discontinued as of October 2027**. All product versions going forward exclusively use **[APEX License Manager](../../License%20Manager/README.md)** (`ApexLM`), the **APEX LM Daemon (`ApexLM_Service`)**, and the **APEX LM Server Daemon (`ApexLM_Server_Service`)**. See [Workstation & Server Setup](../../License%20Manager/setup-and-server.md) and [Web UI & Offline Reservations](../../License%20Manager/web-ui-and-reservations.md).
 Depending on how the native libraries were built (`-DAPEX_USE_LEGACY_LICENSING` vs `-DAPEX_ALM_LICENSING`):
 
 - **FlexNet Publisher (legacy `ApexLicenser`, default in `DS/API/dsapinet.cxx`)**:

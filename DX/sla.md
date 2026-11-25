@@ -1,5 +1,8 @@
 # Software License Agreement (SLA)
 
+> [!IMPORTANT]
+> For the current APEX enterprise **Software Release Policies**, **Maintenance & Support Terms**, and the complete **Software License Agreement** governing all APEX applications, APIs, SDKs, and file/database formats (strictly for internal end-user use; commercial use prohibited without a formal written APEX agreement), see **[Software License Agreement](../Release%20Policies/software-license-agreement.md)** and **[Software Release Policies](../Release%20Policies/README.md)**.
+
 1.Definitions
 
 1.1. APEX means APEX Testing Technologies, Inc., a company incorporated under the laws of the state of Tennessee in the United States of America.

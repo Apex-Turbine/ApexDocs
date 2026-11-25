@@ -1,12 +1,9 @@
 # Hardware Requirements
 
-This section should can be used as guidance for users wishing to build their own
-APEX DS based acquisition systems. There is some opportunity for trade-offs in
-the requirements below: twice the channel count but half the maximum sample rate
-requires about the same hardware performance. Component (CPU, graphics, etc..)
-benchmarks are available at:
+> [!IMPORTANT]
+> **Current Architecture & RAM Policy**: For current **APEX** platform requirements—including the mandatory **64-bit `x86-64` with `AVX2` instruction set** requirement, workload-tiered RAM (`16–64+ GB` recommended for live acquisition), storage throughput, and OS matrices—see **[Master System Requirements & Hardware Recommendations](../../../Release%20Policies/system-requirements.md)** and the **[18-Month Release Policy](../../../Release%20Policies/README.md)**.
 
-[http://www.cpubenchmark.net](http://www.cpubenchmark.net)
+This section can also be used as baseline guidance when sizing **APEX DS** acquisition hardware. There is opportunity for trade-offs in the channel calculations below: twice the channel count at half the maximum sample rate requires comparable CPU and disk bandwidth. Component (CPU, graphics) benchmarks are available at [cpubenchmark.net](http://www.cpubenchmark.net).
 
 ## CPU
 

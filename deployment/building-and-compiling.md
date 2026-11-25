@@ -47,12 +47,14 @@ build_docs.py [--target TARGET] [--format {html,pdf,both}] [--output DIR] [--str
 | `--target` Value | Source Folder | Standalone HTML Output | PDF Manual Output |
 | :--- | :--- | :--- | :--- |
 | `site` | Entire user-facing repository (excl. `deployment/`, CI/temp artifacts) | `dist/site/` | *N/A* (use `all` for PDFs) |
-| `all` | All 5 product & API documentation folders | `dist/html/*/` | `dist/pdf/*.pdf` |
+| `all` | All 7 user-facing documentation folders | `dist/html/*/` | `dist/pdf/*.pdf` |
 | `DS` | `DS/` | `dist/html/DS/` | `dist/pdf/DS.pdf` |
 | `DX` | `DX/` | `dist/html/DX/` | `dist/pdf/DX.pdf` |
 | `GageMap` | `GageMap/` | `dist/html/GageMap/` | `dist/pdf/GageMap.pdf` |
 | `DX+` | `DX+/` | `dist/html/DX-Plus/` | `dist/pdf/DX-Plus.pdf` |
 | `Custom Development` | `Custom Development/` | `dist/html/Custom-Development/` | `dist/pdf/Custom-Development.pdf` |
+| `License Manager` | `License Manager/` | `dist/html/License-Manager/` | `dist/pdf/License-Manager.pdf` |
+| `Release Policies` | `Release Policies/` | `dist/html/Release-Policies/` | `dist/pdf/Release-Policies.pdf` |
 
 The maintainer-only `deployment/` folder is intentionally excluded from `site` and `all` user-facing builds. Multiple `--target` flags or comma-separated values may be supplied in one command (for example `--target DS,DX`).
 

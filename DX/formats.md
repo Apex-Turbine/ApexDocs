@@ -1,5 +1,8 @@
 # Data Formats
 
+> [!IMPORTANT]
+> **End-User Format License Notice:** All APEX-provided file formats, database schemas, and data structures are licensed strictly for internal end-user use with authorized APEX software and workflows. Commercial exploitation, third-party distribution, or creation of competing commercial tools or translators without explicit formal written authorization from APEX is prohibited. See the full **[Software License Agreement](../Release%20Policies/software-license-agreement.md)**.
+
 | Name | Extension | Read | Write |
 | --- | --- | --- | --- |
 | [APEX Data Acquisition](#apex-data-acquisition) | *.pkx, *.rwx | Yes | Yes |

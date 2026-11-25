@@ -1,16 +1,20 @@
 # Licensing
 
-APEX DX uses token- and feature-based licensing to enable post-processing toolkits, data management integrations, and viewer capabilities. Current releases support the modern **APEX License Manager (ApexLM)** alongside **Legacy FlexNet** (`27000@host`) installations.
+APEX DX uses token- and feature-based licensing to enable post-processing toolkits, data management integrations, and viewer capabilities. Current releases use the modern **[APEX License Manager (ApexLM)](../License%20Manager/README.md)**, with legacy FlexNet (`27000@host`) still supported on older builds prior to the October 2027 sunset.
+
+> [!WARNING]
+> **Legacy FLEXlm / FlexNet Discontinuation — October 2027**
+> Legacy licensing powered by **FLEXlm / FlexNet** (`lmgrd`, `lmtools`, `lmutil`, `.lic` files, and `27000@host` servers) will be **discontinued as of October 2027**. All APEX product versions going forward will exclusively use the updated licensing architecture powered by **[APEX License Manager](../License%20Manager/README.md)**, the **APEX LM Daemon (`ApexLM_Service`)**, and the **APEX LM Server Daemon (`ApexLM_Server_Service`)**.
 
 ---
 
 ## Modern Licensing: APEX License Manager (ApexLM)
 
-**APEX License Manager (ApexLM)** manages node-locked (`LOCAL`), central floating (`SERVER`), and client forwarding/borrowing (`PASSTHROUGH`) entitlements through an Ed25519-signed license service.
+**[APEX License Manager (ApexLM)](../License%20Manager/README.md)** manages node-locked (`LOCAL`), central floating (`SERVER`), and client forwarding/reservation (`PASSTHROUGH`) entitlements through an authenticated license service. For complete setup, CLI usage, and server administration, see the [APEX License Manager Documentation](../License%20Manager/README.md).
 
-- **Web Administration UI:** Manage license installation, view live token consumption, audit client sessions, and borrow floating tokens locally at **`http://127.0.0.1:27887/`** (or `http://<server-host>:27888/` on a dedicated ApexLM Server).
-- **Network Ports:** Local client IPC uses TCP port `27884` (`127.0.0.1`), while remote `PASSTHROUGH` forwarding communicates with floating `SERVER` nodes over CurveZMQ on TCP `27885` (or `27886`).
-- **Offline Borrowing:** When connected to a floating ApexLM Server in `PASSTHROUGH` mode, users can borrow licenses for offline field use for up to **30 days** from the **Borrow** tab in the Web UI.
+- **Web Administration UI:** Manage license installation, view live token consumption, audit client sessions, and reserve floating tokens locally on loopback at **`http://127.0.0.1:27887/`** (or **`http://127.0.0.1:27888/`** on a dedicated ApexLM Server host via local console or SSH tunnel) — see [Web UI & Offline Reservations](../License%20Manager/web-ui-and-reservations.md).
+- **Network Ports:** Local client IPC uses TCP port `27884` (`127.0.0.1`), while remote `PASSTHROUGH` forwarding communicates with floating `SERVER` nodes over CurveZMQ on TCP `27885` (or `27886`). See [Workstation & Server Setup](../License%20Manager/setup-and-server.md) and the [CLI Reference](../License%20Manager/cli-reference.md).
+- **Offline Reservations:** When connected to a floating ApexLM Server in `PASSTHROUGH` mode, users can reserve licenses for offline field use for up to **30 days** from the **Reserve** tab in the Web UI.
 
 ### Shared `ANALYSIS` Token Pool & Applications
 
@@ -47,7 +51,10 @@ Related application IDs in ApexLM include:
 
 ---
 
-## Legacy FlexNet Token Licensing
+## Legacy FlexNet Token Licensing *(Discontinued October 2027)*
+
+> [!NOTE]
+> Legacy **FLEXlm / FlexNet** (`lmgrd`, `.lic` files, `27000@host`) is deprecated and will be **discontinued as of October 2027**. Plan new deployments and renewals with **[APEX License Manager](../License%20Manager/README.md)** ([Quick Start](../License%20Manager/quick-start.md)).
 
 Legacy APEX DX releases use FlexNet dynamic token licensing installed as either Node-Locked (local `.lic`) or Host Server (`27000@host`) licenses. Tokens are automatically checked out when a feature is activated. To release tokens back to the pool, open the **File** menu and uncheck features that are not in use; DX restarts after features are removed.
 

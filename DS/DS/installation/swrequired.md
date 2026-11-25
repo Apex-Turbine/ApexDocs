@@ -1,8 +1,9 @@
 # Software Requirements
 
-APEX supports running software on all listed operating systems. It is
-recommended that users select an operating system that is used extensively in
-our QA process. These are listed in the tables below.
+> [!IMPORTANT]
+> **Supported Operating Systems & 18-Month Release Lifecycle**: **64-bit Windows (Windows 10 / 11)** is **APEX's** primary supported OS, with **64-bit Linux** supported on selected applications/services, and every released version maintained for no more than **18 months**. See **[Master System Requirements & OS Matrix](../../../Release%20Policies/system-requirements.md)** and **[Software Release Policies](../../../Release%20Policies/README.md)** for authoritative current OS support before deploying. The matrices below include historical compatibility notes for legacy DS releases.
+
+APEX supports running software on all listed operating systems. It is recommended that users select an operating system that is actively used in our QA process.
 
 Keep in mind that many DS supported acquisition devices need the installation
 of third party driver packages. In some cases the OS requirements of these

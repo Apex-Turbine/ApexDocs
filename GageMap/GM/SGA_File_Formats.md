@@ -1,5 +1,8 @@
 # SGA File Format
 
+> [!IMPORTANT]
+> **End-User Format License Notice:** All APEX file formats and schemas (including `.sga` and `.sdr`) are provided strictly for internal end-user use with authorized APEX software and cannot be used for commercial means unless explicitly authorized by APEX through formal written agreement. See the **[Software License Agreement](../../Release%20Policies/software-license-agreement.md)**.
+
 The strain gage file format is a text file containing the necessary mapping information for all supported sensors. The format is text and can be created or modified easily outside of GageMap. In addition to the sensor mapping information, additional information relating to the mapping domain can be present. For tip timing sensors, this would be the definition of the blade tip.
 
 The following information is required to completely define a strain gage:

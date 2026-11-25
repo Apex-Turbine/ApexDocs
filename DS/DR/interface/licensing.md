@@ -10,18 +10,21 @@ The Splash Dialog displays a summary of the application's version, build, and cu
 
 ## Modern ApexLM Configuration (`http://127.0.0.1:27887/`)
 
-On builds using **APEX License Manager (ApexLM / ALM)**:
+On builds using **[APEX License Manager (`ApexLM`)](../../../License%20Manager/README.md)**:
 
-- Clicking **Configure** on the Splash/About dialog opens the **ApexLM Web Administration UI** at **`http://127.0.0.1:27887/`** in your system web browser (communicating with the local ALM client daemon on TCP port `27884`).
+- Clicking **Configure** on the Splash/About dialog (or **Open Configuration** in **ApexLM Tray**) opens the **ApexLM Web Administration UI** at **`http://127.0.0.1:27887/`** in your system web browser (communicating with the local **APEX LM Daemon** on TCP port `27884`).
 - Within the Web UI you can:
-  - Inspect host MAC identification, active mode (`LOCAL`, `PASSTHROUGH`, or `SERVER`), and installed **`AEROPLOTS`** shared display seats.
-  - Monitor live **Usage**, connected **Clients** (heartbeats), **Records**, **Logs**, and **Audit** trails.
-  - Configure upstream floating ApexLM Server endpoints (`TCP 27885`/`27886`) under **Config** and request offline **Borrow** leases (up to **30 days**) under **Borrow**.
+  - Inspect host MAC identification, active mode (`LOCAL` or `PASSTHROUGH`), and installed **`AEROPLOTS`** shared display seats.
+  - Monitor live **Usage**, connected **Clients**, **Records**, **Log**, and **Audit** trails.
+  - Configure upstream floating **APEX LM Server Daemon** endpoints (`TCP 27885`/`27886`) under **Configuration** and request offline reservations (up to **30 days**) under **Reserve** ([Web UI & Reservations](../../../License%20Manager/web-ui-and-reservations.md)), or manage via [`ApexLM_CLI`](../../../License%20Manager/cli-reference.md).
 - **APEX DR** requires an active **`AEROPLOTS`** seat on startup; if no shared seat is available from the local or floating ApexLM pool, DR notifies the user and exits.
 
 ---
 
-## Legacy FlexNet License Configuration Dialogs
+## Legacy FlexNet License Configuration Dialogs *(Discontinued October 2027)*
+
+> [!WARNING]
+> Legacy **FLEXlm / FlexNet (`lmgrd`, `27000@host`, `.lic` files, OpenCode Trusted Storage)** licensing will be **discontinued as of October 2027**. All future **APEX DR** releases use **[APEX License Manager (`ApexLM`)](../../../License%20Manager/README.md)**.
 
 In legacy FlexNet (`27000@host`) builds, clicking **Configure** opens the FlexNet License Configuration dialog shown below. Administrators may password-protect this window via the **Password** button. Selecting **Unlicensed** mode is permitted for evaluation in compatible suite utilities, though **APEX DR** requires a valid `AEROPLOTS` / DR Plot Interface seat to operate.
 
@@ -88,7 +91,7 @@ The **Manage Trusted Storage** button switches to administrative Trusted Storage
 
 ## License Agreement
 
-The License Agreement dialog is displayed when a new software release is first run and can also be opened manually from the Splash Dialog window. Users must accept the agreement text to continue using **APEX DR**.
+The License Agreement dialog is displayed when a new software release is first run and can also be opened manually from the Splash Dialog window. Users must accept the agreement text to continue using **APEX DR**. See the full **[Software License Agreement & Release Policies](../../../Release%20Policies/software-license-agreement.md)**.
 
 ![Example License Agreement Dialog](../images/interface/images/licensing-8bde7052.png)
 

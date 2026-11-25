@@ -44,9 +44,9 @@ flowchart LR
 
 DM and `DSAPI` automation workflows involve licenses on both the controlled **DS acquisition server** and, for custom standalone clients, the **controller host**:
 
-### Modern Licensing (APEX License Manager / ApexLM)
+### Modern Licensing ([APEX License Manager / `ApexLM`](../../License%20Manager/README.md))
 - **DM Application & Server Flag:**
-  - `DM` is registered as application `DM` in ApexLM (`http://127.0.0.1:27887/`, client IPC port TCP `27884`, server CurveZMQ ports `27885`–`27886`).
+  - `DM` is registered as application `DM` in **[`ApexLM`](../../License%20Manager/README.md)** (`http://127.0.0.1:27887/`, client IPC port TCP `27884`, **APEX LM Server Daemon** ports `27885`–`27886`).
   - Each non-simulator **APEX DS** node accepting remote manager connections checks out the **`DS_MANAGER`** boolean license flag (`ds_manager`).
   - **Simulator Mode Exception:** When a DS server runs in simulated input mode (`simul`), `DS_MANAGER` checkout is waived for evaluation and script testing.
 - **Standalone `DSAPI` Clients (`dsdiscoverapp`, `dscalapp`, `dsrecordapp`, `dscontrolapp`, custom apps):**
@@ -56,8 +56,10 @@ DM and `DSAPI` automation workflows involve licenses on both the controlled **DS
     - `APEXAPI_NET_CONFIG` — remote configuration read/write and calibration control
 - **DX Integration:** Running Data Manager orchestration workflows from **APEX DX** requires **`DXDM-INTEGRATION`** (`5` tokens from the `ANALYSIS` pool).
 
-### Legacy FlexNet Licensing (`27000@host`)
-- The target **APEX DS** server requires the `MANAGER` (`APEXDS_MANAGER`) feature flag in its FlexNet license to accept remote manager connections when acquiring from live hardware.
-- External `DSAPI` client executables check out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, and `APEXAPI_NET_CONFIG` from FlexNet.
+### Legacy FlexNet Licensing (`27000@host`) *(Discontinued October 2027)*
+> [!WARNING]
+> Legacy **FLEXlm / `lmgrd`** licensing (`27000@host`) will be **discontinued as of October 2027**. All future product releases exclusively use **[APEX License Manager (`ApexLM`)](../../License%20Manager/README.md)**.
+
+- In legacy FlexNet deployments, the target **APEX DS** server requires the `MANAGER` (`APEXDS_MANAGER`) feature flag, and external `DSAPI` clients check out `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, and `APEXAPI_NET_CONFIG`.
 
 See also: [APEX DS Suite Overview](../README.md) · [DM-cmd Command Reference](dm-cmd-reference.md) · [Automation & CLI Utilities](automation-utilities.md) · [APEX DS Licensing](../DS/installation/licensing.md)

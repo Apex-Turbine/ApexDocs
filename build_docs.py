@@ -4,8 +4,8 @@ APEX Documentation Builder (build_docs.py)
 
 Compiles the unified Azure Static Web App documentation portal (`dist/site`)
 and individual main-folder deliverables (`DS`, `DX`, `GageMap`, `DX+`,
-`Custom Development`) into standalone HTML bundles (`dist/html/`)
-and formatted PDF manuals (`dist/pdf/`).
+`Custom Development`, `License Manager`, `Release Policies`) into standalone
+HTML bundles (`dist/html/`) and formatted PDF manuals (`dist/pdf/`).
 
 Examples:
     py -3.13 build_docs.py --target site --format html --strict
@@ -82,7 +82,124 @@ TARGETS: Dict[str, TargetSpec] = {
         title="APEX Custom Development & API Documentation",
         subtitle="DS-API (C++, MATLAB, Python) & Phoenix API (C++, Python) Developer Guide",
     ),
+    "License Manager": TargetSpec(
+        key="License Manager",
+        folder="License Manager",
+        slug="License-Manager",
+        title="APEX License Manager (ApexLM) Documentation",
+        subtitle="Workstation & Floating Server Daemons, CLI Tools, Web Admin UI & Offline Reservations",
+    ),
+    "Release Policies": TargetSpec(
+        key="Release Policies",
+        folder="Release Policies",
+        slug="Release-Policies",
+        title="APEX Software Release Policies & License Agreement",
+        subtitle="Distribution, 18-Month Version Lifecycle, System Requirements, Maintenance & End-User SLA",
+    ),
 }
+
+SITE_BASE_URL = "https://apexdocs.apexturbine.com"
+
+
+def _resolved_path_to_site_url(resolved: Path, frag: str = "") -> str | None:
+    """Map a resolved file or directory inside ROOT_DIR to its published ApexDocs HTML URL."""
+    try:
+        rel_path = resolved.resolve().relative_to(ROOT_DIR.resolve())
+    except ValueError:
+        return None
+    if resolved.is_dir():
+        readme = resolved / "README.md"
+        if not readme.exists():
+            return None
+        rel_path = readme.relative_to(ROOT_DIR)
+    posix_rel = rel_path.as_posix()
+    if posix_rel.lower().endswith("/readme.md"):
+        html_rel = posix_rel[: -len("README.md")] + "index.html"
+    elif posix_rel.lower() == "readme.md":
+        html_rel = "index.html"
+    elif rel_path.suffix.lower() == ".md":
+        html_rel = posix_rel[:-3] + ".html"
+    else:
+        html_rel = posix_rel
+    quoted = "/".join(urllib.parse.quote(part) for part in html_rel.split("/") if part)
+    return f"{SITE_BASE_URL}/{quoted}{frag}"
+
+
+def _rewrite_cross_folder_md_links(md_text: str, src_md: Path, folder_root: Path) -> str:
+    """Rewrite Markdown links pointing outside a standalone target folder to the published portal URL."""
+    folder_resolved = folder_root.resolve()
+    root_resolved = ROOT_DIR.resolve()
+    link_re = re.compile(r"(?<!!)\[([^\]]*)\]\(([^)]+)\)")
+
+    def _replace_line_outside_inline_code(segment: str) -> str:
+        code_spans = [(cm.start(), cm.end()) for cm in re.finditer(r"`+[^`]*`+", segment)]
+
+        def _repl(m: re.Match) -> str:
+            if any(s <= m.start() < e or s < m.end() <= e for s, e in code_spans):
+                return m.group(0)
+            label, inner = m.group(1), m.group(2).strip()
+            if inner.startswith("<"):
+                end = inner.find(">")
+                if end == -1:
+                    return m.group(0)
+                href, rest = inner[1:end], inner[end + 1 :]
+            else:
+                parts = inner.split(None, 1)
+                href = parts[0]
+                rest = f" {parts[1]}" if len(parts) > 1 else ""
+            if not href or href.startswith(("http://", "https://", "mailto:", "#", "data:")):
+                return m.group(0)
+            frag = ""
+            raw_path = href
+            if "#" in href:
+                raw_path, f = href.split("#", 1)
+                frag = f"#{f}"
+            path_part = urllib.parse.unquote(raw_path.strip())
+            resolved = (src_md.parent / path_part).resolve()
+            if not resolved.exists():
+                return m.group(0)
+            try:
+                resolved.relative_to(folder_resolved)
+                return m.group(0)
+            except ValueError:
+                pass
+            try:
+                resolved.relative_to(root_resolved)
+            except ValueError:
+                return m.group(0)
+            site_url = _resolved_path_to_site_url(resolved, frag)
+            if not site_url:
+                return m.group(0)
+            return f"[{label}]({site_url}{rest})"
+
+        return link_re.sub(_repl, segment)
+
+    out_lines: list[str] = []
+    in_fence = False
+    fence_char = ""
+    fence_len = 0
+    for line in md_text.splitlines(keepends=True):
+        stripped = line.lstrip()
+        if not in_fence:
+            m_fence = re.match(r"^(`{3,}|~{3,})", stripped)
+            if m_fence:
+                in_fence = True
+                fence_char = m_fence.group(1)[0]
+                fence_len = len(m_fence.group(1))
+                out_lines.append(line)
+                continue
+        else:
+            m_close = re.match(rf"^({re.escape(fence_char)}{{{fence_len},}})\s*$", stripped)
+            if m_close:
+                in_fence = False
+                out_lines.append(line)
+                continue
+            out_lines.append(line)
+            continue
+
+        out_lines.append(_replace_line_outside_inline_code(line))
+
+    return "".join(out_lines)
 
 ALERT_MAP = {
     "NOTE": "note",
@@ -239,6 +356,8 @@ def stage_tree(src_dirs: Sequence[Path], dst_docs_dir: Path, strip_prefix: Optio
         dst.parent.mkdir(parents=True, exist_ok=True)
         if src.suffix.lower() == ".md":
             raw = src.read_text(encoding="utf-8", errors="replace")
+            if strip_prefix is not None and strip_prefix != ROOT_DIR:
+                raw = _rewrite_cross_folder_md_links(raw, src, strip_prefix)
             dst.write_text(convert_github_alerts_for_mkdocs(raw), encoding="utf-8")
         else:
             shutil.copy2(src, dst)
@@ -325,6 +444,8 @@ def build_unified_site(output_dir: Path, strict: bool) -> Path:
         ROOT_DIR / "GageMap",
         ROOT_DIR / "DX+",
         ROOT_DIR / "Custom Development",
+        ROOT_DIR / "License Manager",
+        ROOT_DIR / "Release Policies",
     ]
     stage_tree(top_sources, docs_dir, strip_prefix=ROOT_DIR)
 
@@ -441,12 +562,20 @@ def rewrite_links_and_images_for_pdf(
         pre, href_val, post = m.group(1), m.group(2), m.group(3)
         if href_val.startswith(("http://", "https://", "mailto:", "#")):
             return m.group(0)
-        path_part = urllib.parse.unquote(href_val.split("#")[0].strip())
+        frag = ""
+        raw_path = href_val
+        if "#" in href_val:
+            raw_path, f = href_val.split("#", 1)
+            frag = f"#{f}"
+        path_part = urllib.parse.unquote(raw_path.strip())
         resolved = (md_path.parent / path_part).resolve()
         if resolved.is_dir():
             resolved = (resolved / "README.md").resolve()
         if resolved in doc_id_map:
             return f'{pre}#{doc_id_map[resolved]}{post}'
+        site_url = _resolved_path_to_site_url(resolved, frag)
+        if site_url:
+            return f'{pre}{site_url}{post}'
         return m.group(0)
 
     html_body = re.sub(r'(<img\b[^>]*\bsrc=")([^"]+)(")', repl_img, html_body, flags=re.I)
@@ -885,6 +1014,8 @@ def resolve_targets(raw_targets: Sequence[str]) -> Tuple[bool, List[TargetSpec]]
     lookup = {k.lower(): v for k, v in TARGETS.items()}
     lookup["dx-plus"] = TARGETS["DX+"]
     lookup["custom-development"] = TARGETS["Custom Development"]
+    lookup["license-manager"] = TARGETS["License Manager"]
+    lookup["release-policies"] = TARGETS["Release Policies"]
 
     for tok in tokens:
         tl = tok.lower()
@@ -908,7 +1039,7 @@ def main() -> int:
         "--target",
         action="append",
         default=[],
-        help="Target to build: site, all, DS, DX, GageMap, DX+, Custom Development (repeatable or comma-separated).",
+        help="Target to build: site, all, DS, DX, GageMap, DX+, Custom Development, License Manager, Release Policies (repeatable or comma-separated).",
     )
     parser.add_argument(
         "--format",

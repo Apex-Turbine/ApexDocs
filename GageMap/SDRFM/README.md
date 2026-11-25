@@ -24,7 +24,10 @@ Launch `SDRFM` (`SDRFM.exe` on Windows, `SDRFM` on Linux) directly from your ins
 - **GageMap Classic (`GM`) & Next Gen (`GMx`)**: Prepare, trim, combine, or expand large FE `.sdr` models in `SDRFM` prior to opening them in `GM` or `GMx` so model memory fits workstation limits. For inspecting or exporting tabular data from a loaded model inside `GM`, use **Options > Model Export** (see [Working With SDR Models](../GM/usingSDR.md)).
 - **Automated Scripting (`GmScript`)**: Full `SDRFM` functionality is available headlessly via the `GM.sdrfm()` Lua module (see [SDRFM Functions for Scripting](../GmScript/script_sdrfm.md) and [File Format & Batch Utilities](file-format-and-batch.md)).
 
-## Licensing (`SDRFM` & `SDRDUMP`)
+## Licensing
+
+> [!WARNING]
+> Legacy **FLEXlm / FlexNet** (`lmgrd`, `27000@host`) licensing will be **discontinued as of October 2027**. All product versions going forward use **[APEX License Manager](../../License%20Manager/README.md)** (`ApexLM`). (`SDRFM` & `SDRDUMP`)
 
 `SDRFM` and its companion export utility `SDRDump` (`SDRDUMP`) support both **APEX License Manager (ApexLM)** and **Legacy FlexNet Publisher**:
 
