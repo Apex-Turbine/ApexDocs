@@ -1,22 +1,10 @@
-# APEX Turbine Documentation (`ApexDocs`)
+# APEX Documentation (`ApexDocs`)
 
-Welcome to the unified user and developer documentation portal for **APEX Turbine Testing Technologies** software, hardware drivers, engineering analysis suites, and custom SDKs.
+![APEX](assets/images/apex-logo-dark.svg)
 
-> [!NOTE]
-> Browse the full structured index in **[Master Table of Contents (TOC)](TOC.md)**, or jump directly to any product suite, API reference, or deployment guide below.
+Welcome to the unified user and developer documentation portal for **APEX** (`APEX Testing Technologies`) acquisition systems, dynamic signal analysis suites, finite-element sensor optimization tools, and software developer kits.
 
----
-
-## Documentation Suites
-
-| Suite / Section | Description | Hosting | Entry Point |
-| :--- | :--- | :--- | :--- |
-| **DS — Data Acquisition Suite** | Synchronized high-speed acquisition (`DS`), remote monitoring (`DR`), distributed cluster CLI/automation (`DM`), analog DAC replay (`DO`), and `30+` hardware device drivers (`Drivers`). | Standalone | [DS Documentation](DS/README.md) |
-| **DX — Data Explorer** | High-speed post-test dynamic signal explorer, visual workflow designer, order tracking, scope limits, and multi-format viewer. | Standalone | [DX Documentation](DX/README.md) |
-| **GageMap — FE Sensor & Fatigue Suite** | Finite-element sensor placement optimization and HCF suite: GageMap Classic (`GM`), GageMap Next Gen (`GMx`), Lua batch (`GmScript`), theory reference (`GM Theory`), `SDRFM`, and `SDR Converter` (ANSYS, ABAQUS, NASTRAN). | Standalone | [GageMap Documentation](GageMap/README.md) |
-| **DX+ — Modern Acquisition & Analytics** | Next-generation `Phoenix`-powered platform: `DX+DAQ`, `DX+OnlineAnalysis`, `DX+OfflineAnalysis`, `DX+RemoteViewer`, `DX+DataViewer`, `DB Manager`, and `DXNet` OPC-UA & PLC bridges. | Submodule (`dxplus-doc`) | [DX+ Documentation](DX+/README.md) |
-| **Custom Development — APIs & SDKs** | Developer SDKs, wire protocols, plugin interfaces, and ApexLM/FlexNet licensing for **DS-API** (C/C++, MATLAB, Python) and **Phoenix API** (C++20, `phoenixpy` Python). | Hybrid (`DS-API` + `phoenix-doc` submodule) | [Custom Development](Custom%20Development/README.md) |
-| **Deployment & Operations** | Local HTML/PDF compilation (`build_docs.py`), GitHub submodule workflow, Azure Pipelines CI/CD, Azure Static Web Apps hosting, and `ds-doc`/`dsdoc` redirect architecture. | Standalone | [Deployment Documentation](deployment/README.md) |
+Browse the full section index in the **[Master Table of Contents](TOC.md)**, or jump directly to any product Quick Start Guide and Master Documentation below.
 
 ---
 
@@ -25,25 +13,25 @@ Welcome to the unified user and developer documentation portal for **APEX Turbin
 ```mermaid
 flowchart LR
     subgraph Acq["Real-Time Acquisition & Control"]
-        DS["APEX DS / DR / DM / DO\n(DS Suite & Drivers)"]
-        DXP_DAQ["DX+ DAQ & Online Analysis\n(Phoenix Runtime)"]
+        DS["APEX DS / DR / DM / DO<br/>(DS Suite & Drivers)"]
+        DXP_DAQ["DX+ DAQ & Online Analysis<br/>(Phoenix Runtime)"]
     end
 
     subgraph Bridges["Plant & External Integration"]
         OPC["DXNet Bridge (OPC-UA)"]
         PLC["DXNet Bridge (PLC)"]
-        API["Custom Apps & Plugins\n(DS-API & Phoenix API)"]
+        API["Custom Apps & Plugins<br/>(DS-API & Phoenix API)"]
     end
 
     subgraph Storage["Files & Databases"]
-        FILES[(".rwx / .pkx / .datx / .h5")]
-        DB[("SQLite (.dxdb) / PostgreSQL")]
+        FILES[".rwx / .pkx / .datx / .h5"]
+        DB["SQLite (.dxdb) / PostgreSQL"]
     end
 
     subgraph Engineering["Visualization & FE Post-Processing"]
         DX["APEX DX"]
         VIEW["DX+ Offline, Remote & Data Viewers"]
-        GM["GageMap Suite\n(GM / GMx / GmScript / SDRFM / SDR Converter)"]
+        GM["GageMap Suite<br/>(GM / GMx / GmScript / SDRFM / SDR Converter)"]
     end
 
     DS --> FILES
@@ -61,14 +49,55 @@ flowchart LR
 
 ---
 
-## Quick Links
+## DS — Data Acquisition & Telemetry Suite
 
-- **Master Hierarchy**: [Master Table of Contents (`TOC.md`)](TOC.md)
-- **Licensing Across Products**:
-  - [DS Installation & ApexLM/FlexNet Licensing](DS/DS/installation/licensing.md)
-  - [DX Licensing](DX/licensing.md)
-  - [GageMap Licensing (`GM`)](GageMap/GM/flex.md) & [`GMx`](GageMap/GMx/flex.md)
-  - [DX+ Installation & ApexLM Licensing](DX+/introduction/installing-and-licensing.md)
-  - [Custom Development Licensing Matrix](Custom%20Development/README.md#developer-licensing-matrix)
-- **Compiling Local HTML & PDF Manuals**: [Building and Compiling Guide](deployment/building-and-compiling.md)
-- **Domain Migration (`ds-doc.apexturbine.com` -> `apexdocs.apexturbine.com`)**: [URL Redirects Guide](deployment/url-redirects-guide.md)
+The **APEX DS** family provides synchronized multi-chassis dynamic data acquisition (`DS`), remote engineering display stations (`DR`), distributed `N:M` cluster and batch CLI automation (`DM`), real-time digital-to-analog waveform output (`DO`), and `30+` hardware driver modules (`Drivers`).
+
+- **[DS Quick Start Guide](DS/quick-start.md)** · **[DS Master Documentation](DS/README.md)**
+- **Applications & Drivers**: [APEX DS](DS/DS/README.md) · [APEX DR](DS/DR/README.md) · [APEX DM](DS/DM/README.md) · [APEX DO](DS/DO/README.md) · [Hardware Drivers](DS/Drivers/README.md)
+
+---
+
+## DX — Data Explorer
+
+**APEX DX** is the high-speed post-test dynamic signal explorer and workflow designer for aeromechanics, rotating machinery, FFT/order tracking, parameter merging, and scope-limit evaluation over `.rwx`, `.pkx`, `.datx`, `.raw`, and `.pks` runs.
+
+- **[DX Quick Start Guide](DX/quickstart.md)** · **[DX Master Documentation](DX/README.md)**
+- **Core References**: [Overview](DX/overview.md) · [Licensing (`ApexLM` & FlexNet)](DX/licensing.md) · [DX Designer](DX/design.md) · [DX Viewer](DX/view.md) · [Data Formats](DX/formats.md)
+
+---
+
+## GageMap — Finite-Element Sensor & Fatigue Suite
+
+**APEX GageMap** converts ANSYS, ABAQUS, and NASTRAN finite-element models into reduced `.sdr` representations (`SDR Converter`), inspects and trims reduced models (`SDRFM`), optimizes sensor placement and evaluates HCF fatigue margins (`GM` / `GMx`), and automates workflows in Lua (`GmScript`), backed by the `GM Theory` reference manual.
+
+- **[GageMap Quick Start Guide](GageMap/quick-start.md)** · **[GageMap Master Documentation](GageMap/README.md)**
+- **Suite Manuals**: [GageMap Classic (`GM`)](GageMap/GM/README.md) · [GageMap Next Gen (`GMx`)](GageMap/GMx/README.md) · [GmScript](GageMap/GmScript/README.md) · [GM Theory](GageMap/GM%20Theory/README.md) · [SDRFM](GageMap/SDRFM/README.md) · [SDR Converter](GageMap/SDR%20Converter/README.md)
+
+---
+
+## DX+ — Modern Acquisition, Streaming & Analytics Platform
+
+**APEX DX+** is the next-generation Qt 6 and Phoenix-powered acquisition and analytics suite backed by open SQLite (`.dxdb`), PostgreSQL, and `.h5`/`.datx`/`.rwx` storage. It encompasses `DX+DAQ`, `DX+OnlineAnalysis`, `DX+OfflineAnalysis`, `DX+RemoteViewer`, `DX+DataViewer`, `DB Manager`, and `DXNet` OPC-UA & PLC industrial bridges. *(Maintained via the `dxplus-doc` Git submodule.)*
+
+- **[DX+ Quick Start Guide](DX+/quick-start.md)** · **[DX+ Master Documentation](DX+/README.md)**
+- **Applications**: [DX+DAQ](DX+/DX+DAQ/README.md) · [DX+OnlineAnalysis](DX+/DX+OnlineAnalysis/README.md) · [DX+OfflineAnalysis](DX+/DX+OfflineAnalysis/README.md) · [DX+RemoteViewer](DX+/DX+RemoteViewer/README.md) · [DX+DataViewer](DX+/DX+DataViewer/README.md)
+- **Tools & Services**: [DB Manager](DX+/Tools/DB%20Manager/README.md) · [DXNet Bridge (OPCUA)](DX+/Services/DXNet%20Bridge%20%28OPCUA%29/README.md) · [DXNet Bridge (PLC)](DX+/Services/DXNet%20Bridge%20%28PLC%29/README.md) · [Installation & Licensing](DX+/introduction/installing-and-licensing.md)
+
+---
+
+## Custom Development — Developer APIs & SDKs
+
+Build custom file converters, live acquisition clients, automated test-stand controllers, composable streaming pipelines, database readers/writers, and C++ plugins using **DS-API** (C/C++, 64-bit MATLAB, Python) and **Phoenix API** (C++20, `phoenixpy` Python, maintained via the `phoenix-doc` Git submodule), including complete developer licensing details.
+
+- **[Custom Development Quick Start Guide](Custom%20Development/quick-start.md)** · **[Custom Development Master Documentation](Custom%20Development/README.md)**
+- **SDKs**: [DS-API (`C++`, `MATLAB`, `Python`)](Custom%20Development/DS-API/README.md) · [Phoenix API (`C++`, `Python`)](Custom%20Development/Phoenix%20API/README.md)
+
+---
+
+## Deployment, Compilation & Domain Redirects
+
+Documentation operations, local HTML and PDF compilation scripts (`build_docs.py`), GitHub repository & submodule maintenance, Azure Pipelines CI/CD deployment to Azure Static Web Apps (`apexdocs.apexturbine.com`), and legacy domain redirect guidance (`ds-doc.apexturbine.com` / `dsdoc.apexturbine.com`).
+
+- **[Compiling HTML & PDF Guide](deployment/building-and-compiling.md)** · **[Deployment Master Documentation](deployment/README.md)**
+- **Operations**: [Submodules & GitHub](deployment/submodules-and-github.md) · [Azure Pipelines & SWA](deployment/azure-pipelines-and-swa.md) · [Legacy Domain Redirects](deployment/url-redirects-guide.md)

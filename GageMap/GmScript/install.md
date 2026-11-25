@@ -20,9 +20,9 @@ Download the main `GmScript` package (`.exe` or `.zip` file):
 
 ## Licensing (`GMSCRIPT`)
 
-`GmScript` supports both **Apex License Manager (ApexLM)** and **Legacy FlexNet Publisher**. At startup, `GmScript` checks out its license and logs licensing status and maintenance expiration dates to both console output and the script log file. If no valid license can be obtained, `GmScript` exits immediately with a non-zero exit code.
+`GmScript` supports both **APEX License Manager (ApexLM)** and **Legacy FlexNet Publisher**. At startup, `GmScript` checks out its license and logs licensing status and maintenance expiration dates to both console output and the script log file. If no valid license can be obtained, `GmScript` exits immediately with a non-zero exit code.
 
-### Apex License Manager (ApexLM)
+### APEX License Manager (ApexLM)
 
 - **Registered Application**: `GMSCRIPT` (`gmscript`), license category `GMSCRIPT`.
 - **Required Feature**: `GMSCRIPT` (counted feature in `ApexFeatures.csv` — *GM Scripting feature*).

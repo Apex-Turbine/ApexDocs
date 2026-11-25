@@ -1,6 +1,6 @@
 # Compiling Documentation Locally (HTML & PDF)
 
-All Apex documentation is authored in pure **GitHub-Flavored / MkDocs Material Markdown (`.md`)** and compiled using the cross-platform script [`build_docs.py`](https://github.com/Apex-Turbine/ApexDocs/blob/main/build_docs.py) at the repository root.
+All APEX documentation is authored in pure **GitHub-Flavored / MkDocs Material Markdown (`.md`)** and compiled using the cross-platform script [`build_docs.py`](https://github.com/Apex-Turbine/ApexDocs/blob/main/build_docs.py) at the repository root.
 
 ## Prerequisites
 

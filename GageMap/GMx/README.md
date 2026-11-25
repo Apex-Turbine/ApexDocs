@@ -3,7 +3,7 @@
 ## Contents
 
 - [Introduction to GageMap](intro.md)
-- [Install Apex GageMap](install.md)
+- [Install APEX GageMap](install.md)
 - [Basic Information / Startup](overview.md)
 - [ABAQUS to SDR Converter](aba2sdr.md)
 - [Required Abaqus 6.14-1 Libraries](abq_required.md)

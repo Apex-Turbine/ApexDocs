@@ -21,9 +21,9 @@ Entries to set the executable path for the APEX Utilities. This will default to
 the installed path and should need to be changed in non-standard installation
 directories.
 
-![Example Preferences, Apex Utilities](../images/interface/images/preferences-2.png)
+![Example Preferences, APEX Utilities](../images/interface/images/preferences-2.png)
 
-*Example Preferences, Apex Utilities*
+*Example Preferences, APEX Utilities*
 
 ## Number Formats
 

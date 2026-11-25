@@ -26,7 +26,7 @@ Launch `SDRFM` (`SDRFM.exe` on Windows, `SDRFM` on Linux) directly from your ins
 
 ## Licensing (`SDRFM` & `SDRDUMP`)
 
-`SDRFM` and its companion export utility `SDRDump` (`SDRDUMP`) support both **Apex License Manager (ApexLM)** and **Legacy FlexNet Publisher**:
+`SDRFM` and its companion export utility `SDRDump` (`SDRDUMP`) support both **APEX License Manager (ApexLM)** and **Legacy FlexNet Publisher**:
 
 | Aspect | ApexLM (Modern) | Legacy FlexNet |
 | --- | --- | --- |

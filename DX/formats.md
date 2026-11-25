@@ -68,7 +68,7 @@ Channels in CATS/DATX files are assigned the following processing options by def
     <tr>
       <td>DATX Keyword(s)</td>
       <td>DATX Example</td>
-      <td>Apex Setting</td>
+      <td>APEX Setting</td>
     </tr>
     <tr>
       <td>channel_#</td>

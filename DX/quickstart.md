@@ -2,9 +2,16 @@
 
 Read the [DX Overview](overview.md) for a brief explanation of the 2 workspace system that DX implements.
 
+## Prerequisites & Licensing
+
+Before launching **APEX DX**, confirm your installation ([Install APEX DX](install.md)) and active license ([Licensing](licensing.md)):
+
+- **APEX License Manager (ApexLM)**: Verify active `DX` / `ANALYSIS` tokens in the local Web Admin UI at `http://127.0.0.1:27887/`.
+- **Legacy FlexNet**: Ensure your `.lic` file or `27000@host` server path is configured ([FLEX Licensing](flex.md)).
+
 ## First Steps - Designer
 
-This guide explains how to get started using APEX DX offline data analysis software quickly, and explains how to begin viewing and analyzing data right away. Once DX is open, only a few clicks are required to being displaying, editing and interrogating data.
+This guide explains how to get started using APEX DX offline data analysis software quickly, and explains how to begin viewing and analyzing data right away. Once DX is open, only a few clicks are required to begin displaying, editing and interrogating data.
 
 ### Drag and Drop Data Viewing
 
@@ -64,13 +71,13 @@ After creating a new page, the same empty plot layout as the current page will b
 
 - Example 3 - Creating Overlayed Plots:
 
-If "Overlay" had been selected instead of "Trace 1 Per," or if only 1 plot space was selected on the canvas when multiple signals were dragged over, plots would have been overlayed (not avalable for Tracking, Bode, Waterfall or Z-Mod plots). We will demonstrate this by creating another page, changing it to a 1x1 layout and dragging our 4 signals onto the canvas and selecting "Envelope Plot" again.
+If "Overlay" had been selected instead of "Trace 1 Per," or if only 1 plot space was selected on the canvas when multiple signals were dragged over, plots would have been overlaid (not available for Tracking, Bode, Waterfall or Z-Mod plots). We will demonstrate this by creating another page, changing it to a 1x1 layout and dragging our 4 signals onto the canvas and selecting "Envelope Plot" again.
 
 ![DataViewer_4EnvOverlay](images/quickstart/DataViewer_4EnvOverlay.png)
 
 - Example 4 - Creating Signals Versus Parameters:
 
-One of DXs' more power features is its ability to create almost any plot of a signal versus a low-speed parameter. To plot signals vs parameters, ctrl+select the signal and the respective parameter from the signal tree and drag them to the canvas. We will demonstrate this by creating another page, ctrl+selecting SG01 and N1 and dragging them to the canvas to create a speed Campbell. Below, the created [Speed Campbell](view.md#campbell-plots) contains engine order lines specifically  useful for aeromechanical analysis.
+One of DX's most powerful features is its ability to create almost any plot of a signal versus a low-speed parameter. To plot signals vs parameters, ctrl+select the signal and the respective parameter from the signal tree and drag them to the canvas. We will demonstrate this by creating another page, ctrl+selecting SG01 and N1 and dragging them to the canvas to create a speed Campbell. Below, the created [Speed Campbell](view.md#campbell-plots) contains engine order lines specifically useful for aeromechanical analysis.
 
 ![DataViewer_SpeedCampbell](images/quickstart/DataViewer_SpeedCampbell.png)
 

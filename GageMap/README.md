@@ -2,6 +2,9 @@
 
 APEX GageMap is an integrated suite of finite-element (FE) post-processing, sensor placement optimization, high-cycle fatigue (HCF) assessment, and blade tip-timing engineering tools for turbomachinery and structural vibration testing.
 
+> [!TIP]
+> New to GageMap? Start with the **[APEX GageMap Quick Start Guide](quick-start.md)** to convert an FE model to `.sdr`, place sensors, and run fatigue evaluation.
+
 ## Product Suite Overview
 
 | Product | Description | Documentation |
@@ -46,9 +49,9 @@ Additional modular project and utility formats used across `GM` and `GMx` includ
 
 ## Licensing Overview (ApexLM & Legacy FlexNet)
 
-APEX GageMap supports a dual-licensing architecture across modern **Apex License Manager (ApexLM)** and legacy **FlexNet Publisher** deployments:
+APEX GageMap supports a dual-licensing architecture across modern **APEX License Manager (ApexLM)** and legacy **FlexNet Publisher** deployments:
 
-- **Apex License Manager (ApexLM)**: ZeroMQ (`CurveZMQ`) local/network licensing service with Ed25519-signed JSON license files. Supports `LOCAL`, `PASSTHROUGH` (with offline borrowing up to 30 days), and `SERVER` modes.
+- **APEX License Manager (ApexLM)**: ZeroMQ (`CurveZMQ`) local/network licensing service with Ed25519-signed JSON license files. Supports `LOCAL`, `PASSTHROUGH` (with offline borrowing up to 30 days), and `SERVER` modes.
   - **Standard Ports**: `27884` (`APEXLM_PORT`, local ZMQ), `27885` (`APEXLM_SERVER_PORT`), `27886` (`APEXLM_SERVER_LISTEN`, external passthrough), `27887` (`http://127.0.0.1:27887/` Local Web Admin UI), `27888` (Server Web Admin UI).
   - **Registered Suite Applications & Features**: `GM`, `GMx`, `GMSCRIPT`, `SDRFM`, `SDRDUMP` (with counted features `VIRTUAL-MODELS` and `GMSCRIPT`, plus legacy/modular feature gates `GM_BASE`, `GM_OPTIMIZER`, `GM_FATIGUE`, `GM_CSS`, `GM_TIP_TIMING`, `GM_SCRIPTING`, and converter seats).
 - **Legacy FlexNet Publisher**: Uses `lmgrd` / `lmutil` / `lmtools` (FLEXnet v11.4) with `27000@host` or `.lic` paths configured via `LM_LICENSE_FILE`, `GM_FLEX_SERVER`, `GAGEMAP_FLEX_SERVER`, or `GMSCRIPT_FLEX_SERVER`.

@@ -2,6 +2,9 @@
 
 Build custom acquisition, streaming, post-processing, and automation software on top of the **APEX DS** and **APEX Phoenix** platforms.
 
+> [!TIP]
+> New to the SDKs? Follow the **[Custom Development Quick Start Guide](quick-start.md)** for minimal working examples in C++, Python, and MATLAB.
+
 > [!IMPORTANT]
 > Choose **DS-API** when integrating with existing **APEX DS (DS 3.x)** servers, DS acquisition clusters, or legacy `.rwx` / `.pkx` / `.raw` / `.pks` / `.datx` / `.cats` workflows. Choose **Phoenix API** for modern **C++20 / Python (`phoenixpy`)** composable DAG pipelines (`Component` / `GraphJson`), direct hardware device drivers (`DeviceLibrary`), ZeroMQ streaming (`DXPNet`), and **SQLite / PostgreSQL** storage.
 
@@ -37,12 +40,12 @@ Build custom acquisition, streaming, post-processing, and automation software on
 
 ## Developer Licensing Matrix
 
-Both APIs distinguish between **local/offline API calls** and **network/runtime features** enforced via **Apex License Manager (ApexLM)** or legacy **FlexNet Publisher (FNP)**:
+Both APIs distinguish between **local/offline API calls** and **network/runtime features** enforced via **APEX License Manager (ApexLM)** or legacy **FlexNet Publisher (FNP)**:
 
 | API | Application ID (`ApexApps`) | License Features Checked Out | Licensing Backend & Ports | Offline File I/O License Required? |
 | --- | --- | --- | --- | --- |
 | **DS-API (C/C++, MATLAB, Python)** | `DSAPI` (`f552ae4b-465e-48f4-8cf9-c3c42b6f6007`) | `APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` (`COUNTED`) | FlexNet (`.lic` / `LM_LICENSE_FILE`) or ApexLM (`-DAPEX_ALM_LICENSING`, CurveZMQ `27884`, Web UI `27887`) | **No** (`DSAPI_file_*` does not check out network features) |
-| **DS-API Internal Passthrough** | `DS_APPID_DXPLUS` (`982d121f-ecbb-483f-9eb1-a82c17c51226`), `DS_APPID_APEXDS` (`537ec7f6-049b-4fd6-a3e0-afea8393c57e`) | Bypasses standalone DS-API checkout for Apex host apps via `DSAPI_net_set_appid` | Apex-internal callers only | No |
+| **DS-API Internal Passthrough** | `DS_APPID_DXPLUS` (`982d121f-ecbb-483f-9eb1-a82c17c51226`), `DS_APPID_APEXDS` (`537ec7f6-049b-4fd6-a3e0-afea8393c57e`) | Bypasses standalone DS-API checkout for APEX host apps via `DSAPI_net_set_appid` | Apex-internal callers only | No |
 | **Phoenix API (`PhoenixLic` / `ApexLmClient`)** | `PHOENIX` (`7e2c9a45-0d61-4f38-95b2-6c840e3a7f16`), `DXPLUS`, `DX+DAQ`, `DX+ONLINEANALYSIS`, `DX+OFFLINEANALYSIS`, `DX+REMOTEVIEWER`, `DX+DATAVIEWER`, `OPCUA`, `DBMANAGE` | Feature & channel/token checkouts + hardware serial verification per workflow/component | **ApexLM** (`27884` local client, `27885`/`27886` server, `http://127.0.0.1:27887/` local UI, `27888` server UI; Ed25519 JSON; `LOCAL`/`PASSTHROUGH`/`SERVER`; 30-day borrow) | Required when initializing licensed `PhoenixLic` components/pipelines |
 
 See [DS-API Licensing](DS-API/README.md#developer-licensing-guide) and [Phoenix C++ Licensing](Phoenix%20API/C++/licensing.md) for exact initialization sequences and error handling.

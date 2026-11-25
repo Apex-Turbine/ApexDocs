@@ -110,7 +110,7 @@
 
 ### GageMap
 
-- Application updated to use latest Apex CORE
+- Application updated to use latest APEX CORE
 - Application updated to use latest libraries for its components
 - Application is c++11 optimized
 - Application has been updated to use QT 5.8 for part of its UI and a lot of its core functions

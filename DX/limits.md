@@ -2,7 +2,7 @@
 
 Revision: 2.0
 
-This document defines the format of scope limits files for use in Apex
+This document defines the format of scope limits files for use in APEX
 products (GageMap, GmScript, DS, DR, DV, and DX). All products do not
 necessarily use all components of a scope limits file.
 

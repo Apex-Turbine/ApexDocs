@@ -1,4 +1,4 @@
-# Install Apex GageMap
+# Install APEX GageMap
 
 ## Linux Installation
 
@@ -19,7 +19,7 @@ and installing the Slackware package management tools. (It is the
 Slackware site, www.slackware.com, for download mirrors.) The
 Slackware installer system is implemented in the form of shell
 scripts only, and it will work fine on other Linux systems. Using
-it will allow not just the installation of the Apex packages but
+it will allow not just the installation of the APEX packages but
 also their proper removal or upgrade.
 
 ## Windows Installation

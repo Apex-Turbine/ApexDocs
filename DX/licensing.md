@@ -1,12 +1,12 @@
 # Licensing
 
-APEX DX uses token- and feature-based licensing to enable post-processing toolkits, data management integrations, and viewer capabilities. Current releases support the modern **Apex License Manager (ApexLM)** alongside **Legacy FlexNet** (`27000@host`) installations.
+APEX DX uses token- and feature-based licensing to enable post-processing toolkits, data management integrations, and viewer capabilities. Current releases support the modern **APEX License Manager (ApexLM)** alongside **Legacy FlexNet** (`27000@host`) installations.
 
 ---
 
-## Modern Licensing: Apex License Manager (ApexLM)
+## Modern Licensing: APEX License Manager (ApexLM)
 
-**Apex License Manager (ApexLM)** manages node-locked (`LOCAL`), central floating (`SERVER`), and client forwarding/borrowing (`PASSTHROUGH`) entitlements through an Ed25519-signed license service.
+**APEX License Manager (ApexLM)** manages node-locked (`LOCAL`), central floating (`SERVER`), and client forwarding/borrowing (`PASSTHROUGH`) entitlements through an Ed25519-signed license service.
 
 - **Web Administration UI:** Manage license installation, view live token consumption, audit client sessions, and borrow floating tokens locally at **`http://127.0.0.1:27887/`** (or `http://<server-host>:27888/` on a dedicated ApexLM Server).
 - **Network Ports:** Local client IPC uses TCP port `27884` (`127.0.0.1`), while remote `PASSTHROUGH` forwarding communicates with floating `SERVER` nodes over CurveZMQ on TCP `27885` (or `27886`).

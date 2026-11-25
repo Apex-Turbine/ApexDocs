@@ -1,6 +1,6 @@
 # Software Licensing
 
-After **APEX DS** software components are installed, operational entitlements must be available from either the modern **Apex License Manager (ApexLM)** service or (for legacy deployments) Flexera Software's **FlexNet** license manager.
+After **APEX DS** software components are installed, operational entitlements must be available from either the modern **APEX License Manager (ApexLM)** service or (for legacy deployments) Flexera Software's **FlexNet** license manager.
 
 ## Suite Licensing Rules
 
@@ -21,9 +21,9 @@ The following application-specific rules apply across **APEX DS** and companion 
 
 ---
 
-## Modern Licensing: Apex License Manager (ApexLM / ALM)
+## Modern Licensing: APEX License Manager (ApexLM / ALM)
 
-Current APEX DS releases connect to **Apex License Manager (ApexLM)** rather than FlexNet by default.
+Current APEX DS releases connect to **APEX License Manager (ApexLM)** rather than FlexNet by default.
 
 ### Architecture, Transport & Network Ports
 

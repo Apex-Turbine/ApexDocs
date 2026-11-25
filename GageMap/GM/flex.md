@@ -1,13 +1,13 @@
-# Licensing: Apex License Manager (ApexLM) & Legacy FlexNet
+# Licensing: APEX License Manager (ApexLM) & Legacy FlexNet
 
 GageMap Classic (`GM`) supports two licensing backends configured at build/deployment time:
 
-1. **Apex License Manager (ApexLM)** — Modern ZeroMQ-based (`CurveZMQ`) licensing service with a loopback Web Admin UI (`http://127.0.0.1:27887/`) and CLI manager.
+1. **APEX License Manager (ApexLM)** — Modern ZeroMQ-based (`CurveZMQ`) licensing service with a loopback Web Admin UI (`http://127.0.0.1:27887/`) and CLI manager.
 2. **Legacy FlexNet Publisher** — Traditional FLEXnet (`libfnp64` / `lmgrd`) floating or node-locked licensing (`27000@host`).
 
 ---
 
-## Apex License Manager (ApexLM)
+## APEX License Manager (ApexLM)
 
 Modern GageMap (`GM`) builds communicate with the local ApexLM service via encrypted ZeroMQ (`CoreApexLm` / `ApexLmLic`) and perform client registration using application identity (`gm` / `GM`), software version (`YYYY.MM`), host metadata, and license category (`ANALYSIS`).
 

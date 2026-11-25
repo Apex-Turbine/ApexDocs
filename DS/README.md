@@ -2,6 +2,9 @@
 
 The **APEX DS** suite provides synchronized multi-chassis dynamic data acquisition, real-time display, distributed cluster automation, analog waveform replay, and hardware-accelerated post-processing for turbomachinery, structural dynamics, acoustics, and high-speed test cells.
 
+> [!TIP]
+> New to APEX DS? Start with the **[APEX DS Quick Start Guide](quick-start.md)** to configure a simulated or hardware run, view plots, and record `.rwx` / `.pkx` files in minutes.
+
 ## Suite Components
 
 | Component | Role | Documentation |
@@ -49,9 +52,9 @@ flowchart LR
 
 ## Licensing Overview
 
-Current releases of the APEX suite support the modern **Apex License Manager (ApexLM)** alongside **Legacy FlexNet (`27000@host`)** for backward-compatible deployments:
+Current releases of the APEX suite support the modern **APEX License Manager (ApexLM)** alongside **Legacy FlexNet (`27000@host`)** for backward-compatible deployments:
 
-- **Apex License Manager (ApexLM):**
+- **APEX License Manager (ApexLM):**
   - Runs as a local or floating ZeroMQ CurveZMQ service (`ApexLMService` / `apexlm.service`), exposing client registration on TCP port `27884` (`27885`/`27886` for floating servers) and a local Web Administration UI at **`http://127.0.0.1:27887/`**.
   - Supports **Local** (node-locked Ed25519 JSON license), **Passthrough** (forwards to a central ApexLM Server with offline borrowing up to **30 days**), and **Server** (floating pool) modes.
   - Licenses cover applications (`DS`, `DR`, `DM`, `DSAPI`, `DV`, `DX`, `DX+`), per-vendor counted channel pools (`<VENDOR>_CHANNELS` with fallback to `ANY_CHANNELS`), shared `AEROPLOTS` display tokens, feature flags (`PARAMETER_SERVER`, `RWX_COMPRESSION`, `DS_MANAGER`), and `ANALYSIS` analysis tokens.

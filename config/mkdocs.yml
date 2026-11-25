@@ -1,27 +1,32 @@
-site_name: APEX Turbine Documentation
-site_description: Unified user and developer documentation for APEX Turbine products (DS, DX, GageMap, DX+, and Custom Development APIs).
-site_url: https://apexdocs.apexturbine.com/
+site_name: APEX Documentation
+site_description: Unified user and developer documentation for APEX products (DS, DX, GageMap, DX+, and Custom Development APIs).
 repo_url: https://github.com/Apex-Turbine/ApexDocs
 repo_name: Apex-Turbine/ApexDocs
 
 docs_dir: ..
 site_dir: ../dist/site
+use_directory_urls: false
 
 theme:
   name: material
+  logo: assets/images/apex-logo-dark.svg
+  favicon: assets/images/apex-favicon.svg
+  font:
+    text: Red Hat Text
+    code: JetBrains Mono
   palette:
-    - scheme: default
-      primary: indigo
-      accent: orange
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
     - scheme: slate
-      primary: indigo
-      accent: orange
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -35,6 +40,7 @@ theme:
 
 plugins:
   - search
+  - offline
 
 markdown_extensions:
   - abbr
@@ -72,6 +78,7 @@ extra_css:
   - assets/stylesheets/apex.css
 
 extra_javascript:
+  - assets/javascripts/mermaid.min.js
   - assets/javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
@@ -96,6 +103,7 @@ nav:
   - Home: README.md
   - Master TOC: TOC.md
   - DS:
+      - Quick Start: DS/quick-start.md
       - DS Suite Overview: DS/README.md
       - APEX DS: DS/DS/README.md
       - APEX DR: DS/DR/README.md
@@ -103,12 +111,14 @@ nav:
       - APEX DO: DS/DO/README.md
       - Hardware Drivers: DS/Drivers/README.md
   - DX:
+      - Quick Start: DX/quickstart.md
       - DX Overview: DX/README.md
       - Licensing: DX/licensing.md
       - Designer: DX/design.md
       - Viewer: DX/view.md
       - Data Formats: DX/formats.md
   - GageMap:
+      - Quick Start: GageMap/quick-start.md
       - GageMap Suite Overview: GageMap/README.md
       - GageMap Classic (GM): GageMap/GM/README.md
       - GageMap Next Gen (GMx): GageMap/GMx/README.md
@@ -117,6 +127,7 @@ nav:
       - SDRFM: GageMap/SDRFM/README.md
       - SDR Converter: GageMap/SDR Converter/README.md
   - DX+:
+      - Quick Start: DX+/quick-start.md
       - DX+ Overview: DX+/README.md
       - Getting Started & Licensing: DX+/introduction/README.md
       - DX+DAQ: DX+/DX+DAQ/README.md
@@ -128,6 +139,7 @@ nav:
       - Services - DXNet Bridge (OPCUA): DX+/Services/DXNet Bridge (OPCUA)/README.md
       - Services - DXNet Bridge (PLC): DX+/Services/DXNet Bridge (PLC)/README.md
   - Custom Development:
+      - Quick Start: Custom Development/quick-start.md
       - Developer Portal: Custom Development/README.md
       - DS-API Overview & Licensing: Custom Development/DS-API/README.md
       - DS-API C++: Custom Development/DS-API/C++/README.md

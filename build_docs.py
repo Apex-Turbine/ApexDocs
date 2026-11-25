@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-APEX Turbine Documentation Builder (build_docs.py)
+APEX Documentation Builder (build_docs.py)
 
 Compiles the unified Azure Static Web App documentation portal (`dist/site`)
 and individual main-folder deliverables (`DS`, `DX`, `GageMap`, `DX+`,
@@ -16,6 +16,7 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import base64
 import datetime as dt
 import html
 import os
@@ -337,7 +338,7 @@ def build_unified_site(output_dir: Path, strict: bool) -> Path:
     base_cfg = yaml.unsafe_load((ROOT_DIR / "config" / "mkdocs.yml").read_text(encoding="utf-8"))
     nav = base_cfg.get("nav")
     cfg_path = stage_root / "mkdocs.yml"
-    make_mkdocs_config(cfg_path, docs_dir, site_dir, "APEX Turbine Documentation", nav=nav, use_directory_urls=True)
+    make_mkdocs_config(cfg_path, docs_dir, site_dir, "APEX Documentation", nav=nav, use_directory_urls=False)
     run_mkdocs_build(cfg_path, strict=strict)
     swa_cfg = ROOT_DIR / "staticwebapp.config.json"
     if swa_cfg.exists():
@@ -460,6 +461,22 @@ def rewrite_links_and_images_for_pdf(
     return html_body
 
 
+def svg_data_uri(svg_path: Path) -> str:
+    if not svg_path.exists():
+        return ""
+    encoded = base64.b64encode(svg_path.read_bytes()).decode("ascii")
+    return f"data:image/svg+xml;base64,{encoded}"
+
+
+def promote_mermaid_blocks_for_pdf(html_body: str) -> str:
+    return re.sub(
+        r'<pre><code class="language-mermaid">(.*?)</code></pre>',
+        r'<div class="mermaid-diagram"><pre class="mermaid">\1</pre></div>',
+        html_body,
+        flags=re.S,
+    )
+
+
 def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Path:
     ordered_mds = discover_ordered_markdown(src_folder)
     doc_id_map = {p: _md_anchor_id(src_folder, p) for p in ordered_mds}
@@ -495,7 +512,7 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
         prep_md = convert_github_alerts_for_html(raw_md)
         md_converter.reset()
         rendered = md_converter.convert(prep_md)
-        # Render fenced ```mermaid blocks cleanly as fallback <pre class="mermaid-code"> in offline PDF
+        rendered = promote_mermaid_blocks_for_pdf(rendered)
         rendered = rewrite_links_and_images_for_pdf(rendered, md_path, src_folder, doc_id_map)
 
         page_break = "page-break-before: always;" if idx > 0 else ""
@@ -507,15 +524,20 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
         )
 
     today = dt.date.today().isoformat()
+    mermaid_js_uri = (ROOT_DIR / "assets" / "javascripts" / "mermaid.min.js").resolve().as_uri()
+    logo_dark_uri = svg_data_uri(ROOT_DIR / "assets" / "images" / "apex-logo-dark.svg")
+    logo_img_html = f'<img class="cover-logo" src="{logo_dark_uri}" alt="APEX">' if logo_dark_uri else ""
+
     book_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>{html.escape(spec.title)}</title>
+<script src="{mermaid_js_uri}"></script>
 <style>
   @page {{
     size: Letter;
-    margin: 0.72in 0.7in 0.78in 0.7in;
+    margin: 0.78in 0.7in 0.78in 0.7in;
   }}
   body {{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -530,32 +552,46 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     flex-direction: column;
     justify-content: space-between;
     min-height: 9.2in;
-    border-top: 10px solid #0f2c59;
-    padding-top: 1.1in;
+  }}
+  .cover-hero {{
+    background: linear-gradient(135deg, #151515 0%, #092c48 100%);
+    color: #f5f5f5;
+    padding: 0.55in 0.5in 0.6in 0.5in;
+    border-radius: 8px;
+    border-bottom: 6px solid #4488f7;
+  }}
+  .cover-logo {{
+    max-width: 240px;
+    height: auto;
+    border: none;
+    margin: 0 0 24px 0;
+    display: block;
   }}
   .cover-kicker {{
-    font-size: 11pt;
+    font-size: 10.5pt;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #e06d1a;
-    margin-bottom: 12px;
+    color: #4488f7;
+    margin-bottom: 10px;
   }}
   .cover-title {{
-    font-size: 26pt;
+    font-size: 25pt;
     font-weight: 800;
-    color: #0f2c59;
-    margin: 0 0 14px 0;
+    color: #f5f5f5;
+    border: none;
+    padding: 0;
+    margin: 0 0 12px 0;
     line-height: 1.18;
   }}
   .cover-subtitle {{
-    font-size: 13pt;
-    color: #475569;
-    margin: 0 0 28px 0;
+    font-size: 12.5pt;
+    color: #cbd5e1;
+    margin: 0;
     line-height: 1.45;
   }}
   .cover-meta {{
-    border-top: 1px solid #cbd5e1;
+    border-top: 2px solid #092c48;
     padding-top: 14px;
     font-size: 9.5pt;
     color: #475569;
@@ -564,8 +600,8 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     page-break-after: always;
   }}
   .toc-page h2 {{
-    color: #0f2c59;
-    border-bottom: 2px solid #0f2c59;
+    color: #092c48;
+    border-bottom: 2px solid #4488f7;
     padding-bottom: 6px;
   }}
   .toc-list {{
@@ -587,7 +623,7 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     padding-left: 16px;
   }}
   .toc-list a {{
-    color: #1d5fa7;
+    color: #0060ac;
     text-decoration: none;
   }}
   .toc-path {{
@@ -603,11 +639,11 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     padding-bottom: 3px;
     margin-bottom: 10px;
   }}
-  h1 {{ font-size: 18pt; color: #0f2c59; border-bottom: 2px solid #cbd5e1; padding-bottom: 4px; margin-top: 0; }}
-  h2 {{ font-size: 13.5pt; color: #1d5fa7; margin-top: 1.3em; page-break-after: avoid; }}
-  h3 {{ font-size: 11.5pt; color: #0f2c59; margin-top: 1.1em; page-break-after: avoid; }}
+  h1 {{ font-size: 18pt; color: #092c48; border-bottom: 2px solid #4488f7; padding-bottom: 4px; margin-top: 0; }}
+  h2 {{ font-size: 13.5pt; color: #0060ac; margin-top: 1.3em; page-break-after: avoid; }}
+  h3 {{ font-size: 11.5pt; color: #092c48; margin-top: 1.1em; page-break-after: avoid; }}
   p, li {{ orphans: 3; widows: 3; }}
-  a {{ color: #1d5fa7; }}
+  a {{ color: #0060ac; }}
   code {{
     font-family: Consolas, "Courier New", monospace;
     background: #f1f5f9;
@@ -616,8 +652,8 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     font-size: 8.8pt;
   }}
   pre {{
-    background: #0f172a;
-    color: #f8fafc;
+    background: #151515;
+    color: #f5f5f5;
     padding: 10px 12px;
     border-radius: 5px;
     font-size: 8.3pt;
@@ -630,6 +666,23 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     background: transparent;
     color: inherit;
     padding: 0;
+  }}
+  pre.mermaid {{
+    background: #f8fafc;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    padding: 12px;
+    border-radius: 6px;
+  }}
+  .mermaid-diagram {{
+    margin: 14px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }}
+  .mermaid-diagram svg {{
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 7.2in;
   }}
   table {{
     width: 100%;
@@ -645,8 +698,8 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     vertical-align: top;
   }}
   th {{
-    background: #eff6ff;
-    color: #0f2c59;
+    background: #092c48;
+    color: #f5f5f5;
     font-weight: 700;
   }}
   img {{
@@ -659,6 +712,13 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     border-radius: 4px;
     page-break-inside: avoid;
   }}
+  .doc-section img[src$="apex-logo-dark.svg"],
+  .doc-section img[src$="dxplus-logo-dark.svg"] {{
+    background: #151515;
+    padding: 10px 16px;
+    border: 1px solid #092c48;
+    max-width: 280px;
+  }}
   blockquote {{
     border-left: 4px solid #94a3b8;
     margin: 10px 0;
@@ -667,7 +727,7 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     background: #f8fafc;
   }}
   .apex-callout {{
-    border-left: 4px solid #1d5fa7;
+    border-left: 4px solid #4488f7;
     background: #f8fafc;
     padding: 8px 12px;
     margin: 12px 0;
@@ -676,7 +736,7 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
   }}
   .apex-callout-title {{
     font-weight: 700;
-    color: #0f2c59;
+    color: #092c48;
     margin-bottom: 4px;
   }}
   .apex-callout-warning, .apex-callout-caution {{
@@ -694,8 +754,9 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
 </head>
 <body>
   <div class="cover-page">
-    <div>
-      <div class="cover-kicker">APEX Turbine Testing Technologies</div>
+    <div class="cover-hero">
+      {logo_img_html}
+      <div class="cover-kicker">APEX Testing Technologies</div>
       <h1 class="cover-title">{html.escape(spec.title)}</h1>
       <p class="cover-subtitle">{html.escape(spec.subtitle)}</p>
     </div>
@@ -712,6 +773,39 @@ def assemble_book_html(spec: TargetSpec, src_folder: Path, work_dir: Path) -> Pa
     </ul>
   </div>
   {''.join(sections_html)}
+<script>
+window.__mermaidErrors = [];
+(async () => {{
+  try {{
+    mermaid.initialize({{
+      startOnLoad: false,
+      securityLevel: "loose",
+      theme: "base",
+      themeVariables: {{
+        primaryColor: "#e8f1fe",
+        primaryTextColor: "#092c48",
+        primaryBorderColor: "#4488f7",
+        lineColor: "#092c48",
+        secondaryColor: "#f1f5f9",
+        tertiaryColor: "#ffffff",
+        fontFamily: "Segoe UI, Roboto, Arial, sans-serif"
+      }}
+    }});
+    const nodes = document.querySelectorAll("pre.mermaid");
+    for (const node of nodes) {{
+      try {{
+        await mermaid.run({{ nodes: [node] }});
+      }} catch (err) {{
+        window.__mermaidErrors.push(String(err));
+      }}
+    }}
+  }} catch (err) {{
+    window.__mermaidErrors.push(String(err));
+  }} finally {{
+    window.__mermaidDone = true;
+  }}
+}})();
+</script>
 </body>
 </html>
 """
@@ -740,6 +834,8 @@ def build_pdfs(specs: Sequence[TargetSpec], output_dir: Path) -> List[Path]:
     pdf_dir.mkdir(parents=True, exist_ok=True)
     work_dir = ROOT_DIR / "build" / ".staging" / "pdf-html"
     produced: List[Path] = []
+    logo_light_uri = svg_data_uri(ROOT_DIR / "assets" / "images" / "apex-logo-light.svg")
+    hdr_logo = f'<img src="{logo_light_uri}" style="height:14px;width:auto;vertical-align:middle;margin-right:8px;" />' if logo_light_uri else ""
 
     with sync_playwright() as p:
         browser = launch_browser_for_pdf(p)
@@ -751,6 +847,10 @@ def build_pdfs(specs: Sequence[TargetSpec], output_dir: Path) -> List[Path]:
                 book_html = assemble_book_html(spec, src_folder, work_dir)
                 out_pdf = pdf_dir / f"{spec.slug}.pdf"
                 page.goto(book_html.as_uri(), wait_until="load")
+                page.wait_for_function("window.__mermaidDone === true", timeout=60000)
+                m_errs = page.evaluate("window.__mermaidErrors")
+                if m_errs:
+                    raise RuntimeError(f"Mermaid rendering errors in {spec.key} PDF: {m_errs}")
                 page.pdf(
                     path=str(out_pdf),
                     format="Letter",
@@ -758,8 +858,8 @@ def build_pdfs(specs: Sequence[TargetSpec], output_dir: Path) -> List[Path]:
                     display_header_footer=True,
                     header_template=(
                         f'<div style="font-size:7.5pt;color:#64748b;width:100%;padding:0 0.7in;'
-                        f'display:flex;justify-content:space-between;">'
-                        f'<span>APEX Turbine Documentation</span>'
+                        f'display:flex;justify-content:space-between;align-items:center;">'
+                        f'<span style="display:flex;align-items:center;">{hdr_logo}<span>APEX Documentation</span></span>'
                         f'<span>{html.escape(spec.title)}</span></div>'
                     ),
                     footer_template=(
@@ -810,7 +910,7 @@ def resolve_targets(raw_targets: Sequence[str]) -> Tuple[bool, List[TargetSpec]]
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Compile APEX Turbine documentation to HTML and PDF.")
+    parser = argparse.ArgumentParser(description="Compile APEX documentation to HTML and PDF.")
     parser.add_argument(
         "--target",
         action="append",

@@ -44,7 +44,7 @@ flowchart LR
 
 DM and `DSAPI` automation workflows involve licenses on both the controlled **DS acquisition server** and, for custom standalone clients, the **controller host**:
 
-### Modern Licensing (Apex License Manager / ApexLM)
+### Modern Licensing (APEX License Manager / ApexLM)
 - **DM Application & Server Flag:**
   - `DM` is registered as application `DM` in ApexLM (`http://127.0.0.1:27887/`, client IPC port TCP `27884`, server CurveZMQ ports `27885`–`27886`).
   - Each non-simulator **APEX DS** node accepting remote manager connections checks out the **`DS_MANAGER`** boolean license flag (`ds_manager`).

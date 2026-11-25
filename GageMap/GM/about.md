@@ -1,6 +1,6 @@
 # About APEX
 
-APEX Turbine Testing Technologies has been a supplier of high cycle fatigue and vibration test solutions for more than twelve years and has a proven record of delivering what we promise. Our company operates under the highest ethical standards and puts our word above our bottom line. When we promise something, we deliver it. We are tenaciously committed to customer support and service.
+APEX Testing Technologies has been a supplier of high cycle fatigue and vibration test solutions for more than twelve years and has a proven record of delivering what we promise. Our company operates under the highest ethical standards and puts our word above our bottom line. When we promise something, we deliver it. We are tenaciously committed to customer support and service.
 
 Our company was founded by people with a passion to solve fatigue and vibration problems. We are proud to contribute to the safety of the flying public, the reliability of power generation plants, and the effectiveness of military propulsion systems. Chances are very good that your life has been positively impacted by what we do every day.
 

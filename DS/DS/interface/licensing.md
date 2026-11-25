@@ -10,7 +10,7 @@ The Splash Dialog displays a summary of the application's version, build, and cu
 
 ## Modern ApexLM Configuration (`http://127.0.0.1:27887/`)
 
-On builds using **Apex License Manager (ApexLM / ALM)**:
+On builds using **APEX License Manager (ApexLM / ALM)**:
 
 - Clicking **Configure** on the Splash/About dialog launches the **ApexLM Web Administration UI** at **`http://127.0.0.1:27887/`** in your system web browser (communicating with the local ALM client daemon on TCP port `27884`).
 - Within the Web UI you can:

@@ -1,4 +1,4 @@
-# Azure Pipelines CI/CD for APEX Turbine Master Documentation (ApexDocs)
+# Azure Pipelines CI/CD for APEX Master Documentation (ApexDocs)
 # Builds the unified static documentation site, standalone per-product HTML bundles,
 # and downloadable PDF manuals, then deploys the static site to Azure Static Web Apps.
 

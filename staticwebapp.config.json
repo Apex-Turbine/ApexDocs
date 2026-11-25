@@ -2,37 +2,37 @@
   "routes": [
     {
       "route": "/apex-ds/*",
-      "redirect": "/DS/DS/",
+      "redirect": "/DS/DS/index.html",
       "statusCode": 301
     },
     {
       "route": "/apex-dr/*",
-      "redirect": "/DS/DR/",
+      "redirect": "/DS/DR/index.html",
       "statusCode": 301
     },
     {
       "route": "/apex-do/*",
-      "redirect": "/DS/DO/",
+      "redirect": "/DS/DO/index.html",
       "statusCode": 301
     },
     {
       "route": "/ds/*",
-      "redirect": "/DS/",
+      "redirect": "/DS/index.html",
       "statusCode": 301
     },
     {
       "route": "/dx/*",
-      "redirect": "/DX/",
+      "redirect": "/DX/index.html",
       "statusCode": 301
     },
     {
       "route": "/gagemap/*",
-      "redirect": "/GageMap/",
+      "redirect": "/GageMap/index.html",
       "statusCode": 301
     },
     {
       "route": "/dxplus/*",
-      "redirect": "/DX+/",
+      "redirect": "/DX+/index.html",
       "statusCode": 301
     },
     {
@@ -50,23 +50,6 @@
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "SAMEORIGIN",
     "Referrer-Policy": "strict-origin-when-cross-origin"
-  },
-  "navigationFallback": {
-    "rewrite": "/index.html",
-    "exclude": [
-      "/assets/*",
-      "/search/*",
-      "/*.css",
-      "/*.js",
-      "/*.png",
-      "/*.jpg",
-      "/*.gif",
-      "/*.svg",
-      "/*.webp",
-      "/*.woff2",
-      "/*.json",
-      "/*.pdf"
-    ]
   },
   "mimeTypes": {
     ".json": "application/json",

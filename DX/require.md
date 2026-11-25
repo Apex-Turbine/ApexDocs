@@ -2,7 +2,7 @@
 
 ## Windows
 
-The listed requirements are for Apex DX.
+The listed requirements are for APEX DX.
 
 Supported 64 bit Windows versions: Windows 10
 

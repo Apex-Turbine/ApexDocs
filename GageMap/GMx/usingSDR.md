@@ -2,7 +2,7 @@
 
 ## Overview
 
-GageMap uses an Apex proprietary input file known as an SDR file to store the model information needed for the program interface. This SDR file allows the application to store a reduced set of information from popular FE modeling programs. The SDR file permits optimum efficiency in file size and memory requirements, providing the ability to analyze large models.
+GageMap uses an APEX proprietary input file known as an SDR file to store the model information needed for the program interface. This SDR file allows the application to store a reduced set of information from popular FE modeling programs. The SDR file permits optimum efficiency in file size and memory requirements, providing the ability to analyze large models.
 
 See the following sections for information regarding:
 

@@ -36,7 +36,7 @@ Under certain conditions, implementing the “spike” filter may cause a one bl
 
 ## Designer
 
-- Apex PKX files Cannot change any processing steps other than adding a Peak Filter. An FFT and Peaks element are still required to attach export peaks, peak filter, or export peaks elements. PKX files will not be affected by changes in these elements or by digital filters.
+- APEX PKX files Cannot change any processing steps other than adding a Peak Filter. An FFT and Peaks element are still required to attach export peaks, peak filter, or export peaks elements. PKX files will not be affected by changes in these elements or by digital filters.
 - Arrow colors do not always function as expected.
 
 ## Campbell/Z-Mod plots

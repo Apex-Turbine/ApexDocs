@@ -1,10 +1,10 @@
-# Licensing: Apex License Manager (ApexLM) & Legacy FlexNet
+# Licensing: APEX License Manager (ApexLM) & Legacy FlexNet
 
-GageMap Next Gen (`GMx`) supports both the modern **Apex License Manager (ApexLM)** service and **Legacy FlexNet Publisher** license servers.
+GageMap Next Gen (`GMx`) supports both the modern **APEX License Manager (ApexLM)** service and **Legacy FlexNet Publisher** license servers.
 
 ---
 
-## Apex License Manager (ApexLM)
+## APEX License Manager (ApexLM)
 
 `GMx` connects to the ApexLM service over encrypted ZeroMQ (`CurveZMQ` via `CoreApexLm` / `ApexLmLic`) and registers with application name `gmx`, version (`YYYY.MM`), and license category `ANALYSIS`.
 

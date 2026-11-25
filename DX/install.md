@@ -4,7 +4,7 @@
 
 ### Installer (.run)
 
-Download the Apex DX Installer (.run file).
+Download the APEX DX Installer (.run file).
 Packages are installed by running the .run file. Make sure the .run package
 has execute permissions by running chmod +x DXInstaller.run. You
 can then run the installer and follow the instructions. The installer needs
@@ -17,7 +17,7 @@ for running this are listed in the Qt5 documentation
 
 ### Tar gzip (.tgz)
 
-Download the gzipped Apex DX (.tgz file).
+Download the gzipped APEX DX (.tgz file).
 Packages are installed by extracting them with the 'tar' utility into
 the root (/) directory. If the package contains an installer script,
 it will be located under /install/doinst.sh. It should be executed
@@ -42,12 +42,12 @@ and installing the Slackware package management tools. (It is the
 Slackware site, www.slackware.com, for download mirrors.) The
 Slackware installer system is implemented in the form of shell
 scripts only, and it will work fine on other Linux systems. Using
-it will allow not just the installation of the Apex packages but
+it will allow not just the installation of the APEX packages but
 also their proper removal or upgrade.
 
 ## Windows Installation
 
-Download the main Apex DX package (.exe or .zip file).
+Download the main APEX DX package (.exe or .zip file).
 Generally, the ".exe" installers should be used as these set up the
 proper Start Menu items, system files, etc.. However, in corporate
 environments users may not have the necessary administrator

@@ -64,7 +64,7 @@ Call `DSAPI_net_set_appid(const char *app_id)` **before** `DSAPI_net_startup` to
 | Constant (`dsapinet.cxx`) | GUID | Behavior |
 | --- | --- | --- |
 | `DS_APPID_DSAPI` (default) | `f552ae4b-465e-48f4-8cf9-c3c42b6f6007` | Standard developer license checkout (`APEXAPI_NET_STREAM`, `APEXAPI_NET_RECORD`, `APEXAPI_NET_CONFIG` under app `DSAPI`) |
-| `DS_APPID_DXPLUS` | `982d121f-ecbb-483f-9eb1-a82c17c51226` | **Internal Apex DX+ passthrough**: marks all three network features licensed without consuming floating `DSAPI` seats |
+| `DS_APPID_DXPLUS` | `982d121f-ecbb-483f-9eb1-a82c17c51226` | **Internal APEX DX+ passthrough**: marks all three network features licensed without consuming floating `DSAPI` seats |
 | `DS_APPID_APEXDS` | `537ec7f6-049b-4fd6-a3e0-afea8393c57e` | **Internal APEX DS passthrough**: marks all three network features licensed without consuming floating `DSAPI` seats |
 
 ```c
@@ -84,7 +84,7 @@ Depending on how the native libraries were built (`-DAPEX_USE_LEGACY_LICENSING` 
   1. `<executable_dir>/<executable_stem>.lic`
   2. `<dsapi_lib_dir>/<dsapi_stem>.lic` (checking `dsapi` and `libdsapi`)
   3. Empty user path `""`, falling back to standard FlexNet resolution such as the `LM_LICENSE_FILE` environment variable and default vendor paths (runtime depends on `libfnp64` / `libfnpts64`).
-- **Apex License Manager (`ApexLM` / `CoreApexLm`, modern builds)**:
+- **APEX License Manager (`ApexLM` / `CoreApexLm`, modern builds)**:
   When DS core is built with `-DAPEX_ALM_LICENSING`, licenses are served as Ed25519-signed JSON under application `DSAPI` in `ApexApps.csv` / `ApexFeatures.csv` (`Token Types=NULL`, `Token Cost=NULL`). Clients connect over ZeroMQ CurveZMQ to port `27884` (`APEXLM_PORT`) or a floating license server (`27885` `APEXLM_SERVER_PORT` / `27886` `APEXLM_SERVER_LISTEN`), and local license status can be inspected at `http://127.0.0.1:27887/` (`APEXLM_MANAGEMENT_PORT`).
 
 ## Language Guides

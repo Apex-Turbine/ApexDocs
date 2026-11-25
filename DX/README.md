@@ -1,9 +1,10 @@
-# APEX Turbine DX Documentation
+# APEX DX Documentation
 
 DX 2019.10 Current
 
 ## Contents
 
+- [Quickstart Guide](quickstart.md)
 - [Overview](overview.md)
 - [Requirements](require.md)
 - [Install APEX DX](install.md)
@@ -28,4 +29,4 @@ DX 2019.10 Current
 
 - [search](#search)
 
-![APEX](images/apex_logo.png)
+![APEX](images/apex-logo-dark.svg)

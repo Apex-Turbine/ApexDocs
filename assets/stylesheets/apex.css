@@ -1,15 +1,108 @@
-/* APEX Turbine Documentation Theme & Print Rules */
+/* APEX Documentation Theme & Print Rules — DX+ Dark Palette */
 
 :root {
-  --apex-navy: #0f2c59;
-  --apex-blue: #1d5fa7;
-  --apex-accent: #e06d1a;
+  --apex-blue: #4488f7;
+  --apex-link: #2a82da;
+  --apex-teal: #36b4d0;
+  --apex-navy: #092c48;
+  --apex-ribbon-blue: #0060ac;
+  --apex-ribbon-blue-hover: #006cbd;
+  --apex-black: #151515;
+  --apex-header-bg: #141414;
+  --apex-canvas-bg: #191919;
+  --apex-surface: #232323;
+  --apex-elevated: #2d2d2d;
+  --apex-border: #373737;
+  --apex-white: #f5f5f5;
+  --apex-gray: #656565;
+  --apex-green: #52d776;
+  --apex-orange: #f7b344;
+  --apex-red: #f75a44;
 }
 
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--apex-canvas-bg);
+  --md-default-fg-color: var(--apex-white);
+  --md-default-fg-color--light: #cbd5e1;
+  --md-default-fg-color--lighter: #94a3b8;
+  --md-default-fg-color--lightest: var(--apex-border);
+  --md-primary-fg-color: var(--apex-header-bg);
+  --md-primary-fg-color--light: var(--apex-ribbon-blue);
+  --md-primary-fg-color--dark: #0e0e0e;
+  --md-primary-bg-color: var(--apex-white);
+  --md-primary-bg-color--light: rgba(245, 245, 245, 0.8);
+  --md-accent-fg-color: var(--apex-blue);
+  --md-accent-fg-color--transparent: rgba(68, 136, 247, 0.14);
+  --md-accent-bg-color: var(--apex-white);
+  --md-typeset-color: var(--apex-white);
+  --md-typeset-a-color: var(--apex-blue);
+  --md-code-bg-color: var(--apex-header-bg);
+  --md-code-fg-color: #e2e8f0;
+  --md-code-hl-color: rgba(68, 136, 247, 0.22);
+  --md-footer-bg-color: var(--apex-header-bg);
+  --md-footer-bg-color--dark: #0d0d0d;
+  --md-shadow-z1: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --md-shadow-z2: 0 4px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* Header & Ribbon-inspired Tabs */
+.md-header {
+  background-color: var(--apex-header-bg);
+  border-bottom: 1px solid var(--apex-border);
+}
+
+.md-header__button.md-logo {
+  margin: 0.2rem 0.6rem 0.2rem 0.2rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 1.85rem;
+  width: auto;
+  border: none;
+  border-radius: 0;
+}
+
+.md-tabs {
+  background-color: #1e1e1e;
+  border-bottom: 2px solid var(--apex-ribbon-blue);
+}
+
+.md-tabs__link {
+  color: #cbd5e1;
+  opacity: 0.88;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:is(:focus, :hover) {
+  color: var(--apex-white);
+  opacity: 1;
+}
+
+.md-tabs__item--active .md-tabs__link {
+  border-bottom: 2px solid var(--apex-blue);
+  color: var(--apex-blue);
+  font-weight: 600;
+}
+
+/* Navigation & Sidebar */
+.md-nav--primary .md-nav__title[for="__drawer"] {
+  background-color: var(--apex-navy);
+  color: var(--apex-white);
+}
+
+.md-nav__link--active,
+.md-nav__link:focus,
+.md-nav__link:hover {
+  color: var(--apex-blue);
+}
+
+/* Typography & Links */
 .md-typeset h1 {
-  color: var(--apex-navy);
+  color: var(--apex-white);
   font-weight: 700;
-  border-bottom: 2px solid #e3e8f0;
+  border-bottom: 2px solid var(--apex-ribbon-blue);
   padding-bottom: 0.35rem;
 }
 
@@ -17,23 +110,87 @@
   color: var(--apex-blue);
   font-weight: 600;
   margin-top: 1.6em;
+  border-bottom: 1px solid var(--apex-border);
+  padding-bottom: 0.2rem;
 }
 
-.md-typeset table:not([class]) {
-  font-size: 0.85rem;
-}
-
-.md-typeset table:not([class]) th {
-  background-color: #f0f4fa;
-  color: var(--apex-navy);
+.md-typeset h3 {
+  color: var(--apex-teal);
   font-weight: 600;
 }
 
+.md-typeset a:hover {
+  color: var(--apex-teal);
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  font-size: 0.85rem;
+  background-color: var(--apex-surface);
+  border: 1px solid var(--apex-border);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--apex-navy);
+  color: var(--apex-white);
+  font-weight: 600;
+  border-bottom: 2px solid var(--apex-blue);
+}
+
+.md-typeset table:not([class]) td {
+  border-top: 1px solid var(--apex-border);
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: #202020;
+}
+
+/* Code & Images */
+.md-typeset code {
+  background-color: #262626;
+  border: 1px solid var(--apex-border);
+  color: #e2e8f0;
+}
+
+.md-typeset pre > code {
+  background-color: var(--apex-header-bg);
+  border: none;
+}
+
 .md-typeset img {
-  border-radius: 4px;
-  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  border: 1px solid var(--apex-border);
+  background-color: #141414;
   max-width: 100%;
   height: auto;
+}
+
+.md-typeset img[src$="apex-logo-dark.svg"],
+.md-typeset img[src$="dxplus-logo-dark.svg"],
+.md-typeset img[src$="apex-logo-light.svg"] {
+  border: none;
+  background: transparent;
+  max-width: 340px;
+}
+
+/* Mermaid container */
+.md-typeset .mermaid {
+  background-color: #151515;
+  border: 1px solid var(--apex-border);
+  border-radius: 6px;
+  padding: 0.85rem;
+  text-align: center;
+}
+
+/* Search Box */
+.md-search__input {
+  background-color: var(--apex-elevated);
+  color: var(--apex-white);
+  border: 1px solid var(--apex-border);
+}
+
+.md-search__input::placeholder {
+  color: #9ca3af;
 }
 
 @media print {
@@ -53,7 +210,7 @@
     break-after: avoid;
   }
 
-  pre, blockquote, table, img {
+  pre, blockquote, table, img, .mermaid {
     page-break-inside: avoid;
     break-inside: avoid;
   }
