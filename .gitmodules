@@ -1,0 +1,8 @@
+[submodule "DX+"]
+	path = DX+
+	url = https://github.com/Apex-Turbine/dxplus-doc.git
+	branch = apexdocs-migration
+[submodule "Custom Development/Phoenix API"]
+	path = Custom Development/Phoenix API
+	url = https://github.com/Apex-Turbine/phoenix-doc.git
+	branch = apexdocs-migration

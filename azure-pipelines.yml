@@ -1,0 +1,111 @@
+# Azure Pipelines CI/CD for APEX Turbine Master Documentation (ApexDocs)
+# Builds the unified static documentation site, standalone per-product HTML bundles,
+# and downloadable PDF manuals, then deploys the static site to Azure Static Web Apps.
+
+trigger:
+  branches:
+    include:
+      - main
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  PYTHON_VERSION: '3.12'
+  BUILD_OUTPUT_DIR: '$(Build.SourcesDirectory)/dist'
+
+stages:
+  - stage: BuildDocs
+    displayName: 'Validate, Compile HTML/PDF, and Package Documentation'
+    jobs:
+      - job: BuildAndVerify
+        displayName: 'Build Static Site, Standalone HTML, and PDF Manuals'
+        steps:
+          - checkout: self
+            submodules: recursive
+            fetchDepth: 1
+            clean: true
+
+          - task: UsePythonVersion@0
+            displayName: 'Use Python $(PYTHON_VERSION)'
+            inputs:
+              versionSpec: '$(PYTHON_VERSION)'
+              addToPath: true
+
+          - script: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
+            displayName: 'Install MkDocs Material & Playwright dependencies'
+
+          - script: |
+              python -m playwright install --with-deps chromium
+            displayName: 'Install Playwright headless Chromium for PDF rendering'
+
+          - script: |
+              python build_docs.py --target site --format html --strict --output "$(BUILD_OUTPUT_DIR)"
+            displayName: 'Build unified Azure Static Web App documentation site (--strict)'
+
+          - script: |
+              python build_docs.py --target all --format both --output "$(BUILD_OUTPUT_DIR)"
+            displayName: 'Build standalone per-folder HTML bundles and PDF manuals'
+
+          - task: CopyFiles@2
+            displayName: 'Include staticwebapp.config.json in site output'
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)'
+              Contents: 'staticwebapp.config.json'
+              TargetFolder: '$(BUILD_OUTPUT_DIR)/site'
+              OverWrite: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish compiled PDF manuals artifact'
+            inputs:
+              PathtoPublish: '$(BUILD_OUTPUT_DIR)/pdf'
+              ArtifactName: 'ApexDocs-PDFs'
+              publishLocation: 'Container'
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish standalone per-product HTML artifact'
+            inputs:
+              PathtoPublish: '$(BUILD_OUTPUT_DIR)/html'
+              ArtifactName: 'ApexDocs-Standalone-HTML'
+              publishLocation: 'Container'
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Static Web App site artifact'
+            inputs:
+              PathtoPublish: '$(BUILD_OUTPUT_DIR)/site'
+              ArtifactName: 'ApexDocs-StaticSite'
+              publishLocation: 'Container'
+
+  - stage: DeployStaticWebApp
+    displayName: 'Deploy to Azure Static Web Apps (apexdocs.apexturbine.com)'
+    dependsOn: BuildDocs
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - job: DeploySWA
+        displayName: 'Deploy site to Azure Static Web App'
+        steps:
+          - checkout: none
+
+          - task: DownloadBuildArtifacts@1
+            displayName: 'Download ApexDocs-StaticSite artifact'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'ApexDocs-StaticSite'
+              downloadPath: '$(Pipeline.Workspace)'
+
+          - task: AzureStaticWebApp@0
+            displayName: 'Deploy Static Site via AzureStaticWebApp@0'
+            inputs:
+              app_location: '/'
+              output_location: ''
+              skip_app_build: true
+              cwd: '$(Pipeline.Workspace)/ApexDocs-StaticSite'
+              azure_static_web_apps_api_token: '$(AZURE_STATIC_WEB_APPS_API_TOKEN)'

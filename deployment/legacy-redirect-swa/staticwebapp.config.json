@@ -1,0 +1,27 @@
+{
+  "routes": [
+    {
+      "route": "/apex-ds/*",
+      "redirect": "https://apexdocs.apexturbine.com/DS/DS/",
+      "statusCode": 301
+    },
+    {
+      "route": "/apex-dr/*",
+      "redirect": "https://apexdocs.apexturbine.com/DS/DR/",
+      "statusCode": 301
+    },
+    {
+      "route": "/apex-do/*",
+      "redirect": "https://apexdocs.apexturbine.com/DS/DO/",
+      "statusCode": 301
+    },
+    {
+      "route": "/*",
+      "redirect": "https://apexdocs.apexturbine.com/DS/",
+      "statusCode": 301
+    }
+  ],
+  "globalHeaders": {
+    "Cache-Control": "public, max-age=3600"
+  }
+}

@@ -1,0 +1,144 @@
+site_name: APEX Turbine Documentation
+site_description: Unified user and developer documentation for APEX Turbine products (DS, DX, GageMap, DX+, and Custom Development APIs).
+site_url: https://apexdocs.apexturbine.com/
+repo_url: https://github.com/Apex-Turbine/ApexDocs
+repo_name: Apex-Turbine/ApexDocs
+
+docs_dir: ..
+site_dir: ../dist/site
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+plugins:
+  - search
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_css:
+  - assets/stylesheets/apex.css
+
+extra_javascript:
+  - assets/javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+exclude_docs: |
+  azure-pipelines.yml
+  staticwebapp.config.json
+  requirements.txt
+  build_docs.py
+  build.ps1
+  build.sh
+  config/
+  build/
+  dist/
+  site/
+  deployment/legacy-redirect-swa/
+  **/CMakeLists.txt
+  **/*.dpd
+  **/*.xlsx
+  **/*.i
+
+nav:
+  - Home: README.md
+  - Master TOC: TOC.md
+  - DS:
+      - DS Suite Overview: DS/README.md
+      - APEX DS: DS/DS/README.md
+      - APEX DR: DS/DR/README.md
+      - APEX DM: DS/DM/README.md
+      - APEX DO: DS/DO/README.md
+      - Hardware Drivers: DS/Drivers/README.md
+  - DX:
+      - DX Overview: DX/README.md
+      - Licensing: DX/licensing.md
+      - Designer: DX/design.md
+      - Viewer: DX/view.md
+      - Data Formats: DX/formats.md
+  - GageMap:
+      - GageMap Suite Overview: GageMap/README.md
+      - GageMap Classic (GM): GageMap/GM/README.md
+      - GageMap Next Gen (GMx): GageMap/GMx/README.md
+      - GmScript: GageMap/GmScript/README.md
+      - GM Theory: GageMap/GM Theory/README.md
+      - SDRFM: GageMap/SDRFM/README.md
+      - SDR Converter: GageMap/SDR Converter/README.md
+  - DX+:
+      - DX+ Overview: DX+/README.md
+      - Getting Started & Licensing: DX+/introduction/README.md
+      - DX+DAQ: DX+/DX+DAQ/README.md
+      - DX+OnlineAnalysis: DX+/DX+OnlineAnalysis/README.md
+      - DX+OfflineAnalysis: DX+/DX+OfflineAnalysis/README.md
+      - DX+RemoteViewer: DX+/DX+RemoteViewer/README.md
+      - DX+DataViewer: DX+/DX+DataViewer/README.md
+      - Tools - DB Manager: DX+/Tools/DB Manager/README.md
+      - Services - DXNet Bridge (OPCUA): DX+/Services/DXNet Bridge (OPCUA)/README.md
+      - Services - DXNet Bridge (PLC): DX+/Services/DXNet Bridge (PLC)/README.md
+  - Custom Development:
+      - Developer Portal: Custom Development/README.md
+      - DS-API Overview & Licensing: Custom Development/DS-API/README.md
+      - DS-API C++: Custom Development/DS-API/C++/README.md
+      - DS-API MATLAB: Custom Development/DS-API/MatLab/README.md
+      - DS-API Python: Custom Development/DS-API/Python/README.md
+      - Phoenix API Overview: Custom Development/Phoenix API/README.md
+      - Phoenix API C++: Custom Development/Phoenix API/C++/README.md
+      - Phoenix API Python: Custom Development/Phoenix API/Python/README.md
+  - Deployment:
+      - Deployment Overview: deployment/README.md
+      - Compiling HTML & PDF: deployment/building-and-compiling.md
+      - GitHub & Submodules: deployment/submodules-and-github.md
+      - Azure Pipelines & SWA: deployment/azure-pipelines-and-swa.md
+      - Legacy Domain Redirects: deployment/url-redirects-guide.md

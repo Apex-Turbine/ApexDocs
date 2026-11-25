@@ -1,0 +1,224 @@
+# GageMap File Formats
+
+GageMap 2019 introduced a new system for sorting and saving GageMap sessions using a number of file types based on GageMap's libraries. As the model, animator, sensors, groupings, fatigue analysis settings, etc. are edited, the settings within each library can be saved as differing file types. When "Save" is selected in GageMap, every library is saved using its respective file type, and a master "GMP" file is saved that contains concatenated file information for all libraries. Every GMP file will always contain 1 SDR file that is associated with the project and a list of all the other libraries. Below is a list of all GageMap file types and its associated library.
+
+| File Type | Library |
+| --- | --- |
+| .gmp | Main Project File |
+| .gma | Animation File |
+| .gms | Sensors File |
+| .gmo | Quantity / Genetic Optimizer File |
+| .gmg | Group File |
+| .gml | Fatigue File |
+| .gmm | Assignments File |
+| .gmf | Assignments File (legacy) |
+| .sdr | Reduced FE model file |
+
+## GMP File Format
+
+GMP files are the main GageMap Project file. All GageMap files are written as "Key, Value" in JSON format. Custom files may be written in Notepad or another text editor and saved as a GageMap format. Format as follows:
+
+```json::
+{
+"GMProject": {
+        "name": "Tutorial_7_Test.gmp",
+        "id": "0258a426-fb19-4980-a525-21b3ca343800",
+        "sdr": "Tutorial_7.sdr", "sensors": [
+        "Tutorial_7_Test_sensors.gms"
+        ],
+        "groups": [
+        "Tutorial_7_Test.gmg"
+        ],
+        "fatigues": [
+        "Tutorial_7_Test.gmf"
+        ],
+        "animates": [
+        "Tutorial_7_Test.gma"
+        ],
+        "optimizers": [],
+        "assignments": [
+        "Tutorial_7_v3.gmf"
+        ]
+}
+}
+```
+
+GMP Files must contain the following:
+
+- Library key. In the above example, it is "GMProject". This is consistant through GMP files and indicates the file type library for GageMap. Everything following the library key is surrounded in curly brackets.
+- Name - Indicates the name of the project and the project file name.
+- id - Used internally for the project ID name. Can be a user defined sorting
+- sdr - The SDR file that is associated with the GageMap Project
+- sensors - Indicates the sensor file name associated with the GageMap project. Surrounded by brackets.
+- groups - Indicates the groups file name associated with the GageMap project. Surrounded by brackets.
+- fatigues - Indicates the fatigue file name associated with the GageMap project. Surrounded by brackets.
+- optmizers - Indicates the optimizers file name associated with the GageMap project. Surrounded by brackets.
+- assignments - Indicates the assignments file name associated with the GageMap project. Surrounded by brackets.
+
+> [!NOTE]
+> if no file path is defined, GageMap will find files by filename in the containing directory of the GMP file, and all of it's subdirectories. If the files denoted in the setup are not located in these directories, an exact file path must be specified.
+
+## GMS File Format
+
+GMS files are GageMap Sensor files and contain information and locations of sensors in JSON format. Custom files may be written in Notepad or another text editor and saved as a GageMap format. Format as follows:
+
+```json::
+{
+        "SensorLib": {
+                "name": "Tutorial_72.gms",
+                "id": "71392a29-f819-0d47-8aaa-a6167029cff0",
+                "numsensors": 1,
+                "sdr": "C:/Users/johon/Desktop/GmScriptQA/ModelFiles/TrainingModel.sdr",
+                "sensors": [
+                        {
+                                "name": "SGageA",
+                                "type": 0,
+                                "length": 6.250000e-02,
+                                "width": 6.250000e-02,
+                                "angle": 0.000000e+00,
+                                "depth": 0.000000e+00,
+                                "mapped": true,
+                                "center": [
+                                        6.492640e-01,
+                                        4.075950e+00,
+                                        1.052591e+01
+                                ],
+                                "xdirection": [
+                                        -1.465375e-01,
+                                        -9.868102e-01,
+                                        6.879300e-02
+                                ],
+                                "ydirection": [
+                                        8.039010e-01,
+                                        -7.827442e-02,
+                                        5.895900e-01
+                                ],
+                                "color": [
+                                        0.000000e+00,
+                                        0.000000e+00,
+                                        0.000000e+00,
+                                        0.000000e+00
+                        ]
+                        }
+                ]
+        }
+}
+```
+
+GMS Files must contain the following:
+
+- Library key. In the above example, it is "SensorLib". This is consistent through all GMS files and indicates the file type library for GageMap. Everything following the library key is surrounded in curly brackets
+- Name - Indicates the name of the project and the project file name
+- id - Used internally for the project ID name. Can be a user defined sorting
+- numsensors - Indicates the number of sensors in the file
+- sdr - The SDR file that is associated with the GageMap Project
+- - **sensors - Includes all sensors and sensor information within a file. All sensors are encased in brackets, and each sensor listed after is encased in curly brackets. Sensor information must include:**: - Sensor name
+  - Sensor type -  Binary. 0 for Strain Gage, 1 for located
+  - Sensor lengh, width, angle, and depth
+  - If the sensor is mapped - True/False
+  - - **Center location of the sensor - encase in brackets:**: - X Direction - Values encased in brackets
+    - Y Direction - Values encased in brackets
+    - Sensor Color - Values encased in brackets
+
+> [!NOTE]
+> if no file path for the SDR file is defined, GageMap will find files by filename in the containing directory of the GMS file, and all of it's subdirectories. If the files denoted in the setup are not located in these directories, an exact file path must be specified.
+
+## SGA File Format
+
+> [!NOTE]
+> This is a legacy file format and will no longer be supported in future versions.
+
+The strain gage file format is a text file containing the necessary mapping information for all supported sensors. The format is text and can be created or modified easily outside of GageMap. In addition to the sensor mapping information, additional information relating to the mapping domain can be present. For tip timing sensors, this would be the definition of the blade tip.
+
+The following information is required to completely define a strain gage:
+
+> 1. Keyword “Single”. Must be the first entry defining a strain gage. Currently only uniaxial strain gages are supported.
+> 2. Gage name. Unique name that cannot contain any spaces.
+> 3. Gage centroid X location in global Cartesian coordinates. Must be in model units.
+> 4. Gage centroid Y location in global Cartesian coordinates. Must be in model units.
+> 5. Gage centroid Z location in global Cartesian coordinates. Must be in model units.
+> 6. Gage sensing direction vector, *i* component.
+> 7. Gage sensing direction vector, *j* component.
+> 8. Gage sensing direction vector, *k* component.
+> 9. Gage size in the sensing direction, model units.
+> 10. Gage size in the transverse direction, model units.
+
+The gage sensing direction vector, items 6-8 should form a unit vector describing the sensing direction in the global Cartesian coordinate system.
+
+  
+
+The following information is required to completely define a tip timing (spot) sensor:
+
+> 1. Keyword “NSMS_Spot”. Must be the first entry defining a tip timing sensor. Currently only spot probes are supported.
+> 2. Sensor name. Unique name that cannot contain any spaces.
+> 3. Sensor centroid X location in global Cartesian coordinates. Must be in model units.
+> 4. Sensor centroid Y location in global Cartesian coordinates. Must be in model units.
+> 5. Sensor centroid Z location in global Cartesian coordinates. Must be in model units.
+> 6. Sensor sensing direction vector, *i* component.
+> 7. Sensor sensing direction vector, *j* component.
+> 8. Sensor sensing direction vector, *k* component.
+> 9. Beam width, model units. (for visualization purposes only)
+> 10. Beam depth, model units. (Not used)
+
+The sensor sensing direction vector, items 6-8 should form a unit vector describing the sensing direction in the global Cartesian coordinate system and should align with the global direction vector describing the rotation direction.
+
+  
+
+The “Blade Tip” is defined using a combination of two properties:  “Rotation” and “Edges”. The Rotation is defines as follows:
+
+> 1. Keyword “Blade_Tip”. Must be the first entry.
+> 2. “Rotation”. Must be the second entry.
+> 3. Number of element/face edges that define the tip.
+> 4. Cyclic coordinate system axial direction vector, *i* component.
+> 5. Cyclic coordinate system axial direction vector, *j* component.
+> 6. Cyclic coordinate system axial direction vector, *k* component.
+> 7. Cyclic coordinate system radial direction vector, *i* component.
+> 8. Cyclic coordinate system radial direction vector, *j* component.
+> 9. Cyclic coordinate system radial direction vector, *k* component.
+> 10. Cyclic coordinate system tangential direction vector, *i* component.
+> 11. Cyclic coordinate system tangential direction vector, *j* component.
+> 12. Cyclic coordinate system tangential direction vector, *k* component.
+
+The “Edges” are defined as follows:
+
+> 1. Keyword “Blade_Tip”. Must be the first entry.
+> 2. “Edges”. Must be the second entry.
+> 3. Node labels defining the tip
+
+Line #3 is repeated as necessary until all edges defining the tip are entered.
+
+  
+
+The example below contains both a strain gage definition and a spot probe definition as well as the necessary lines to define the blade tip:
+
+`NSMS_Spot SpotLE  8.63031472e-001  5.94031950e+000  1.03683951e+001   1.00000000e+000  0.00000000e+000  0.00000000e+000   1.00000000e-002  0.00000000e+000  00`
+
+`Single    Ga      6.22341877e-001  4.64931487e+000  1.03975449e+001   8.57281557e-001  1.29074460e-004  5.14847856e-001   6.30000000e-002  6.30000000e-002  00`
+
+`Blade_Tip Rotation 7.80000000e+001  0.00000000e+000  0.00000000e+000  1.00000000e+000   0.00000000e+000  1.00000000e+000  0.00000000e+000   1.00000000e+000  0.00000000e+000  0.00000000e+000`
+
+`Blade_Tip Edges   1.00430000e+004  1.00420000e+004   1.00400000e+004  1.00390000e+004   1.00410000e+004  1.00400000e+004   1.00420000e+004  1.00410000e+004   1.00380000e+004  1.00370000e+004   1.00390000e+004  1.00380000e+004`
+
+`Blade_Tip Edges   1.00370000e+004  1.09530000e+004   1.09530000e+004  1.51940000e+004   1.51940000e+004  1.51930000e+004   1.51930000e+004  1.51920000e+004   1.51920000e+004  1.51910000e+004   1.51910000e+004  1.51900000e+004`
+
+`Blade_Tip Edges   1.51900000e+004  1.51890000e+004   1.51890000e+004  1.51880000e+004   1.51880000e+004  1.51870000e+004   1.51870000e+004  1.51860000e+004   1.51860000e+004  1.51850000e+004   1.51850000e+004  1.51840000e+004`
+
+`Blade_Tip Edges   1.51840000e+004  1.51830000e+004   1.51830000e+004  1.51820000e+004   1.51820000e+004  1.51810000e+004   1.51810000e+004  1.51800000e+004   1.51800000e+004  1.51790000e+004   1.51790000e+004  1.51780000e+004`
+
+`Blade_Tip Edges   1.51780000e+004  1.51770000e+004   1.51770000e+004  1.51760000e+004   1.51760000e+004  1.51750000e+004   1.51750000e+004  1.51740000e+004   1.51740000e+004  1.51730000e+004   1.51730000e+004  1.51720000e+004`
+
+`Blade_Tip Edges   1.51720000e+004  1.51710000e+004   1.51710000e+004  1.51700000e+004   1.51700000e+004  1.51690000e+004   1.51690000e+004  1.51680000e+004   1.51680000e+004  1.51670000e+004   1.51670000e+004  1.51660000e+004`
+
+`Blade_Tip Edges   1.51660000e+004  1.51650000e+004   1.51650000e+004  1.51640000e+004   1.51640000e+004  1.51630000e+004   1.51630000e+004  1.51620000e+004   1.51610000e+004  1.06540000e+004   1.51620000e+004  1.51610000e+004`
+
+`Blade_Tip Edges   1.63600000e+004  1.63590000e+004   1.63610000e+004  1.63600000e+004   1.63620000e+004  1.63610000e+004   1.63630000e+004  1.63620000e+004   1.63640000e+004  1.63630000e+004   1.63650000e+004  1.63640000e+004`
+
+`Blade_Tip Edges   1.63660000e+004  1.63650000e+004   1.63670000e+004  1.63660000e+004   1.63680000e+004  1.63670000e+004   1.63690000e+004  1.63680000e+004   1.63700000e+004  1.63690000e+004   1.63710000e+004  1.63700000e+004`
+
+`Blade_Tip Edges   1.63720000e+004  1.63710000e+004   1.63730000e+004  1.63720000e+004   1.63740000e+004  1.63730000e+004   1.63750000e+004  1.63740000e+004   1.63760000e+004  1.63750000e+004   1.63770000e+004  1.63760000e+004`
+
+`Blade_Tip Edges   1.63780000e+004  1.63770000e+004   1.63790000e+004  1.63780000e+004   1.63800000e+004  1.63790000e+004   1.63810000e+004  1.63800000e+004   1.63820000e+004  1.63810000e+004   1.63830000e+004  1.63820000e+004`
+
+`Blade_Tip Edges   1.63840000e+004  1.63830000e+004   1.63850000e+004  1.63840000e+004   1.63860000e+004  1.63850000e+004   1.84130000e+004  1.63860000e+004   1.06540000e+004  1.84060000e+004   1.82710000e+004  1.84170000e+004`
+
+`Blade_Tip Edges   1.84060000e+004  1.82720000e+004   1.82720000e+004  1.82710000e+004   1.84140000e+004  1.84130000e+004   1.84170000e+004  1.81650000e+004   1.81640000e+004  1.84140000e+004   1.81650000e+004  1.81640000e+004`

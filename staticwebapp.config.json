@@ -1,0 +1,77 @@
+{
+  "routes": [
+    {
+      "route": "/apex-ds/*",
+      "redirect": "/DS/DS/",
+      "statusCode": 301
+    },
+    {
+      "route": "/apex-dr/*",
+      "redirect": "/DS/DR/",
+      "statusCode": 301
+    },
+    {
+      "route": "/apex-do/*",
+      "redirect": "/DS/DO/",
+      "statusCode": 301
+    },
+    {
+      "route": "/ds/*",
+      "redirect": "/DS/",
+      "statusCode": 301
+    },
+    {
+      "route": "/dx/*",
+      "redirect": "/DX/",
+      "statusCode": 301
+    },
+    {
+      "route": "/gagemap/*",
+      "redirect": "/GageMap/",
+      "statusCode": 301
+    },
+    {
+      "route": "/dxplus/*",
+      "redirect": "/DX+/",
+      "statusCode": 301
+    },
+    {
+      "route": "/deployment/legacy-redirect-swa/*",
+      "statusCode": 404
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/assets/*",
+      "/search/*",
+      "/*.css",
+      "/*.js",
+      "/*.png",
+      "/*.jpg",
+      "/*.gif",
+      "/*.svg",
+      "/*.webp",
+      "/*.woff2",
+      "/*.json",
+      "/*.pdf"
+    ]
+  },
+  "mimeTypes": {
+    ".json": "application/json",
+    ".svg": "image/svg+xml",
+    ".woff2": "font/woff2",
+    ".pdf": "application/pdf"
+  }
+}

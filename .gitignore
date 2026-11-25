@@ -1,0 +1,19 @@
+# Build & Staging Outputs
+build/
+dist/
+site/
+
+# Python Environments & Bytecode
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS & Editor Metadata
+.DS_Store
+Thumbs.db
+*.tmp
+~$*
+.vscode/
+.idea/
