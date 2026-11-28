@@ -30,7 +30,6 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.sections
     - navigation.indexes
     - navigation.top
     - search.suggest
@@ -127,29 +126,78 @@ nav:
       - SDRFM: GageMap/SDRFM/README.md
       - SDR Converter: GageMap/SDR Converter/README.md
   - DX+:
+      - Quick Start: DX+/quick-start.md
       - DX+ Overview: DX+/README.md
-      - Getting Started:
+      - Getting Started & Licensing:
           - DX+/introduction/README.md
-          - Quick Start: DX+/quick-start.md
-          - Introduction: DX+/introduction/introduction.md
-          - Features Overview: DX+/introduction/features-overview.md
-          - System Requirements: DX+/introduction/system-requirements.md
-          - Installing & Licensing: DX+/introduction/installing-and-licensing.md
-          - Quick Start - Datatel: DX+/introduction/quick-start-datatel.md
-          - Quick Start - VTI: DX+/introduction/quick-start-vti.md
-          - Data Formats & Storage: DX+/introduction/data-formats.md
-      - Applications:
-          - DX+DAQ: DX+/DX+DAQ/README.md
-          - DX+OnlineAnalysis: DX+/DX+OnlineAnalysis/README.md
-          - DX+OfflineAnalysis: DX+/DX+OfflineAnalysis/README.md
-          - DX+RemoteViewer: DX+/DX+RemoteViewer/README.md
-          - DX+DataViewer: DX+/DX+DataViewer/README.md
-      - Tools & Services:
-          - DB Manager: DX+/Tools/DB Manager/README.md
-          - DXNet Bridge (OPC UA): DX+/Services/DXNet Bridge (OPCUA)/README.md
-          - DXNet Bridge (PLC): DX+/Services/DXNet Bridge (PLC)/README.md
-      - Release Notes: DX+/release-notes/README.md
-      - Legal: DX+/legal/README.md
+          - DX+/introduction/introduction.md
+          - DX+/introduction/features-overview.md
+          - DX+/introduction/system-requirements.md
+          - DX+/introduction/installing-and-licensing.md
+          - DX+/introduction/quick-start-datatel.md
+          - DX+/introduction/quick-start-vti.md
+          - DX+/introduction/data-formats.md
+      - DX+DAQ:
+          - DX+/DX+DAQ/README.md
+          - General:
+              - DX+/DX+DAQ/general/README.md
+              - DX+/DX+DAQ/general/ribbon.md
+              - DX+/DX+DAQ/general/devices-panel.md
+              - DX+/DX+DAQ/general/table-operations.md
+          - Devices:
+              - DX+/DX+DAQ/devices/README.md
+              - DX+/DX+DAQ/devices/virtual.md
+              - DX+/DX+DAQ/devices/integrated.md
+              - DX+/DX+DAQ/devices/receivers.md
+          - Processors:
+              - DX+/DX+DAQ/processors/README.md
+              - DX+/DX+DAQ/processors/raw-units.md
+              - DX+/DX+DAQ/processors/filtering.md
+              - DX+/DX+DAQ/processors/conversion.md
+              - DX+/DX+DAQ/processors/spectral.md
+              - DX+/DX+DAQ/processors/statistics.md
+          - Outputs:
+              - DX+/DX+DAQ/outputs/README.md
+              - DX+/DX+DAQ/outputs/viewer.md
+              - DX+/DX+DAQ/outputs/sqlite.md
+              - DX+/DX+DAQ/outputs/transmit.md
+      - DX+OnlineAnalysis:
+          - DX+/DX+OnlineAnalysis/README.md
+          - DX+/DX+OnlineAnalysis/designer-workspace.md
+          - DX+/DX+OnlineAnalysis/inputs-and-streams.md
+          - DX+/DX+OnlineAnalysis/outputs.md
+          - DX+/DX+OnlineAnalysis/processors.md
+          - DX+/DX+OnlineAnalysis/live-monitoring.md
+      - DX+OfflineAnalysis:
+          - DX+/DX+OfflineAnalysis/README.md
+          - DX+/DX+OfflineAnalysis/designer-and-stream-select.md
+          - DX+/DX+OfflineAnalysis/processors-and-outputs.md
+          - DX+/DX+OfflineAnalysis/record-selection-and-disambiguation.md
+          - DX+/DX+OfflineAnalysis/offline-query-cli.md
+      - DX+RemoteViewer:
+          - DX+/DX+RemoteViewer/README.md
+          - DX+/DX+RemoteViewer/connecting-and-streams.md
+          - DX+/DX+RemoteViewer/viewer-workspace.md
+          - DX+/DX+RemoteViewer/daq-control-and-limits.md
+          - DX+/DX+RemoteViewer/live-plots.md
+      - DX+DataViewer:
+          - DX+/DX+DataViewer/README.md
+          - DX+/DX+DataViewer/loading-and-playback.md
+          - DX+/DX+DataViewer/ribbon-and-options.md
+          - DX+/DX+DataViewer/time-based-plots.md
+          - DX+/DX+DataViewer/frequency-based-plots.md
+      - Tools - DB Manager: DX+/Tools/DB Manager/README.md
+      - Services - DXNet Bridge (OPCUA): DX+/Services/DXNet Bridge (OPCUA)/README.md
+      - Services - DXNet Bridge (PLC): DX+/Services/DXNet Bridge (PLC)/README.md
+      - Release Notes:
+          - DX+/release-notes/README.md
+          - DX+/release-notes/change-log.md
+          - DX+/release-notes/known-issues.md
+      - Legal:
+          - DX+/legal/README.md
+          - DX+/legal/dx-plus-attribution.md
+          - DX+/legal/software-license-agreement.md
+          - DX+/legal/software-maintenance-policy.md
   - Custom Development:
       - Quick Start: Custom Development/quick-start.md
       - Developer Portal: Custom Development/README.md
