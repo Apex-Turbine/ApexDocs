@@ -127,17 +127,29 @@ nav:
       - SDRFM: GageMap/SDRFM/README.md
       - SDR Converter: GageMap/SDR Converter/README.md
   - DX+:
-      - Quick Start: DX+/quick-start.md
       - DX+ Overview: DX+/README.md
-      - Getting Started & Licensing: DX+/introduction/README.md
-      - DX+DAQ: DX+/DX+DAQ/README.md
-      - DX+OnlineAnalysis: DX+/DX+OnlineAnalysis/README.md
-      - DX+OfflineAnalysis: DX+/DX+OfflineAnalysis/README.md
-      - DX+RemoteViewer: DX+/DX+RemoteViewer/README.md
-      - DX+DataViewer: DX+/DX+DataViewer/README.md
-      - Tools - DB Manager: DX+/Tools/DB Manager/README.md
-      - Services - DXNet Bridge (OPCUA): DX+/Services/DXNet Bridge (OPCUA)/README.md
-      - Services - DXNet Bridge (PLC): DX+/Services/DXNet Bridge (PLC)/README.md
+      - Getting Started:
+          - DX+/introduction/README.md
+          - Quick Start: DX+/quick-start.md
+          - Introduction: DX+/introduction/introduction.md
+          - Features Overview: DX+/introduction/features-overview.md
+          - System Requirements: DX+/introduction/system-requirements.md
+          - Installing & Licensing: DX+/introduction/installing-and-licensing.md
+          - Quick Start - Datatel: DX+/introduction/quick-start-datatel.md
+          - Quick Start - VTI: DX+/introduction/quick-start-vti.md
+          - Data Formats & Storage: DX+/introduction/data-formats.md
+      - Applications:
+          - DX+DAQ: DX+/DX+DAQ/README.md
+          - DX+OnlineAnalysis: DX+/DX+OnlineAnalysis/README.md
+          - DX+OfflineAnalysis: DX+/DX+OfflineAnalysis/README.md
+          - DX+RemoteViewer: DX+/DX+RemoteViewer/README.md
+          - DX+DataViewer: DX+/DX+DataViewer/README.md
+      - Tools & Services:
+          - DB Manager: DX+/Tools/DB Manager/README.md
+          - DXNet Bridge (OPC UA): DX+/Services/DXNet Bridge (OPCUA)/README.md
+          - DXNet Bridge (PLC): DX+/Services/DXNet Bridge (PLC)/README.md
+      - Release Notes: DX+/release-notes/README.md
+      - Legal: DX+/legal/README.md
   - Custom Development:
       - Quick Start: Custom Development/quick-start.md
       - Developer Portal: Custom Development/README.md

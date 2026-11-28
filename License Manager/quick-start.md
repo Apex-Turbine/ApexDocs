@@ -26,6 +26,10 @@ Follow one of the two deployment tracks below to activate a single-workstation n
 
 1. Launch **ApexLM Tray** (`ApexLM_Tray`), right-click the **A** tray icon, and choose **Open Configuration** — or open **`http://127.0.0.1:27887/`** directly in your browser.
 2. On the **Overview** tab in the **Host** card, click **Download license request** to save `license-request.json` (or copy the workstation MAC address).
+
+    ![ApexLM Administration — Overview](images/lm-overview.jpg)
+    *ApexLM Administration — Overview*
+
 3. Submit the license request through the [APEX User Portal](https://users.apexturbine.com/) to obtain your Ed25519-signed **Format Version 2** license file.
 
 ### 3. Install Your License
@@ -37,6 +41,10 @@ Either use the **Web Admin UI** or the **CLI**:
     1. Open `http://127.0.0.1:27887/` and switch to the **Configuration** tab (`#config`).
     2. Ensure **Service mode** is set to **Local**.
     3. Under **Install license**, click **Browse license file...** (or drag and drop your `.json` license text) and click **Install**.
+
+        ![ApexLM Administration — Install license](images/lm-install-license.jpg)
+        *ApexLM Administration — Install license*
+
     4. Switch to **Overview** and **Records** to verify green **`LOCAL`** status and licensed applications/features.
 
 === "ApexLM_CLI (Terminal)"
@@ -79,6 +87,11 @@ Floating pools require **APEX LM Server Daemon (`ApexLM_Server_Service`)** on a 
    - **License server host** (`PT_HOST`): Enter the server's hostname or IP address (for example `licserver.corp.local`).
    - **License server port** (`PT_PORT`): Keep **`27885`** (unless customized via `APEXLM_SERVER_PORT`).
    - *(Optional)* **Proxy address / port** (`PROXY_IP`, `PROXY_PORT`): Complete only if traffic routes through an outbound proxy.
+
+
+    ![ApexLM Administration — Passthrough settings](images/lm-passthrough.jpg)
+    *ApexLM Administration — Passthrough settings*
+
 3. Click **Save changes**, then in the **Control** card click **Restart service**.
 4. Confirm the status bar at the top reads **`Connected to License Server`** with a green **`PASSTHROUGH`** pill.
 
